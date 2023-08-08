@@ -18,10 +18,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
+      <body
+        className={inter.className + " bg-zinc-200 flex flex-col min-h-screen"}
+      >
+        <div>
+          <Navbar />
+        </div>
         {children}
-        <Footer />
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </body>
     </html>
   );
