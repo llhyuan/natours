@@ -6,5 +6,4 @@ Phase 2 will migrate the backend into next.js, making it a full-stack web applic
 
 ### Currently under phase 1.
 
-The backend to be integrated can be found here[link](https://github.com/llhyuan/natour-backend)
-First, run the development server:
+The backend to be integrated can be found [here](https://github.com/llhyuan/natour-backend)
