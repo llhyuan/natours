@@ -1,3 +1,9 @@
+import InfoCard from "@/components/InfoCard";
+
 export default function Home() {
-  return <div>Test</div>;
+  return (
+    <div className="p-8">
+      <p>This is the home page. Under construction.</p>
+    </div>
+  );
 }

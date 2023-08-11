@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import SearchForm from "./SearchForm";
+import User from "./User";
 
 export default function Dropdown() {
   const [menuStatus, toggleMenuStatus] = useState(false);
@@ -36,7 +37,7 @@ export default function Dropdown() {
           BOOKINGS
         </Link>
         <div className="px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900">
-          user component
+          <User />
         </div>
         <div className="flex justify-center items-center py-4">
           <SearchForm mobile={true} />

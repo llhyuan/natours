@@ -1,10 +1,14 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const lato = Lato({
+  weight: "300",
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Natours",
@@ -19,9 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={inter.className + " bg-zinc-200 flex flex-col min-h-screen"}
+        className={
+          lato.className +
+          " bg-zinc-200 flex flex-col min-h-screen min-w-[375px]"
+        }
       >
-        <div>
+        <div className="relative">
           <Navbar />
         </div>
         {children}

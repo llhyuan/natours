@@ -3,13 +3,14 @@ import Image from "next/image";
 import Dropdown from "./Dropdown";
 import SearchForm from "./SearchForm";
 import logo from "../../public/img/logo-white.png";
+import User from "./User";
 
 export default function Navbar() {
   return (
     <div id="navbar" className="bg-zinc-700 text-white text-xl px-8 py-6">
-      <div className="flex justify-center items-center">
-        <div className="flex-1 flex">
-          <Link href="/" className="hidden mr-[4vw] lg:block">
+      <div className="flex items-center md:justify-center">
+        <div className="hidden md:flex flex-1">
+          <Link href="/" className="mr-[4vw] hidden lg:block">
             ALL TOURS
           </Link>
           <div id="search-container" className="w-48">
@@ -22,14 +23,14 @@ export default function Navbar() {
           alt="Website Logo"
           width={90}
           height={90}
-          className="mx-auto"
+          className="md:mx-auto"
         ></Image>
-        <div className="flex-1 flex justify-end">
+        <div className="hidde md:flex flex-1 justify-end items-center">
           <Link href="/" className="hidden lg:block">
             MY BOOKINGS
           </Link>
           <div id="user" className="hidden ml-[4vw] lg:block">
-            USER
+            <User />
           </div>
         </div>
       </div>
