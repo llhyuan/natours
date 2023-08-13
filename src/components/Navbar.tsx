@@ -22,7 +22,6 @@ export default function Navbar() {
           src={logo}
           alt="Website Logo"
           width={90}
-          height={90}
           className="md:mx-auto"
         ></Image>
         <div className="hidde md:flex flex-1 justify-end items-center">

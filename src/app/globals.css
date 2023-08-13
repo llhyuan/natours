@@ -2,9 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --section-rotate: 8vw;
+}
+
 @layer components {
   .clip-polygon {
-    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+    clip-path: polygon(
+      0 0,
+      100% 0%,
+      100% calc(100% - var(--section-rotate)),
+      0% 100%
+    );
+  }
+
+  .clip-slate {
+    clip-path: polygon(
+      0 calc(var(--section-rotate)),
+      100% 0%,
+      100% calc(100% - var(--section-rotate)),
+      0% 100%
+    );
   }
 }
 

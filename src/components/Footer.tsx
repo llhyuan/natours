@@ -10,7 +10,6 @@ export default function Footer() {
           src={logo}
           alt="footer logo"
           width={200}
-          height={200}
           className="mx-auto my-8 lg:ml-4"
         />
       </div>

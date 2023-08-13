@@ -4,7 +4,7 @@ export default function ToursLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="px-4 py-8 sm:py-8 flex flex-col justify-center gap-y-6 md:gap-y-12 gap-x-12 sm:flex-row sm:flex-wrap items-center">
+    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-x-12 gap-y-6 md:gap-y-12">
       {children}
     </div>
   );
