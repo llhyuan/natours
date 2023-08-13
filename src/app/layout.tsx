@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import Footer from "@/components/Footer";
@@ -28,10 +29,10 @@ export default function RootLayout({
           " bg-zinc-200 flex flex-col min-h-screen min-w-[375px]"
         }
       >
-        <div className="relative">
+        <div className="sticky top-0 z-50">
           <Navbar />
         </div>
-        {children}
+        <div className="relative z-40">{children}</div>
         <div className="mt-auto">
           <Footer />
         </div>
