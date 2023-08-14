@@ -37,7 +37,7 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
   const rating = tour.ratingsAverage;
   const ratingQuantity = tour.ratingsQuantity;
 
-  const cover = importCover(tour.imageCover);
+  const cover = importCover(`tours/${tour.imageCover}`);
   const tourDetail = `/tours/${tour.id}`;
 
   return (
@@ -69,12 +69,53 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
         </p>
         <div
           id="details"
-          className="grid grid-cols-2 justify-center items-center text-center my-4 gap-2"
+          className="grid grid-cols-2 justify-center items-center text-center my-6 gap-3"
         >
-          <p>{location}</p>
-          <p>{startTime}</p>
-          <p>{stops} stops</p>
-          <p>{capacity} people</p>
+          <p className="flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1.1em"
+              width="0.9em"
+              viewBox="0 0 384 512"
+              className="mr-3 fill-zinc-400 "
+            >
+              <path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" />
+            </svg>
+            {location}
+          </p>
+          <p className="flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 448 512"
+              className="mr-3 fill-zinc-400"
+            >
+              <path d="M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192z" />
+            </svg>
+            {startTime}
+          </p>
+          <p className="flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1.1em"
+              viewBox="0 0 320 512"
+              className="mr-3 fill-zinc-400"
+            >
+              <path d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z" />
+            </svg>
+            {stops} stops
+          </p>
+          <p className="flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 640 512"
+              className="mr-3 fill-zinc-400"
+            >
+              <path d="M211.2 96a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zM32 256c0 17.7 14.3 32 32 32h85.6c10.1-39.4 38.6-71.5 75.8-86.6c-9.7-6-21.2-9.4-33.4-9.4H96c-35.3 0-64 28.7-64 64zm461.6 32H576c17.7 0 32-14.3 32-32c0-35.3-28.7-64-64-64H448c-11.7 0-22.7 3.1-32.1 8.6c38.1 14.8 67.4 47.3 77.7 87.4zM391.2 226.4c-6.9-1.6-14.2-2.4-21.6-2.4h-96c-8.5 0-16.7 1.1-24.5 3.1c-30.8 8.1-55.6 31.1-66.1 60.9c-3.5 10-5.5 20.8-5.5 32c0 17.7 14.3 32 32 32h224c17.7 0 32-14.3 32-32c0-11.2-1.9-22-5.5-32c-10.8-30.7-36.8-54.2-68.9-61.6zM563.2 96a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zM321.6 192a80 80 0 1 0 0-160 80 80 0 1 0 0 160zM32 416c-17.7 0-32 14.3-32 32s14.3 32 32 32H608c17.7 0 32-14.3 32-32s-14.3-32-32-32H32z" />
+            </svg>
+            {capacity} people
+          </p>
         </div>
       </div>
       <div

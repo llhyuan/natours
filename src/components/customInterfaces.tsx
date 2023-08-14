@@ -17,19 +17,38 @@ export interface Tour {
   ratingsAverage: number;
   ratingsQuantity: number;
   imageCover: string;
+  images: Array<string>;
   id: string;
   guides: Array<Guide>;
+  description: string;
 }
 
 export interface GeoPoint {
-  type: "Point";
+  type: string;
   description: string;
   coordinates: Array<number>;
   address?: string;
+  id: string;
+  _id: string;
 }
 
 export interface Guide {
   name: string;
   email: string;
   id: string;
+}
+
+export interface Review {
+  review: string;
+  rating: number;
+  createdAt: string;
+  tour: string;
+  user: string;
+}
+
+export interface User {
+  name: string;
+  email: string;
+  photo: string;
+  role: string;
 }

@@ -1,4 +1,4 @@
 export function importCover(imageCover: string) {
-  const cover = require(`/public/img/tours/${imageCover}`);
+  const cover = require(`/public/img/${imageCover}`);
   return cover.default;
 }
