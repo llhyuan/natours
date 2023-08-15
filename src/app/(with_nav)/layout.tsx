@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import "./globals.css";
+import "../globals.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
@@ -32,7 +32,7 @@ export default function RootLayout({
         <div className="sticky top-0 z-50">
           <Navbar />
         </div>
-        <div className="relative z-40">{children}</div>
+        <div className="z-40">{children}</div>
         <div className="mt-auto">
           <Footer />
         </div>

@@ -9,11 +9,11 @@ export default function Navbar() {
   return (
     <div id="navbar" className="bg-zinc-700 text-white text-xl px-8 py-6">
       <div className="flex items-center md:justify-center">
-        <div className="hidden md:flex flex-1">
+        <div className="hidden md:flex flex-1 items-center">
           <Link href="/tours" className="mr-[4vw] hidden lg:block">
             ALL TOURS
           </Link>
-          <div id="search-container" className="w-48">
+          <div id="search-container" className="w-48 flex items-center">
             <SearchForm mobile={false} />
           </div>
         </div>

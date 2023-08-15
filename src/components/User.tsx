@@ -7,12 +7,17 @@ import { useState } from "react";
 type User = {
   name: string;
   loginStatus: boolean;
+  loginToKen: string;
 };
 
 const defaultUser: User = {
   name: "Login",
   loginStatus: false,
+  loginToKen: "",
 };
+
+const loginToken = localStorage.getItem("loginToken");
+console.log(loginToken);
 
 export default function User() {
   const [user, setCurrUser] = useState(defaultUser);

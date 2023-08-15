@@ -140,7 +140,7 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
           <Link
             href={tourDetail}
             className={
-              "w-fit py-4 px-8 mx-auto bg-green-400 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
+              "w-fit py-4 px-8 mx-auto bg-green-500 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
             }
           >
             DETAILS

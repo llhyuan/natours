@@ -43,7 +43,11 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
     <article className="w-full ">
       <section className="relative">
         <div className="overflow-clip h-[60vw] max-h-[900px] min-h-[240px] md:clip-polygon">
-          <Image src={cover} alt="cover image" className="relative bottom-24" />
+          <Image
+            src={cover}
+            alt="cover image"
+            className="relative md:bottom-24 mx-auto"
+          />
         </div>
         <div className="absolute w-full h-[55vw] max-h-[860px] min-h-[220px] top-0 flex items-center">
           <div className="flex flex-col w-full items-center">

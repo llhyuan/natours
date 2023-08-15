@@ -98,7 +98,10 @@ function getMapCenter(locations: Array<GeoPoint>) {
   for (const { coordinates } of locations) {
     coordinatesArr.push(coordinates);
   }
-  return coordinatesArr.reduce((prev: number[], coordi: number[]) => {
+
+  const center = coordinatesArr.reduce((prev: number[], coordi: number[]) => {
     return [(prev[0] + coordi[0]) / 2, (prev[1] + coordi[1]) / 2];
   });
+
+  return center;
 }
