@@ -7,6 +7,8 @@ import Link from "next/link";
 import { importCover } from "@/utilities/importImage";
 import { useEffect, useState } from "react";
 import ErrorBanner from "@/components/ErrorBanner";
+import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
 const latoSemiBold = Lato({
   weight: "400",
@@ -34,6 +36,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [errorStatus, setError] = useState(inialStatus);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -91,7 +94,6 @@ export default function Login() {
                   email: email,
                   password: password,
                 };
-                console.log(data);
                 const result = await fetch(
                   `${process.env.NEXT_PUBLIC_API_HOST}/users/login`,
                   {
@@ -104,10 +106,13 @@ export default function Login() {
                 );
                 const response = await result.json();
                 if (response.status === "success") {
-                  localStorage.setItem("loginToken", response.data.token);
+                  localStorage.setItem(
+                    "natoursLoggedinUser",
+                    JSON.stringify(response.data)
+                  );
+                  router.replace("/");
                 } else {
                   setError({ error: true, message: response.message });
-                  console.log(response.message);
                 }
               }}
             >

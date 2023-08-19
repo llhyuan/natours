@@ -34,6 +34,7 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
 
   const startTime: string = tour.startDates[0].slice(0, 10);
   const tourGuides: Array<Guide> = tour.guides;
+  console.log(tourGuides);
   const description: Array<string> = tour.description.split("\n");
 
   const locations = tour.locations;

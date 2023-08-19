@@ -3,7 +3,7 @@ import Image from "next/image";
 import Dropdown from "./Dropdown";
 import SearchForm from "./SearchForm";
 import logo from "../../public/img/logo-white.png";
-import User from "./User";
+import UserInfo from "./UserInfo";
 
 export default function Navbar() {
   return (
@@ -25,12 +25,7 @@ export default function Navbar() {
           className="md:mx-auto"
         ></Image>
         <div className="hidde md:flex flex-1 justify-end items-center">
-          <Link href="/" className="hidden lg:block">
-            MY BOOKINGS
-          </Link>
-          <div id="user" className="hidden ml-[4vw] lg:block">
-            <User />
-          </div>
+          <UserInfo mobile={false} />
         </div>
       </div>
       <Dropdown />

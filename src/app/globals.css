@@ -24,22 +24,6 @@
       0% 100%
     );
   }
-
-  .reveal {
-    opacity: 1;
-    top: 0.5rem;
-    transition-property: all;
-    transition-duration: 100;
-    transition-timing-function: ease-in;
-  }
-
-  .hide {
-    opacity: 0;
-    top: -5rem;
-    transition-property: all;
-    transition-duration: 100;
-    transition-timing-function: ease-in;
-  }
 }
 
 @layer utilities {
@@ -53,6 +37,11 @@
     .no-scrollbar {
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
+    }
+
+    .reveal {
+      opacity: 1;
+      top: 0;
     }
   }
 }
