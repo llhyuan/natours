@@ -88,23 +88,22 @@ export default function Login() {
             <form
               className="space-y-6"
               method="POST"
+              action="/api/login"
               onSubmit={async (e) => {
                 e.preventDefault();
                 const data = {
                   email: email,
                   password: password,
                 };
-                const result = await fetch(
-                  `${process.env.NEXT_PUBLIC_API_HOST}/users/login`,
-                  {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                  }
-                );
+                const result = await fetch("/api/login", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(data),
+                });
                 const response = await result.json();
+                console.log(response);
                 if (response.status === "success") {
                   localStorage.setItem(
                     "natoursLoggedinUser",

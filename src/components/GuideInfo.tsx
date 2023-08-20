@@ -1,12 +1,24 @@
 import { Guide } from "./customInterfaces";
-import { fetchUsers } from "@/utilities/fetchUsers";
 import Image from "next/image";
 import { importCover } from "@/utilities/importImage";
+import { cookies } from "next/headers";
+import { getCookieString } from "@/utilities/cookieString";
 
 export default async function GuideInfo({ guide }: { guide: Guide }) {
   const name = guide.name;
-  const result = await fetchUsers(guide.id);
-  const user = result.data.user[0];
+  const cookieStr: string = getCookieString(cookies().getAll());
+  const result = await fetch(`${process.env.SERVER_HOST}/api/userinfo`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookieStr,
+    },
+    body: JSON.stringify({ id: guide.id }),
+    credentials: "include",
+  });
+
+  const resData = await result.json();
+  const user = resData.data.user[0];
   const url: string = `users/${user.photo ?? "default.jpg"}`;
 
   const img = await importCover(url);

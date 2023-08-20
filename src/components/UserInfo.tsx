@@ -78,13 +78,10 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
           className={
             mobile
               ? "group lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden ml-[4vw] lg:block"
+              : "hidden ml-[2vw] lg:flex items-center"
           }
         >
-          <Link
-            href="/profile"
-            className="flex justify-center items-center group"
-          >
+          <Link href="/me" className="flex justify-center items-center group">
             <Image
               src={`/img/users/${user.photo}`}
               alt="user photo"
@@ -98,6 +95,27 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               }
             />
             <p className="px-4">{user.name}</p>
+          </Link>
+          <Link
+            href="/api/logout"
+            className={
+              mobile
+                ? "block lg:hidden pt-5 text-center hover:underline underline-offset-2 hover:cursor-pointer"
+                : "hidden ml-[1vw] lg:block"
+            }
+            onClick={async (e) => {
+              e.preventDefault();
+              const result = await fetch("/api/logout", {
+                method: "GET",
+              });
+              const response = await result.json();
+              if (response.status === "success") {
+                localStorage.removeItem("natoursLoggedinUser");
+                setCurrUser(defaultUser);
+              }
+            }}
+          >
+            Log Out
           </Link>
         </div>
       </>

@@ -1,6 +1,7 @@
 import InfoCard from "@/components/InfoCard";
 import { Tour } from "@/components/customInterfaces";
 import { fetchTours } from "@/utilities/fetchTour";
+import { cookies } from "next/headers";
 
 export default async function Tours() {
   const results = await fetchTours();
