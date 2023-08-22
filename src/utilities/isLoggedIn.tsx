@@ -1,12 +1,25 @@
-export async function isLoggedin(token: string) {
+import { cookies } from "next/headers";
+import { getCookieString } from "./cookieString";
+
+export async function isLoggedin() {
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/login`;
-  const loginToken = `Bearer ${token}`;
-  const results = await fetch(url, {
+  let cookieStr: string = getCookieString(cookies().getAll());
+
+  const response = await fetch(url, {
     method: "GET",
+    credentials: "include",
     headers: {
-      Authorization: loginToken,
+      cookie: cookieStr,
+    },
+    next: {
+      tags: ["loginStatus"],
     },
   });
 
-  return results.json();
+  const result = await response.json();
+  if (result.status === "success" && result.data && result.data.isLogin) {
+    return true;
+  } else {
+    return false;
+  }
 }

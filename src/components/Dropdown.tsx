@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, EventHandler, PointerEvent } from "react";
 import SearchForm from "./SearchForm";
 import UserInfo from "./UserInfo";
 

@@ -1,15 +1,10 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { isLoggedin } from "@/utilities/isLoggedIn";
-
-export interface LoginStatus {
-  name: string;
-  loginStatus: boolean;
-  loginToken: string;
-  photo: string;
-}
+import { useContext, useEffect, useState } from "react";
+import { LoginStatus } from "@Global/custom-types";
+import { loginStatusContext } from "@/app/LoginStatusContextProvider";
+import { revalidateTag } from "next/cache";
 
 const defaultUser: LoginStatus = {
   name: "Login",
@@ -19,21 +14,22 @@ const defaultUser: LoginStatus = {
 };
 
 export default function UserInfo({ mobile }: { mobile: boolean }) {
-  const [user, setCurrUser] = useState<LoginStatus>(defaultUser);
+  const { isLogin, setLoginStatus } = useContext(loginStatusContext);
+  const [user, setUser] = useState(defaultUser);
 
   useEffect(() => {
-    let localInfo: string | null = localStorage.getItem("natoursLoggedinUser");
-    if (localInfo) {
-      const loggedinUser: LoginStatus | null = JSON.parse(localInfo);
-      if (loggedinUser) {
-        isLoggedin(loggedinUser.loginToken).then((res) => {
-          if (res.status === "success" && res.data.isLogin) {
-            setCurrUser(loggedinUser);
-          }
-        });
+    if (isLogin) {
+      let localInfo: string | null = localStorage.getItem(
+        "natoursLoggedinUser"
+      );
+      if (localInfo) {
+        const loggedinUser: LoginStatus | null = JSON.parse(localInfo);
+        if (loggedinUser) {
+          setUser(loggedinUser);
+        }
       }
     }
-  }, [setCurrUser]);
+  }, [isLogin]);
 
   if (!user.loginStatus) {
     return (
@@ -111,7 +107,9 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               const response = await result.json();
               if (response.status === "success") {
                 localStorage.removeItem("natoursLoggedinUser");
-                setCurrUser(defaultUser);
+                setLoginStatus(false);
+                setUser(defaultUser);
+                return;
               }
             }}
           >

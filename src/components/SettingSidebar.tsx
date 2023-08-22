@@ -138,7 +138,7 @@ function SidebarComponent({
   children: ReactNode;
   activeSection: string;
   section: string;
-  key?: number;
+  key: number;
   setActiveSection: Dispatch<SetStateAction<string>>;
 }) {
   return (

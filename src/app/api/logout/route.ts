@@ -5,6 +5,7 @@ export async function GET(req: NextRequest) {
 
   const response = await fetch(url, {
     method: "GET",
+    credentials: "include",
   });
 
   return response;

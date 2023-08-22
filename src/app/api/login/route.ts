@@ -1,4 +1,7 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { getCookieString } from "@/utilities/cookieString";
+import { revalidateTag } from "next/cache";
 
 export async function POST(req: NextRequest) {
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/login`;
@@ -9,8 +12,31 @@ export async function POST(req: NextRequest) {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(reqBody),
   });
 
   return response;
+}
+
+export async function GET() {
+  console.log("backend get");
+  const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/login`;
+  let cookieStr: string = getCookieString(cookies().getAll());
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      cookie: cookieStr,
+    },
+  });
+
+  const result = await response.json();
+  revalidateTag("loginStatus");
+  if (result.status === "success" && result.data && result.data.isLogin) {
+    return NextResponse.json({ isLogin: true });
+  } else {
+    return NextResponse.json({ isLogin: false });
+  }
 }

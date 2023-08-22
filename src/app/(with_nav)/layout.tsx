@@ -2,14 +2,8 @@ import Navbar from "@/components/Navbar";
 import "../globals.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
 import Footer from "@/components/Footer";
-
-const lato = Lato({
-  weight: "300",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { isLoggedin } from "@/utilities/isLoggedIn";
 
 export const metadata: Metadata = {
   title: "Natours",
@@ -21,22 +15,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isLogin = isLoggedin();
   return (
-    <html lang="en">
-      <body
-        className={
-          lato.className +
-          " bg-zinc-200 flex flex-col min-h-screen min-w-[375px]"
-        }
-      >
-        <div className="sticky top-0 z-50">
-          <Navbar />
-        </div>
-        <div className="z-40">{children}</div>
-        <div className="mt-auto">
-          <Footer />
-        </div>
-      </body>
-    </html>
+    <div className="bg-zinc-200 flex flex-col min-w-[375px] relative min-h-screen">
+      <div className="sticky top-0 z-50">
+        <Navbar />
+      </div>
+      <>{children}</>
+      <div className="mt-auto">
+        <Footer />
+      </div>
+    </div>
   );
 }
