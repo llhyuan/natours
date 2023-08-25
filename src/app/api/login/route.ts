@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getCookieString } from "@/utilities/cookieString";
-import { revalidateTag } from "next/cache";
 
 export async function POST(req: NextRequest) {
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/login`;
@@ -33,7 +32,6 @@ export async function GET() {
   });
 
   const result = await response.json();
-  revalidateTag("loginStatus");
   if (result.status === "success" && result.data && result.data.isLogin) {
     return NextResponse.json({ isLogin: true });
   } else {

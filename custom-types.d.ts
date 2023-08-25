@@ -2,13 +2,13 @@
 export interface LoginStatus {
   name: string;
   loginStatus: boolean;
-  loginToken: string;
+  email: string;
   photo: string;
 }
 
 export interface LoginStatusContext {
-  isLogin: boolean;
-  setLoginStatus: Dispatch<SetStateAction<boolean>>;
+  loginStatus: LoginStatus;
+  setLoginStatus: Dispatch<SetStateAction<LoginStatus>>;
 }
 
 // Error message component

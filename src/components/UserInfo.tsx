@@ -4,34 +4,37 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { LoginStatus } from "@Global/custom-types";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
-import { revalidateTag } from "next/cache";
+import { useRouter } from "next/navigation";
 
 const defaultUser: LoginStatus = {
   name: "Login",
   loginStatus: false,
-  loginToken: "",
+  email: "your@email.com",
   photo: "default.jpg",
 };
 
 export default function UserInfo({ mobile }: { mobile: boolean }) {
-  const { isLogin, setLoginStatus } = useContext(loginStatusContext);
-  const [user, setUser] = useState(defaultUser);
+  const { loginStatus, setLoginStatus } = useContext(loginStatusContext);
+  const router = useRouter();
 
   useEffect(() => {
-    if (isLogin) {
-      let localInfo: string | null = localStorage.getItem(
-        "natoursLoggedinUser"
-      );
-      if (localInfo) {
-        const loggedinUser: LoginStatus | null = JSON.parse(localInfo);
-        if (loggedinUser) {
-          setUser(loggedinUser);
+    fetch("/api/userinfo", {
+      method: "GET",
+      credentials: "include",
+      next: { tags: ["userinfo"] },
+    }).then((response) => {
+      response.json().then((result) => {
+        console.log(result);
+        if (result.status === "success") {
+          setLoginStatus({ ...result.user, loginStatus: true });
+        } else {
+          setLoginStatus({ ...defaultUser, loginStatus: false });
         }
-      }
-    }
-  }, [isLogin]);
+      });
+    });
+  }, [setLoginStatus]);
 
-  if (!user.loginStatus) {
+  if (!loginStatus.loginStatus) {
     return (
       <>
         <Link
@@ -79,7 +82,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
         >
           <Link href="/me" className="flex justify-center items-center group">
             <Image
-              src={`/img/users/${user.photo}`}
+              src={`/img/users/${loginStatus.photo}`}
               alt="user photo"
               width={50}
               height={50}
@@ -90,7 +93,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
                   : "")
               }
             />
-            <p className="px-4">{user.name}</p>
+            <p className="px-4">{loginStatus.name}</p>
           </Link>
           <Link
             href="/api/logout"
@@ -107,9 +110,8 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               const response = await result.json();
               if (response.status === "success") {
                 localStorage.removeItem("natoursLoggedinUser");
-                setLoginStatus(false);
-                setUser(defaultUser);
-                return;
+                setLoginStatus({ loginStatus: false });
+                router.replace("/");
               }
             }}
           >

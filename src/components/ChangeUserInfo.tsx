@@ -1,8 +1,9 @@
 "use client";
+import Image, { StaticImageData } from "next/image";
 import { Lato } from "next/font/google";
 import { useContext, useState } from "react";
-import ErrorMessage from "./ErrorMessage";
 import { errMsgContext } from "@/app/ErrorMsgContextProvier";
+import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 
 const latoBold = Lato({
   weight: "700",
@@ -13,39 +14,52 @@ const latoBold = Lato({
 export default function ChangeUserInfo({
   name,
   email,
+  fileName,
 }: {
   name: string;
   email: string;
+  photo: StaticImageData;
+  fileName: string;
 }) {
-  const [userInfo, setUserInfo] = useState({ name, email });
+  const [userInfo, setUserInfo] = useState({
+    name,
+    email,
+  });
+
   const { setErrMsgStatus } = useContext(errMsgContext);
+  const { setLoginStatus } = useContext(loginStatusContext);
 
   return (
-    <div className="pb-10 max-w-[400px] mx-auto md:max-w-[600px] md:pl-6">
+    <div className="pb-10 max-w-[400px] max-md:mx-auto md:max-w-[600px] md:pl-6">
       <form
-        action=""
+        action="/api/update-profile"
+        method="POST"
+        encType="multipart/form-data"
         className="text-[1rem] sm:text-[1.1rem] text-zinc-600 flex flex-col pb-6"
         onSubmit={async (e) => {
           e.preventDefault();
-          if (userInfo.email || userInfo.name) {
-            let reqBody: { email?: string; name?: string } = {};
-            if (userInfo.name) {
-              reqBody.name = userInfo.name;
-            }
-            if (userInfo.email) {
-              reqBody.email = userInfo.email;
-            }
-            const response = await fetch("/api/update-profile", {
-              method: "POST",
-              credentials: "include",
-              body: JSON.stringify(reqBody),
+          const reqBody = {
+            name: userInfo.name,
+            email: userInfo.email,
+          };
+
+          const response = await fetch("/api/update-profile", {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(reqBody),
+          });
+
+          const result = await response.json();
+
+          if (result.status !== "success") {
+            setErrMsgStatus({ error: true, errMessage: result.message });
+          } else {
+            setLoginStatus({
+              name: userInfo.name,
+              email: userInfo.email,
+              photo: fileName,
+              loginStatus: true,
             });
-
-            const result = await response.json();
-
-            if (result.status !== "success") {
-              setErrMsgStatus({ error: true, errMessage: result.message });
-            }
           }
         }}
       >
@@ -96,6 +110,35 @@ export default function ChangeUserInfo({
             }}
           />
         </div>
+        {/* <div className="mb-4"> */}
+        {/*   <label htmlFor="name" className={latoBold.className + " block my-2"}> */}
+        {/*     Photo */}
+        {/*   </label> */}
+        {/*   <div className="flex items-center"> */}
+        {/*     <Image */}
+        {/*       src={photo} */}
+        {/*       alt="profile photo" */}
+        {/*       width={96} */}
+        {/*       height={96} */}
+        {/*       className="rounded-full w-[6rem] mr-4" */}
+        {/*     /> */}
+        {/*     <div className="w-full"> */}
+        {/*       <input */}
+        {/*         type="file" */}
+        {/*         accept="image/png,image/jpg,image/jpeg" */}
+        {/*         multiple={false} */}
+        {/*         id="file" */}
+        {/*         name="file" */}
+        {/*         className={ */}
+        {/*           "block rounded-sm border-0 px-4 py-6 w-full shadow-sm outline-none ring-0 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#28b487] " */}
+        {/*         } */}
+        {/*         onChange={(e) => { */}
+        {/*           setFile(e.target.files?.[0]); */}
+        {/*         }} */}
+        {/*       /> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/* </div> */}
         <button
           type="submit"
           className="w-fit py-3 px-6 ml-auto mt-8 uppercase bg-green-500 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"

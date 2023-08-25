@@ -5,14 +5,12 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { errMsgContext } from "@/app/ErrorMsgContextProvier";
-import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const { setErrMsgStatus } = useContext(errMsgContext);
   const router = useRouter();
-  const { setLoginStatus } = useContext(loginStatusContext);
 
   return (
     <div className="flex flex-col justify-center px-4 w-[90%] min-w-[20rem] max-w-[26rem] lg:scale-125 rounded-md bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)]">
@@ -52,7 +50,12 @@ export default function LoginForm() {
                 "natoursLoggedinUser",
                 JSON.stringify(response.data)
               );
-              setLoginStatus(true);
+              // setLoginStatus({
+              //   name: response.data.name,
+              //   email: email,
+              //   loginStatus: true,
+              //   photo: response.data.photo,
+              // });
               router.replace("/");
             } else {
               setErrMsgStatus({ error: true, errMessage: response.message });

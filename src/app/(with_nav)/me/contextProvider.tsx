@@ -13,14 +13,14 @@ interface SidebarContext {
 }
 
 const defaultContext: SidebarContext = {
-  activeSection: "settings",
+  activeSection: "",
   setActiveSection: () => {},
 };
 
 export const sidebarContext = createContext(defaultContext);
 
 export default function ContextProvider({ children }: { children: ReactNode }) {
-  const [activeSection, setActiveSection] = useState("settings");
+  const [activeSection, setActiveSection] = useState("");
   return (
     <sidebarContext.Provider value={{ activeSection, setActiveSection }}>
       {children}

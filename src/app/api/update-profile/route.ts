@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getCookieString } from "@/utilities/cookieString";
+import { revalidateTag } from "next/cache";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, _res: NextResponse) {
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/me/update-profile`;
   let cookieStr: string = getCookieString(cookies().getAll());
   const reqBody = await req.json();
@@ -17,6 +18,8 @@ export async function POST(req: NextRequest) {
     credentials: "include",
   });
   const result = await response.json();
+
+  revalidateTag("userinfo");
 
   if (result.status === "success") {
     return NextResponse.json({

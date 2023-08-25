@@ -18,7 +18,7 @@ const latoItalic = Lato({
 
 export default async function ReviewCard({ review }: { review: Review }) {
   const result = await fetchUsers(review.user);
-  const user: User = result.data.user[0];
+  const user: User = result[0];
   const name = user.name ?? "User Name";
   const img = importCover(`users/${user.photo ?? "default.jpg"}`);
   const stars = [1, 2, 3, 4, 5];

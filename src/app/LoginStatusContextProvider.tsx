@@ -1,32 +1,31 @@
 "use client";
-import { ReactNode, createContext, useState, useEffect } from "react";
+import { ReactNode, createContext, useState } from "react";
 import { LoginStatus, LoginStatusContext } from "@Global/custom-types";
 
-// const defaultUser: LoginStatus = {
-//   name: "Login",
-//   loginStatus: false,
-//   loginToken: "",
-//   photo: "default.jpg",
-// };
+const defaultStatus: LoginStatus = {
+  name: "User",
+  loginStatus: false,
+  email: "your@email.com",
+  photo: "default.jpg",
+};
 
 const defaultContext: LoginStatusContext = {
-  isLogin: false,
+  loginStatus: defaultStatus,
   setLoginStatus: () => {},
 };
 
-export const loginStatusContext = createContext(defaultContext);
+export const loginStatusContext =
+  createContext<LoginStatusContext>(defaultContext);
 
 export default function LoginStatusContextProvider({
   children,
-  loginStatus,
 }: {
   children: ReactNode;
-  loginStatus: boolean;
 }) {
-  const [isLogin, setLoginStatus] = useState(loginStatus);
+  const [loginStatus, setLoginStatus] = useState(defaultStatus);
 
   return (
-    <loginStatusContext.Provider value={{ isLogin, setLoginStatus }}>
+    <loginStatusContext.Provider value={{ loginStatus, setLoginStatus }}>
       {children}
     </loginStatusContext.Provider>
   );

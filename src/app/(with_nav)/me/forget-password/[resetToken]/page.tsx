@@ -1,9 +1,8 @@
 "use client";
-import { Lato } from "next/font/google";
-import Link from "next/link";
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import { errMsgContext } from "@/app/ErrorMsgContextProvier";
-import { sidebarContext } from "@/app/(with_nav)/me/contextProvider";
+import { useRouter } from "next/navigation";
+import { Lato } from "next/font/google";
 
 const latoBold = Lato({
   weight: "700",
@@ -11,13 +10,17 @@ const latoBold = Lato({
   subsets: ["latin"],
 });
 
-export default function ChangePassword() {
-  const [currentPassword, setCurrentPassword] = useState("");
+export default function NewPassword({
+  params,
+}: {
+  params: { resetToken: string };
+}) {
+  console.log(params.resetToken);
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [matchingPasswords, setMatchingStatus] = useState(true);
   const { setErrMsgStatus } = useContext(errMsgContext);
-  const { setActiveSection } = useContext(sidebarContext);
+  const router = useRouter();
 
   return (
     <div className="py-10 max-w-[400px] max-md:mx-auto md:max-w-[600px] md:pl-6">
@@ -29,29 +32,28 @@ export default function ChangePassword() {
             setMatchingStatus(false);
             setErrMsgStatus({
               error: true,
-              errMessage: "Opps! There is a typo.",
+              errMessage: "The two passwords do not match.",
             });
             return;
           }
 
-          if (currentPassword && newPassword) {
-            const reqBody = {
-              currentPassword,
-              newPassword,
-              newPasswordConfirm,
-            };
-            const response = await fetch("/api/update-password", {
-              method: "POST",
-              credentials: "include",
-              body: JSON.stringify(reqBody),
-            });
+          const reqBody = {
+            newPassword,
+            newPasswordConfirm,
+            resetToken: params.resetToken,
+          };
+          const response = await fetch("/api/reset-password", {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(reqBody),
+          });
 
-            const result = await response.json();
-            setErrMsgStatus({ error: true, errMessage: result.message });
-            setCurrentPassword("");
-            setNewPassword("");
-            setNewPasswordConfirm("");
-          }
+          const result = await response.json();
+          setErrMsgStatus({ error: true, errMessage: result.message });
+          console.log(result);
+          setNewPassword("");
+          setNewPasswordConfirm("");
+          router.replace("/tours");
         }}
       >
         <h1
@@ -60,41 +62,8 @@ export default function ChangePassword() {
             " text-[1.4rem] sm:text-[1.6rem] py-4 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#7dd56f] to-[#28b487]"
           }
         >
-          Change Password
+          Set Your New Password
         </h1>
-        <div className="mb-4">
-          <div className="flex items-center justify-between">
-            <label
-              htmlFor="cur-psd"
-              className={latoBold.className + " block my-2"}
-            >
-              Current Password
-            </label>
-            <Link
-              href="/me/forget-password"
-              className="block text-[0.9rem] text-zinc-400 hover:text-red-500"
-              onClick={() => {
-                setActiveSection("");
-              }}
-            >
-              Forget your password?
-            </Link>
-          </div>
-          <input
-            id="cur-psd"
-            type="password"
-            name="currentPassword"
-            required
-            value={currentPassword}
-            className={
-              "block w-full rounded-sm border-0 px-2 py-3 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 " +
-              (currentPassword ? "invalid:ring-red-500 invalid:ring-2" : "")
-            }
-            onChange={(e) => {
-              setCurrentPassword(e.target.value);
-            }}
-          />
-        </div>
         <div className="mb-4">
           <label
             htmlFor="new-psd"
@@ -153,7 +122,7 @@ export default function ChangePassword() {
           type="submit"
           className="w-fit py-3 px-6 ml-auto mt-8 uppercase bg-green-500 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
         >
-          Commit Change
+          Set Password
         </button>
       </form>
     </div>

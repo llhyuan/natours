@@ -81,7 +81,7 @@ export default function SettingSidebar() {
   return (
     <div
       ref={sidebarRef}
-      className="absolute min-w-[280px] md:relative flex flex-col py-10 bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 rounded-sm shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] left-[-320px] md:left-0 transition-all duration-150 ease-in"
+      className="absolute min-w-[280px] md:relative flex flex-col py-10 bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 rounded-sm shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] left-[-280px] md:left-0 transition-all duration-150 ease-in"
     >
       {userSection.map((section, index) => {
         return (
@@ -98,7 +98,9 @@ export default function SettingSidebar() {
       <div
         className={
           "pl-8 pr-4 py-4 absolute top-0 md:hidden bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] rounded-sm transition-all duration-150 ease-in " +
-          (showSidebar ? "right-[-4rem]" : "right-[-1rem] hover:right-[-4rem]")
+          (showSidebar
+            ? "right-[-4rem]"
+            : "right-[-2.2rem] hover:right-[-4rem]")
         }
         onClick={() => {
           toggleSidebar(!showSidebar);
@@ -128,19 +130,20 @@ export default function SettingSidebar() {
   );
 }
 
-function SidebarComponent({
-  section,
-  children,
-  activeSection,
-  key,
-  setActiveSection,
-}: {
-  children: ReactNode;
-  activeSection: string;
-  section: string;
-  key: number;
-  setActiveSection: Dispatch<SetStateAction<string>>;
-}) {
+function SidebarComponent(
+  {
+    section,
+    children,
+    activeSection,
+    setActiveSection,
+  }: {
+    children: ReactNode;
+    activeSection: string;
+    section: string;
+    setActiveSection: Dispatch<SetStateAction<string>>;
+  },
+  key: number
+) {
   return (
     <div key={key} className="flex overflow-hidden my-3">
       <div

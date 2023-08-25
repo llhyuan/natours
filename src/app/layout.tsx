@@ -3,7 +3,6 @@ import ErrorMessageContextProvider from "./ErrorMsgContextProvier";
 import ErrorMessage from "@/components/ErrorMessage";
 import { Lato } from "next/font/google";
 import LoginStatusContextProvider from "./LoginStatusContextProvider";
-import { isLoggedin } from "@/utilities/isLoggedIn";
 
 const lato = Lato({
   weight: "300",
@@ -16,12 +15,11 @@ export default async function WebsiteLayout({
 }: {
   children: ReactNode;
 }) {
-  const loginStatus = await isLoggedin();
   return (
     <html lang="en">
       <body className={lato.className}>
         <ErrorMessageContextProvider>
-          <LoginStatusContextProvider loginStatus={loginStatus}>
+          <LoginStatusContextProvider>
             <ErrorMessage />
             <>{children}</>
           </LoginStatusContextProvider>

@@ -18,7 +18,8 @@ export default async function GuideInfo({ guide }: { guide: Guide }) {
   });
 
   const resData = await result.json();
-  const user = resData.data.user[0];
+  console.log(resData)
+  const user = resData.user;
   const url: string = `users/${user.photo ?? "default.jpg"}`;
 
   const img = await importCover(url);

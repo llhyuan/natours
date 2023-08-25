@@ -3,7 +3,7 @@ import Image from "next/image";
 import img from "../../../../public/img/tours/tour-1-1.jpg";
 import { Lato } from "next/font/google";
 import { importCover } from "@/utilities/importImage";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LoginForm from "@/components/LoginForm";
 
 const latoSemiBold = Lato({
