@@ -144,15 +144,24 @@ function SidebarComponent(
   },
   key: number
 ) {
+  const indicatorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (indicatorRef && indicatorRef.current) {
+      if (activeSection === section) {
+        indicatorRef.current.classList.add("reveal-sidebar-indicator");
+      } else {
+        indicatorRef.current.classList.remove("reveal-sidebar-indicator");
+      }
+    }
+  });
   return (
     <div key={key} className="flex overflow-hidden my-3">
       <div
-        className={
-          "w-3 bg-white rounded-full relative left-[-7px] " +
-          (activeSection !== section ? "hidden" : "")
-        }
+        ref={indicatorRef}
+        className="w-3 bg-white rounded-full relative left-[-12px] transition-all duration-130 ease-in"
       ></div>
-      <div className="flex ml-6 md:ml-14 py-3 items-center">
+      <div className="flex ml-6 md:ml-14 hover:translate-x-3 py-3 items-center transition-all duration-150 ease-in">
         <div className="mr-6 scale-125">{children}</div>
         <Link
           href={`/me/${section}`}

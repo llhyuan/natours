@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { LoginStatus } from "@Global/custom-types";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 import { useRouter } from "next/navigation";
@@ -16,6 +16,12 @@ const defaultUser: LoginStatus = {
 export default function UserInfo({ mobile }: { mobile: boolean }) {
   const { loginStatus, setLoginStatus } = useContext(loginStatusContext);
   const router = useRouter();
+
+  let importedPhoto: string = loginStatus.photo;
+
+  if (!importedPhoto.startsWith("http")) {
+    importedPhoto = `/public/img/users/${importedPhoto}`;
+  }
 
   useEffect(() => {
     fetch("/api/userinfo", {
@@ -45,14 +51,14 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               : "hidden lg:block"
           }
         >
-          Sign In
+          Login
         </Link>
         <Link
-          href="/"
+          href="/signup"
           className={
             mobile
               ? "px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden lg:block ml-[4vw]"
+              : "hidden lg:block ml-[3vw]"
           }
         >
           Sign Up
@@ -82,7 +88,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
         >
           <Link href="/me" className="flex justify-center items-center group">
             <Image
-              src={`/img/users/${loginStatus.photo}`}
+              src={importedPhoto}
               alt="user photo"
               width={50}
               height={50}

@@ -28,11 +28,11 @@ export default function Dropdown() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height="2rem"
+          height="1.5rem"
           viewBox="0 0 320 400"
           className={
-            "fill-zinc-100 relative top-[-0.5rem] " +
-            (menuStatus ? "rotate-180 top-[-0.1rem]" : "")
+            "fill-zinc-100 relative top-[-1.35rem] md:top-[-0.85rem] " +
+            (menuStatus ? "rotate-180 top-[-1rem] md:top-[-1.1rem]" : "")
           }
         >
           <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
@@ -47,7 +47,7 @@ export default function Dropdown() {
           href="/tours"
           className="px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
         >
-          ALL TOURS
+          All Tours
         </Link>
         <UserInfo mobile={true} />
         <div className="flex justify-center items-center py-4">

@@ -3,6 +3,7 @@ import "../globals.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import Notification from "@/components/ErrorMessage";
 
 export const metadata: Metadata = {
   title: "Natours",
@@ -16,6 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="bg-zinc-200 flex flex-col min-w-[375px] relative min-h-screen">
+      <Notification position="nav" />
       <div className="sticky top-0 z-50">
         <Navbar />
       </div>

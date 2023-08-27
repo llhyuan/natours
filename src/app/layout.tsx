@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import ErrorMessageContextProvider from "./ErrorMsgContextProvier";
-import ErrorMessage from "@/components/ErrorMessage";
+import NotificationContextProvider from "./NotificationContextProvier";
 import { Lato } from "next/font/google";
 import LoginStatusContextProvider from "./LoginStatusContextProvider";
 
@@ -18,12 +17,11 @@ export default async function WebsiteLayout({
   return (
     <html lang="en">
       <body className={lato.className}>
-        <ErrorMessageContextProvider>
+        <NotificationContextProvider>
           <LoginStatusContextProvider>
-            <ErrorMessage />
-            <>{children}</>
+            <div>{children}</div>
           </LoginStatusContextProvider>
-        </ErrorMessageContextProvider>
+        </NotificationContextProvider>
       </body>
     </html>
   );

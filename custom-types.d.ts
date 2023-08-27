@@ -12,12 +12,13 @@ export interface LoginStatusContext {
 }
 
 // Error message component
-export interface ErrorMessage {
-  error: boolean;
-  errMessage: string;
+export interface Notification {
+  reveal: boolean;
+  message: string;
+  category: string;
 }
 
-export interface ErrorMsgContext {
-  errMsg: ErrorMessage;
-  setErrMsgStatus: Dispatch<SetStateAction<ErrorMessage>>;
+export interface NotificationContext {
+  notification: Notification;
+  setNotificationStatus: Dispatch<SetStateAction<Notification>>;
 }

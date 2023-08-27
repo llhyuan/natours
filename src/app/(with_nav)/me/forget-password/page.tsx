@@ -1,6 +1,6 @@
 "use client";
 
-import { errMsgContext } from "@/app/ErrorMsgContextProvier";
+import { notificationContext } from "@/app/NotificationContextProvier";
 import { useState, useContext } from "react";
 import { Lato } from "next/font/google";
 
@@ -12,7 +12,7 @@ const latoBold = Lato({
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
-  const { setErrMsgStatus } = useContext(errMsgContext);
+  const { setNotificationStatus } = useContext(notificationContext);
 
   return (
     <div className="pb-10 max-w-[400px] max-md:mx-auto md:max-w-[600px] md:pl-6">
@@ -34,7 +34,11 @@ export default function ResetPassword() {
 
           const result = await response.json();
 
-          setErrMsgStatus({ error: true, errMessage: result.message });
+          setNotificationStatus({
+            reveal: true,
+            message: result.message,
+            category: "error",
+          });
         }}
       >
         <h1

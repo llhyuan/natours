@@ -2,7 +2,7 @@
 import { Lato } from "next/font/google";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { errMsgContext } from "@/app/ErrorMsgContextProvier";
+import { notificationContext } from "@/app/NotificationContextProvier";
 import { sidebarContext } from "@/app/(with_nav)/me/contextProvider";
 
 const latoBold = Lato({
@@ -16,7 +16,7 @@ export default function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [matchingPasswords, setMatchingStatus] = useState(true);
-  const { setErrMsgStatus } = useContext(errMsgContext);
+  const { setNotificationStatus } = useContext(notificationContext);
   const { setActiveSection } = useContext(sidebarContext);
 
   return (
@@ -27,7 +27,7 @@ export default function ChangePassword() {
           e.preventDefault();
           if (newPassword !== newPasswordConfirm) {
             setMatchingStatus(false);
-            setErrMsgStatus({
+            setNotificationStatus({
               error: true,
               errMessage: "Opps! There is a typo.",
             });
@@ -47,10 +47,11 @@ export default function ChangePassword() {
             });
 
             const result = await response.json();
-            setErrMsgStatus({ error: true, errMessage: result.message });
-            setCurrentPassword("");
-            setNewPassword("");
-            setNewPasswordConfirm("");
+            setNotificationStatus({
+              reveal: true,
+              message: result.message,
+              category: "error",
+            });
           }
         }}
       >

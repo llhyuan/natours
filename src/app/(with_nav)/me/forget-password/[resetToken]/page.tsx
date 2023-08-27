@@ -1,6 +1,6 @@
 "use client";
 import { useState, useContext } from "react";
-import { errMsgContext } from "@/app/ErrorMsgContextProvier";
+import { notificationContext } from "@/app/NotificationContextProvier";
 import { useRouter } from "next/navigation";
 import { Lato } from "next/font/google";
 
@@ -19,7 +19,7 @@ export default function NewPassword({
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [matchingPasswords, setMatchingStatus] = useState(true);
-  const { setErrMsgStatus } = useContext(errMsgContext);
+  const { setNotificationStatus } = useContext(notificationContext);
   const router = useRouter();
 
   return (
@@ -30,9 +30,10 @@ export default function NewPassword({
           e.preventDefault();
           if (newPassword !== newPasswordConfirm) {
             setMatchingStatus(false);
-            setErrMsgStatus({
-              error: true,
-              errMessage: "The two passwords do not match.",
+            setNotificationStatus({
+              reveal: true,
+              message: "The two passwords do not match.",
+              category: "warning",
             });
             return;
           }
@@ -49,8 +50,11 @@ export default function NewPassword({
           });
 
           const result = await response.json();
-          setErrMsgStatus({ error: true, errMessage: result.message });
-          console.log(result);
+          setNotificationStatus({
+            reveal: true,
+            message: result.message,
+            category: "notification",
+          });
           setNewPassword("");
           setNewPasswordConfirm("");
           router.replace("/tours");

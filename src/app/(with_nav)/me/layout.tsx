@@ -10,10 +10,9 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
   const { loginStatus } = useContext(loginStatusContext);
   const router = useRouter();
   const path = usePathname();
-  console.log(path.startsWith("/me/reset-password/"));
 
   useEffect(() => {
-    if (!path.startsWith("/me/forget-password/")) {
+    if (!path.startsWith("/me/forget-password")) {
       if (!loginStatus.loginStatus) {
         router.replace("/login");
       }

@@ -3,15 +3,17 @@ import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 import ChangePassword from "@/components/ChangePassword";
 import ChangeUserInfo from "@/components/ChangeUserInfo";
 import { importCover } from "@/utilities/importImage";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 export default function Settings() {
   const { loginStatus } = useContext(loginStatusContext);
-  const fileName = loginStatus.photo;
+  let importedPhoto: string = loginStatus.photo;
 
-  const importedPhoto = importCover(
-    `users/${loginStatus.photo ? loginStatus.photo : "default.jpg"}`
-  );
+  if (!importedPhoto.startsWith("http")) {
+    importedPhoto = importCover(
+      `users/${loginStatus.photo ? loginStatus.photo : "default.jpg"}`
+    );
+  }
 
   return (
     <div className="">
@@ -19,7 +21,6 @@ export default function Settings() {
         name={loginStatus.name}
         email={loginStatus.email}
         photo={importedPhoto}
-        fileName={fileName}
       />
       <div
         aria-hidden={true}

@@ -38,10 +38,14 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  .reveal-error-message {
+  .reveal-notification {
     opacity: 1;
     transform: scale(1);
     z-index: 100;
+  }
+
+  .reveal-sidebar-indicator {
+    left: -7px;
   }
 
   @media only screen and (max-width: 768px) {

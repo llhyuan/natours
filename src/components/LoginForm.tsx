@@ -4,23 +4,32 @@ import logo from "../../public/favicon.png";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import { errMsgContext } from "@/app/ErrorMsgContextProvier";
+import { notificationContext } from "@/app/NotificationContextProvier";
+import { Lato } from "next/font/google";
+
+const latoBold = Lato({
+  weight: "700",
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const { setErrMsgStatus } = useContext(errMsgContext);
+  const { setNotificationStatus } = useContext(notificationContext);
   const router = useRouter();
 
   return (
-    <div className="flex flex-col justify-center px-4 w-[90%] min-w-[20rem] max-w-[26rem] lg:scale-125 rounded-md bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)]">
+    <div className="flex flex-col justify-center px-4 w-[90%] min-w-[20rem] max-w-[26rem] lg:scale-125 rounded-sm bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)]">
       <div className="mx-auto max-w-sm">
-        <Image
-          src={logo}
-          alt="Natour Logo"
-          width={70}
-          className="mx-auto mt-4"
-        />
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="Natour Logo"
+            width={70}
+            className="mx-auto mt-4"
+          />
+        </Link>
         <h2 className="text-center text-[1.5rem] font-bold capitalize leading-9 tracking-tight text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
           Log into your account
         </h2>
@@ -50,15 +59,19 @@ export default function LoginForm() {
                 "natoursLoggedinUser",
                 JSON.stringify(response.data)
               );
-              // setLoginStatus({
-              //   name: response.data.name,
-              //   email: email,
-              //   loginStatus: true,
-              //   photo: response.data.photo,
-              // });
-              router.replace("/");
+
+              setNotificationStatus({
+                reveal: true,
+                message: response.message,
+                category: "notification",
+              });
+              router.replace("/tours");
             } else {
-              setErrMsgStatus({ error: true, errMessage: response.message });
+              setNotificationStatus({
+                reveal: true,
+                message: response.message,
+                category: "error",
+              });
             }
           }}
         >
@@ -82,7 +95,7 @@ export default function LoginForm() {
                 }}
                 required
                 className={
-                  "block w-full rounded-md border-0 px-2 py-1.5 shadow-sm outline-none ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 sm:text-sm sm:leading-6 " +
+                  "block w-full rounded-sm border-0 px-2 py-3 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 " +
                   (email ? "invalid:ring-red-500" : "")
                 }
               />
@@ -98,7 +111,10 @@ export default function LoginForm() {
                 Password
               </label>
               <div className="text-[0.9rem] ">
-                <Link href="#" className="text-zinc-400 hover:text-red-500">
+                <Link
+                  href="/me/forget-password"
+                  className="text-zinc-400 hover:text-red-500"
+                >
                   Forget your password?
                 </Link>
               </div>
@@ -115,11 +131,25 @@ export default function LoginForm() {
                 autoComplete="current-password"
                 required
                 className={
-                  "block w-full rounded-md border-0 px-2 py-1.5 shadow-sm outline-none ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 sm:text-sm sm:leading-6 " +
+                  "block w-full rounded-sm border-0 px-2 py-3 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 " +
                   (password ? "invalid:ring-red-500" : "")
                 }
               />
             </div>
+          </div>
+          <div className="flex justify-center items-center">
+            <p className="mr-2 text-zinc-500">
+              New to Natours?
+              <Link
+                href="/signup"
+                className={
+                  latoBold.className +
+                  " ml-2 text-zinc-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#7dd56f]/80 hover:to-[#28b487]/90"
+                }
+              >
+                Sign Up
+              </Link>
+            </p>
           </div>
 
           <div>
