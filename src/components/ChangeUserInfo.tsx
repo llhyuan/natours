@@ -4,7 +4,6 @@ import { Lato } from "next/font/google";
 import { useContext, useState } from "react";
 import { notificationContext } from "@/app/NotificationContextProvier";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
-import { CldUploadButton } from "next-cloudinary";
 
 const latoBold = Lato({
   weight: "700",
@@ -141,12 +140,6 @@ export default function ChangeUserInfo({
               className="rounded-full w-[6rem] mr-4"
             />
             <div className="w-full">
-              <CldUploadButton
-                uploadPreset="yerjtfr9"
-                onSuccess={(e) => {
-                  console.log(e);
-                }}
-              />
               <input
                 type="file"
                 accept="image/png,image/jpg,image/jpeg"
@@ -179,7 +172,7 @@ export default function ChangeUserInfo({
           disabled={uploadData === "uploading" ? true : false}
           className="w-fit py-3 px-6 ml-auto mt-8 uppercase bg-green-500 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
         >
-          Save Settings
+          {uploadData === "uploading" ? "Loading image" : "Save Settings"}
         </button>
       </form>
     </div>

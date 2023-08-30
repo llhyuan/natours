@@ -9,7 +9,7 @@ export function getCookieString(cookies: Array<CookieObj>) {
   });
 
   if (arr) {
-    return arr.join();
+    return arr.join(";");
   } else {
     return "";
   }

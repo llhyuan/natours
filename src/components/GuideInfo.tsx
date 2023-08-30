@@ -4,7 +4,13 @@ import { importCover } from "@/utilities/importImage";
 import { cookies } from "next/headers";
 import { getCookieString } from "@/utilities/cookieString";
 
-export default async function GuideInfo({ guide }: { guide: Guide }) {
+export default async function GuideInfo({
+  guide,
+  view,
+}: {
+  guide: Guide;
+  view: string;
+}) {
   const name = guide.name;
   const cookieStr: string = getCookieString(cookies().getAll());
   const result = await fetch(`${process.env.SERVER_HOST}/api/userinfo`, {
@@ -18,7 +24,7 @@ export default async function GuideInfo({ guide }: { guide: Guide }) {
   });
 
   const resData = await result.json();
-  console.log(resData)
+  console.log(resData);
   const user = resData.user;
   const url: string = `users/${user.photo ?? "default.jpg"}`;
 
@@ -33,7 +39,12 @@ export default async function GuideInfo({ guide }: { guide: Guide }) {
         height={50}
         className="rounded-full"
       />
-      <p className="ml-4 sm:ml-6 w-[7rem] lg:w-[7.7rem] text-left capitalize">
+      <p
+        className={
+          "ml-4 sm:ml-6 w-[7rem] lg:w-[7.7rem] text-left capitalize " +
+          (view === "booking" ? "hidden" : "")
+        }
+      >
         {user.role}
       </p>
       <p className="pl-4 capitalize">{name}</p>

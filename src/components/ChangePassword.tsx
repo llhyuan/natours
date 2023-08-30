@@ -28,8 +28,9 @@ export default function ChangePassword() {
           if (newPassword !== newPasswordConfirm) {
             setMatchingStatus(false);
             setNotificationStatus({
-              error: true,
-              errMessage: "Opps! There is a typo.",
+              reveal: true,
+              message: "Opps! There is a typo.",
+              category: "warning",
             });
             return;
           }

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Lato } from "next/font/google";
@@ -16,7 +17,7 @@ const latoItalic = Lato({
   subsets: ["latin"],
 });
 
-export default async function InfoCard({ tour }: { tour: Tour }) {
+export default function InfoCard({ tour }: { tour: Tour }) {
   const name: Array<string> = tour.name.split(" ");
   const midIdx = Math.ceil(name.length / 2);
   const tourName = {
@@ -37,7 +38,6 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
   const ratingQuantity = tour.ratingsQuantity;
 
   let cover = tour.imageCover;
-
   const tourDetail = `/tours/${tour.id}`;
 
   return (

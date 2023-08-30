@@ -30,7 +30,6 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
       next: { tags: ["userinfo"] },
     }).then((response) => {
       response.json().then((result) => {
-        console.log(result);
         if (result.status === "success") {
           setLoginStatus({ ...result.user, loginStatus: true });
         } else {
@@ -76,7 +75,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               : "hidden lg:block"
           }
         >
-          MY BOOKINGS
+          My Booking
         </Link>
         <div
           id="user"
@@ -116,7 +115,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               const response = await result.json();
               if (response.status === "success") {
                 localStorage.removeItem("natoursLoggedinUser");
-                setLoginStatus({ loginStatus: false });
+                setLoginStatus({ ...loginStatus, loginStatus: false });
                 router.replace("/");
               }
             }}

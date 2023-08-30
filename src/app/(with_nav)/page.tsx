@@ -8,7 +8,7 @@ const latoSemiBold = Lato({
 });
 export default function Home() {
   return (
-    <div className="absolute top-[1rem] overflow-hidden h-[100vh]">
+    <div className="absolute top-[1rem] overflow-hidden h-[100vh] ">
       <div className="overflow-hidden h-[100vh]">
         <video
           src="https://res.cloudinary.com/dafo4jbuk/video/upload/v1693042860/homepage_skrkmx.mp4"
@@ -21,7 +21,7 @@ export default function Home() {
       <div
         className={
           latoSemiBold.className +
-          " absolute top-0 w-full h-screen bg-[rgba(0,0,0,0.2)]"
+          " absolute top-0 w-full h-screen bg-[rgba(0,0,0,0.05)]"
         }
       >
         <div className="text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[6rem] md:leading-[7.5rem] capitalize absolute flex flex-wrap max-md:w-[30rem] left-[6vw] bottom-[6rem] sm:bottom-[8rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]">

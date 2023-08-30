@@ -3,7 +3,6 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  console.log("users invoked");
   let cookieStr: string = getCookieString(cookies().getAll());
 
   const url = `${process.env.API_HOST}/users/me`;

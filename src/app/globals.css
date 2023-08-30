@@ -48,6 +48,51 @@
     left: -7px;
   }
 
+  .reveal-sortMenu {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .expand-bookingItem {
+    .banner-wrapper {
+      padding-left: 0.75rem;
+      padding-top: 0.75rem;
+      transition-duration: 300ms;
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+
+      img {
+        border-radius: 0.375rem;
+      }
+    }
+    .booking-detail {
+      height: 28.5rem;
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+      transition-duration: 400ms;
+    }
+
+    .tour-name {
+      top: 0.5rem;
+    }
+
+    .tour-price {
+      font-size: 1.6rem;
+      margin-top: 1rem;
+      margin-right: 0.2rem;
+    }
+
+    .expand-button {
+      bottom: 1rem;
+      right: 0.75rem;
+      background-color: #e4e4e6;
+      svg {
+        fill: #3f3f46;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
   @media only screen and (max-width: 768px) {
     .reveal-sidebar {
       left: 0;

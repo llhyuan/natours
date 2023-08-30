@@ -55,6 +55,7 @@ export default function LoginForm() {
             });
             const response = await result.json();
             if (response.status === "success") {
+              console.log("loggedin");
               localStorage.setItem(
                 "natoursLoggedinUser",
                 JSON.stringify(response.data)

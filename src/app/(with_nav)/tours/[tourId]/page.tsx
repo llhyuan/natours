@@ -5,9 +5,9 @@ import ReviewRibon from "@/components/ReviewRibon";
 import BookNow from "@/components/BookNow";
 import { fetchTours } from "@/utilities/fetchTour";
 import { Guide, Tour } from "@/components/customInterfaces";
-import { importCover } from "@/utilities/importImage";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
+import { BookingInfo } from "@Global/custom-types";
 
 const latoExtraBold = Lato({
   weight: "900",
@@ -24,7 +24,7 @@ const latoBold = Lato({
 export default async function Tour({ params }: { params: { tourId: string } }) {
   const result = await fetchTours(params.tourId);
   const tour: Tour = result.data.tour;
-  const cover = importCover(`tours/${tour.imageCover}`);
+  const cover = tour.imageCover;
   const name: Array<string> = tour.name.split(" ");
   const midIdx = Math.ceil(name.length / 2);
   const tourName = {
@@ -38,6 +38,14 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
 
   const locations = tour.locations;
   const gallary = tour.images;
+  const bookingInfo: BookingInfo = {
+    name: tour.name,
+    description: tour.summary,
+    images: [tour.imageCover],
+    price: tour.price,
+  };
+
+  console.log("info page", bookingInfo);
 
   return (
     <article className="w-full ">
@@ -45,8 +53,10 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
         <div className="overflow-clip h-[55vw] max-h-[900px] min-h-[240px] md:clip-polygon">
           <Image
             src={cover}
+            width={2000}
+            height={1100}
             alt="cover image"
-            className="relative object-cover md:bottom-5 mx-auto"
+            className="relative object-cover md:bottom-5 w-full"
           />
         </div>
         <div className="absolute w-full h-[55vw] max-h-[860px] min-h-[220px] top-0 flex items-center">
@@ -134,7 +144,7 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
         </div>
       </div>
       <div className="relative md:top-[-18vw]">
-        <BookNow />
+        <BookNow bookingInfo={bookingInfo} />
       </div>
     </article>
   );
