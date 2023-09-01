@@ -1,6 +1,8 @@
-import { getCookieString } from "./cookieString";
+import { getCookieString } from "@/utilities/cookieString";
 import { cookies } from "next/headers";
-export async function fetchBookings() {
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET() {
   const url = `${process.env.API_HOST}/bookings/my-bookings`;
 
   let cookieStr: string = getCookieString(cookies().getAll());
@@ -14,5 +16,5 @@ export async function fetchBookings() {
   });
   const result = await response.json();
 
-  return result.bookings;
+  return NextResponse.json({ bookings: result.bookings });
 }

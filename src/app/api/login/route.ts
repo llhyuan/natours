@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  console.log("backend get");
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/login`;
   let cookieStr: string = getCookieString(cookies().getAll());
 

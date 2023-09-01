@@ -7,7 +7,7 @@ import { fetchTours } from "@/utilities/fetchTour";
 import { Guide, Tour } from "@/components/customInterfaces";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
-import { BookingInfo } from "@Global/custom-types";
+import { CheckoutInfo } from "@Global/custom-types";
 
 const latoExtraBold = Lato({
   weight: "900",
@@ -38,14 +38,12 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
 
   const locations = tour.locations;
   const gallary = tour.images;
-  const bookingInfo: BookingInfo = {
+  const bookingInfo: CheckoutInfo = {
     name: tour.name,
     description: tour.summary,
     images: [tour.imageCover],
     price: tour.price,
   };
-
-  console.log("info page", bookingInfo);
 
   return (
     <article className="w-full ">
@@ -103,7 +101,9 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
               </h2>
               <div className=" w-fit mx-auto">
                 {tourGuides.map((guide: Guide, index: number) => {
-                  return <GuideInfo guide={guide} key={index} />;
+                  return (
+                    <GuideInfo guide={guide} key={index} view="non-booking" />
+                  );
                 })}
               </div>
             </div>

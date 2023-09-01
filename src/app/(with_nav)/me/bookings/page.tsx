@@ -17,12 +17,12 @@ export default async function Bookings() {
       <h1
         className={
           latoBold.className +
-          " text-[1.4rem] sm:text-[1.6rem] py-4 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#7dd56f] to-[#28b487]"
+          " max-sm:mx-auto max-sm:w-fit text-[1.4rem] sm:text-[1.6rem] py-4 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#7dd56f] to-[#28b487]"
         }
       >
         My Bookings
       </h1>
-      <div className="max-sm:px-2">
+      <div className="max-sm:px-2 py-4 w-full flex flex-col gap-y-10">
         {bookings.map((booking: BookingInfo, index: number) => {
           const guideInfo = (
             <GuideInfo guide={booking.tour.guides[1]} view="booking" />

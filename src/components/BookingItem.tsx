@@ -1,12 +1,20 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import img from "../../public/img/tours/tour-1-cover.jpg";
 import { Lato } from "next/font/google";
 import { BookingInfo } from "@Global/custom-types";
-import { useRef, useEffect, useState, ReactNode } from "react";
-import GuideInfo from "./GuideInfo";
-import ResponsiveRatingStars from "./ResponsiveRatingStars";
+import { useRef, useEffect, useState, ReactNode, useContext } from "react";
+import RatingStarsResponsive from "./RatingStarsResponsive";
+
+import OrderStatusSign from "./OrderStatusSign";
+import { notificationContext } from "@/app/NotificationContextProvier";
+import { useRouter } from "next/navigation";
+
+const lato = Lato({
+  weight: "400",
+  style: "normal",
+  subsets: ["latin"],
+});
 
 const latoSemiBold = Lato({
   weight: "700",
@@ -23,7 +31,9 @@ export default function BookingItem({
 }) {
   const bookingItemref = useRef<HTMLDivElement>(null);
   const [expand, toggleExpand] = useState(false);
-  console.log(bookingInfo);
+  const [startDate, setStartDate] = useState("");
+  const { setNotificationStatus } = useContext(notificationContext);
+  const router = useRouter();
 
   useEffect(() => {
     if (bookingItemref && bookingItemref.current) {
@@ -34,15 +44,19 @@ export default function BookingItem({
       }
     }
   });
+
   return (
     <div
       ref={bookingItemref}
       id="item-wraper"
-      className="relative w-full rounded-md bg-zinc-300 overflow-clip"
+      className="relative w-full rounded-sm bg-zinc-300 shadow-xl"
     >
+      <div className="absolute top-[-0.5rem] left-[-0.5rem] transition-all duration-300 ease-in-out order-status">
+        <OrderStatusSign status={bookingInfo.paymentStatus} />
+      </div>
       <div className=" flex banner-wrapper transition-all ease-in-out duration-300">
         <Image
-          src={img}
+          src={bookingInfo.tour.imageCover}
           width={300}
           height={150}
           alt="Tour image"
@@ -50,7 +64,7 @@ export default function BookingItem({
         />
         <div className="flex flex-col pl-2 py-2 justify-between">
           <p className="order-number uppercase">
-            {`ORDER # ${bookingInfo._id.slice(0, 8)}`}
+            {`ORDER # ${bookingInfo.order}`}
           </p>
           <Link
             href="#"
@@ -76,7 +90,7 @@ export default function BookingItem({
             }
           >{`$${bookingInfo.tour.price}`}</p>
           <div
-            className="group absolute z-10 opacity-100 bottom-2 right-2 px-[0.35rem] py-[0.35rem] hover:bg-zinc-400 text-zinc-100 active:bg-zinc-500 rounded-md expand-button"
+            className="group absolute z-10 opacity-100 bottom-2 right-2 px-[0.35rem] py-[0.35rem] hover:bg-zinc-400 text-zinc-100 active:bg-zinc-500 rounded-sm expand-button"
             onClick={() => {
               toggleExpand(!expand);
             }}
@@ -92,43 +106,52 @@ export default function BookingItem({
           </div>
         </div>
       </div>
-      <div className="h-[0rem] flex flex-col w-full overflow-hidden transition-all duration-400 ease-in-out booking-detail">
+      <div className="h-[0rem] flex flex-col w-full overflow-hidden transition-all duration-450 ease-in-out booking-detail">
         <div className="p-3">
-          <div className="flex w-full justify-between items-center my-4">
-            <p>
-              Order Status:{" "}
-              <span
+          <div className="w-full my-4">
+            <p className={lato.className}>Payment Status:</p>
+            <div className="w-full flex items-end justify-between">
+              <p
                 className={
                   latoSemiBold.className +
-                  " ml-1 uppercase " +
-                  (bookingInfo.paymentStatus === "processing"
+                  " ml-6 uppercase " +
+                  (bookingInfo.paymentStatus === "pending"
                     ? "text-orange-500"
-                    : bookingInfo.paymentStatus === "success"
+                    : bookingInfo.paymentStatus === "paid"
                     ? "text-green-500"
                     : "text-red-600")
                 }
               >
                 {bookingInfo.paymentStatus}
-              </span>
-            </p>
-            {bookingInfo.paymentStatus === "pending" ? (
-              <button className="py-[0.1rem] px-2 border-solid border-zinc-700 border-[1px] text-zinc-700 hover:text-zinc-100 hover:bg-zinc-700 rounded-md">
-                Try Again
-              </button>
-            ) : (
-              ""
-            )}
+              </p>
+              {bookingInfo.paymentStatus === "pending" ? (
+                <Link
+                  href={bookingInfo.url}
+                  className="px-3 py-[0.36rem] ml-4 bg-orange-500 text-zinc-200 hover:opacity-90 rounded-sm cancel-button"
+                >
+                  Pay Here
+                </Link>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
           <div className="my-4">
-            <div className="flex flex-col">
-              <label htmlFor="startDate" className="block mb-1">
-                Choose Your Start Date:
-              </label>
+            <label
+              htmlFor="startDate"
+              className={lato.className + " block mb-1"}
+            >
+              Choose Your Start Date:
+            </label>
+            <div className="flex mt-2 items-center">
               <select
                 name="startDate"
                 id="startDate"
-                className="w-fit mx-auto px-3 py-1 rounded-md mt-2"
+                className="w-fit ml-6 px-4 py-1 rounded-sm outline-[#69C987]"
               >
+                <option value="" className="text-zinc-300">
+                  -- see options --
+                </option>
                 {bookingInfo.tour.startDates.map((date, index) => {
                   const dateString = new Date(date).toDateString().slice(4);
                   return (
@@ -138,53 +161,106 @@ export default function BookingItem({
                   );
                 })}
               </select>
+              <div className="indicator w-[1rem] ml-auto ">
+                {startDate === "changed" ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                    className="fill-[#69C987]"
+                  >
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                  </svg>
+                ) : startDate === "changing" ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                    className="fill-zinc-500 animate-spin"
+                  >
+                    <path d="M222.7 32.1c5 16.9-4.6 34.8-21.5 39.8C121.8 95.6 64 169.1 64 256c0 106 86 192 192 192s192-86 192-192c0-86.9-57.8-160.4-137.1-184.1c-16.9-5-26.6-22.9-21.5-39.8s22.9-26.6 39.8-21.5C434.9 42.1 512 140 512 256c0 141.4-114.6 256-256 256S0 397.4 0 256C0 140 77.1 42.1 182.9 10.6c16.9-5 34.8 4.6 39.8 21.5z" />
+                  </svg>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
-            <div className="indicator"></div>
           </div>
           <div className="my-4">
-            <p>Your Tour Guide:</p>
-            <div className="flex justify-left items-center justify-center">
+            <p className={lato.className}>Your Tour Guide:</p>
+            <div className="flex justify-left items-center mt-2 ml-2">
               {guideInfo}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1em"
                 viewBox="0 0 512 512"
-                className="text-[1.4rem] fill-zinc-700 hover:fill-zinc-500 cursor-pointer px-8"
+                className="text-[1.1rem] ml-4 fill-zinc-500 hover:fill-zinc-700 cursor-pointer "
               >
-                <path d="M256 64C150 64 64 150 64 256s86 192 192 192c17.7 0 32 14.3 32 32s-14.3 32-32 32C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256v32c0 53-43 96-96 96c-29.3 0-55.6-13.2-73.2-33.9C320 371.1 289.5 384 256 384c-70.7 0-128-57.3-128-128s57.3-128 128-128c27.9 0 53.7 8.9 74.7 24.1c5.7-5 13.1-8.1 21.3-8.1c17.7 0 32 14.3 32 32v80 32c0 17.7 14.3 32 32 32s32-14.3 32-32V256c0-106-86-192-192-192zm64 192a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z" />
+                <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
               </svg>
             </div>
           </div>
           <div className="my-4">
-            <p className="mb-[0.4rem]">We would love to hear from you:</p>
-            <div className="flex flex-col">
-              <div className="flex justify-center my-4">
-                <ResponsiveRatingStars />
-              </div>
-              <div className="mx-auto">
-                <Link
-                  href="#"
-                  className="mx-3 underline-offset-2 hover:underline "
-                >
-                  Feedback
-                </Link>
-                <Link
-                  href="#"
-                  className="mx-3 underline-offset-2 hover:underline "
-                >
-                  Customer Service
-                </Link>
-              </div>
+            <p className={lato.className + " mb-[0.4rem]"}>
+              Rate Your Experience:
+            </p>
+            <div className="flex justify-center my-8">
+              <RatingStarsResponsive />
+            </div>
+          </div>
+          <div className="mt-10 pt-4 border-solid border-zinc-400 border-t-[1px]">
+            <div className="text-zinc-600 flex justify-between">
+              <Link
+                href="#"
+                className="mx-4 underline-offset-2 underline decoration-1 hover:text-zinc-900"
+              >
+                Feedback
+              </Link>
+              <Link
+                href="#"
+                className="mx-4 underline-offset-2 underline decoration-1 hover:text-zinc-900"
+              >
+                Customer Service
+              </Link>
             </div>
           </div>
         </div>
-        <div className="mt-auto px-3 py-4 bg-zinc-700 ">
-          <button className=" px-3 py-1 text-zinc-100 hover:opacity-90 rounded-md bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90">
+        <div className="mt-auto px-3 py-4 bg-zinc-600 ">
+          <Link
+            href={`/tours/${bookingInfo.tour.id}`}
+            className=" px-3 py-[0.36rem] text-zinc-100 hover:opacity-90 rounded-sm bg-gradient-to-br from-[#7dd56f] to-[#28b487]/95"
+          >
             Tour Info
-          </button>
-          <button className="px-3 py-1 ml-4 bg-red-600 text-zinc-200 hover:bg-red-500 rounded-md cancel-button">
-            Cancel
-          </button>
+          </Link>
+          <form
+            className="inline"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const response = await fetch(
+                `/api/bookings/delete/${bookingInfo.order}`,
+                {
+                  method: "DELETE",
+                  credentials: "include",
+                }
+              );
+              const result = await response.json();
+              if (result.status === "success") {
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.data.message,
+                  category: "notification",
+                });
+                router.refresh();
+              }
+            }}
+          >
+            <button
+              type="submit"
+              className="px-3 py-[0.36rem] ml-4 bg-red-600 text-zinc-200 hover:opacity-90 rounded-sm cancel-button"
+            >
+              Cancel
+            </button>
+          </form>
         </div>
       </div>
     </div>

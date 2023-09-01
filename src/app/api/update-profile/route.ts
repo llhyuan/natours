@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getCookieString } from "@/utilities/cookieString";
-import { revalidateTag } from "next/cache";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({

@@ -56,7 +56,11 @@ export interface BookingInfo {
     difficulty: string;
     startDates: Array<string>;
     guides: Array<{ email: string; name: string; id: string }>;
+    id: string;
+    imageCover: string;
   };
   createdAt: Date;
-  paymentStatus: string;
+  paymentStatus: "pending" | "paid" | "rejected";
+  order: string;
+  url: string;
 }

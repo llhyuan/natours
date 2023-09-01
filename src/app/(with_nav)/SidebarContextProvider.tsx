@@ -19,7 +19,11 @@ const defaultContext: SidebarContext = {
 
 export const sidebarContext = createContext(defaultContext);
 
-export default function ContextProvider({ children }: { children: ReactNode }) {
+export default function SidebarContextProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [activeSection, setActiveSection] = useState("");
   return (
     <sidebarContext.Provider value={{ activeSection, setActiveSection }}>

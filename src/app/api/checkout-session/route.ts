@@ -1,4 +1,4 @@
-import { BookingInfo } from "@Global/custom-types";
+import { CheckoutInfo } from "@Global/custom-types";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 let stripe: Stripe;
@@ -12,7 +12,7 @@ if (process.env.STRIPE_SECRET_KEY) {
 export async function POST(req: NextRequest) {
   try {
     // Create Checkout Sessions from body params.
-    const tour: BookingInfo = await req.json();
+    const tour: CheckoutInfo = await req.json();
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
               description: tour.description,
               images: tour.images,
             },
-            unit_amount_decimal: String(tour.price * 100),
+            unit_amount_decimal: String(tour.price * 1.0 * 100),
           },
           quantity: 1,
         },

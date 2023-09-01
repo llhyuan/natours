@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useContext, useEffect } from "react";
 import { LoginStatus } from "@Global/custom-types";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
 
 const defaultUser: LoginStatus = {
   name: "Login",
@@ -15,7 +16,9 @@ const defaultUser: LoginStatus = {
 
 export default function UserInfo({ mobile }: { mobile: boolean }) {
   const { loginStatus, setLoginStatus } = useContext(loginStatusContext);
+  const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
+  const path = usePathname();
 
   let importedPhoto: string = loginStatus.photo;
 
@@ -34,10 +37,13 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
           setLoginStatus({ ...result.user, loginStatus: true });
         } else {
           setLoginStatus({ ...defaultUser, loginStatus: false });
+          if (path.startsWith("/me") && !path.endsWith("forget-password")) {
+            router.replace("/");
+          }
         }
       });
     });
-  }, [setLoginStatus]);
+  }, [setLoginStatus, path, router]);
 
   if (!loginStatus.loginStatus) {
     return (
@@ -68,12 +74,15 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
     return (
       <>
         <Link
-          href="/"
+          href="/me/bookings"
           className={
             mobile
               ? "lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
               : "hidden lg:block"
           }
+          onClick={() => {
+            setActiveSection("bookings");
+          }}
         >
           My Booking
         </Link>
@@ -85,7 +94,13 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               : "hidden ml-[2vw] lg:flex items-center"
           }
         >
-          <Link href="/me" className="flex justify-center items-center group">
+          <Link
+            href="/me"
+            className="flex justify-center items-center group"
+            onClick={() => {
+              setActiveSection("");
+            }}
+          >
             <Image
               src={importedPhoto}
               alt="user photo"

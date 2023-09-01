@@ -1,5 +1,5 @@
 "use client";
-import { BookingInfo } from "@Global/custom-types";
+import { CheckoutInfo } from "@Global/custom-types";
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -20,10 +20,9 @@ const stripePromise = loadStripe(
 export default function CheckoutButton({
   bookingInfo,
 }: {
-  bookingInfo: BookingInfo;
+  bookingInfo: CheckoutInfo;
 }) {
-  const tourId = useParams();
-  console.log(tourId);
+  const { tourId } = useParams();
   const router = useRouter();
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -44,7 +43,7 @@ export default function CheckoutButton({
       onSubmit={async (e) => {
         e.preventDefault();
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_HOST}/bookings/checkout-session/5c88fa8cf4afda39709c2951`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/bookings/checkout-session/${tourId}`,
           {
             method: "GET",
             credentials: "include",
@@ -55,22 +54,6 @@ export default function CheckoutButton({
           router.replace(result.url);
         }
       }}
-      // action="/api/checkout-session"
-      // method="POST"
-      // onSubmit={async (e) => {
-      //   e.preventDefault();
-      //   console.log(bookingInfo);
-      //   const response = await fetch("/api/checkout-session", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     credentials: "include",
-      //     body: JSON.stringify(bookingInfo),
-      //   });
-      //   const result = await response.json();
-      //   router.replace(result.url);
-      // }}
     >
       <section className="hidden">
         <input name="name" type="hidden" value={bookingInfo.name} />

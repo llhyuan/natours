@@ -3,7 +3,7 @@ import { Lato } from "next/font/google";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { notificationContext } from "@/app/NotificationContextProvier";
-import { sidebarContext } from "@/app/(with_nav)/me/contextProvider";
+import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
 
 const latoBold = Lato({
   weight: "700",
@@ -59,7 +59,7 @@ export default function ChangePassword() {
         <h1
           className={
             latoBold.className +
-            " text-[1.4rem] sm:text-[1.6rem] py-4 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#7dd56f] to-[#28b487]"
+            " max-sm:mx-auto max-sm:w-fit text-[1.4rem] sm:text-[1.6rem] py-4 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#7dd56f] to-[#28b487]"
           }
         >
           Change Password

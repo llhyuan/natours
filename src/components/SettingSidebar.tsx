@@ -9,7 +9,7 @@ import {
   useState,
   useRef,
 } from "react";
-import { sidebarContext } from "@/app/(with_nav)/me/contextProvider";
+import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
 
 const userSection = [
   [
