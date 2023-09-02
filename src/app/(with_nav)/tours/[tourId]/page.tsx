@@ -38,12 +38,6 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
 
   const locations = tour.locations;
   const gallary = tour.images;
-  const bookingInfo: CheckoutInfo = {
-    name: tour.name,
-    description: tour.summary,
-    images: [tour.imageCover],
-    price: tour.price,
-  };
 
   return (
     <article className="w-full ">
@@ -144,7 +138,7 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
         </div>
       </div>
       <div className="relative md:top-[-18vw]">
-        <BookNow bookingInfo={bookingInfo} />
+        <BookNow />
       </div>
     </article>
   );

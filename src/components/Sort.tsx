@@ -17,6 +17,7 @@ export default function Sort() {
       }
     }
   });
+
   return (
     <div className="relative inline-block text-left">
       <div>
@@ -32,7 +33,10 @@ export default function Sort() {
         >
           Sort
           <svg
-            className="-mr-1 ml-1 mt-[0.25rem] lg:mt-[0.425rem] h-5 w-5 flex-shrink-0 text-zinc-400 group-hover:text-gray-500"
+            className={
+              "ml-2 mt-[0.18rem] lg:mt-[0.425rem] h-5 w-5 flex-shrink-0 text-zinc-400 group-hover:text-gray-500 " +
+              (!menuStatus ? "" : "rotate-180")
+            }
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
@@ -40,7 +44,7 @@ export default function Sort() {
             <path
               fillRule="evenodd"
               d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             />
           </svg>
         </button>
@@ -90,12 +94,41 @@ export default function Sort() {
               role="menuitem"
               id="menu-item-2"
               onClick={() => {
-                setSearchParams({ ...searchParams, sort: "sort=-startDates" });
+                setSearchParams({ ...searchParams, sort: "sort=duration" });
               }}
             >
-              Newest
+              Duration
             </a>
-            {searchParams.sort.includes("Date") ? (
+            {searchParams.sort.includes("duration") ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 448 512"
+                className="absolute top-[0.8rem] right-[1rem] fill-zinc-500 group-hover/date:fill-zinc-100 bg-transparent"
+              >
+                <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+              </svg>
+            ) : (
+              ""
+            )}
+          </div>
+
+          <div className="group/date relative flex">
+            <a
+              href="#"
+              className="text-zinc-500 block px-4 py-2 group-hover/date:bg-zinc-600 group-hover/date:text-zinc-100 w-full"
+              role="menuitem"
+              id="menu-item-2"
+              onClick={() => {
+                setSearchParams({
+                  ...searchParams,
+                  sort: "sort=maxGroupSize",
+                });
+              }}
+            >
+              Group Size
+            </a>
+            {searchParams.sort.includes("Group") ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1em"

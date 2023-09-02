@@ -63,4 +63,6 @@ export interface BookingInfo {
   paymentStatus: "pending" | "paid" | "rejected";
   order: string;
   url: string;
+  invoice: string;
+  startDate: string;
 }

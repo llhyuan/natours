@@ -17,7 +17,7 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-export default function BookNow({ bookingInfo }: { bookingInfo: BookingInfo }) {
+export default function BookNow() {
   return (
     <div className="md:w-fit mx-auto bg-zinc-100 lg:flex shadow-[2px_2px_8rem_rgba(0,0,0,0.2)] md:rounded-2xl xl:scale-125 2xl:scale-[1.4]">
       <div className="flex relative items-center overflow-hidden pt-14 pb-8 lg:pb-14 md:w-fit mx-auto bg-zinc-100 md:rounded-2xl">
@@ -44,7 +44,7 @@ export default function BookNow({ bookingInfo }: { bookingInfo: BookingInfo }) {
         </div>
       </div>
       <div className="self-center max-lg:my-2 lg:px-10 pb-14 lg:pt-14">
-        <CheckoutButton bookingInfo={bookingInfo} />
+        <CheckoutButton />
       </div>
     </div>
   );

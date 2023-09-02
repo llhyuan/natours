@@ -17,11 +17,7 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
 );
 
-export default function CheckoutButton({
-  bookingInfo,
-}: {
-  bookingInfo: CheckoutInfo;
-}) {
+export default function CheckoutButton() {
   const { tourId } = useParams();
   const router = useRouter();
   useEffect(() => {
@@ -55,33 +51,16 @@ export default function CheckoutButton({
         }
       }}
     >
-      <section className="hidden">
-        <input name="name" type="hidden" value={bookingInfo.name} />
-
-        <input
-          name="description"
-          type="hidden"
-          value={bookingInfo.description}
-        />
-        <input
-          name="images"
-          type="hidden"
-          value={JSON.stringify(bookingInfo.images)}
-        />
-        <input name="price" type="hidden" value={bookingInfo.price} />
-      </section>
-      <section>
-        <button
-          type="submit"
-          role="link"
-          className={
-            latoBold.className +
-            " uppercase block w-fit py-4 px-8 mx-auto bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
-          }
-        >
-          Book Now
-        </button>
-      </section>
+      <button
+        type="submit"
+        role="link"
+        className={
+          latoBold.className +
+          " uppercase block w-fit py-4 px-8 mx-auto bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
+        }
+      >
+        Book Now
+      </button>
     </form>
   );
 }

@@ -24,6 +24,7 @@ export default function ChangeUserInfo({
     name,
     email,
   });
+  console.log(userInfo);
   const [file, setFile] = useState<File>();
   const [uploadData, setUploadData] = useState<string>();
   const { setNotificationStatus } = useContext(notificationContext);

@@ -24,7 +24,7 @@ export default async function ReviewCard({ review }: { review: Review }) {
   const stars = [1, 2, 3, 4, 5];
 
   return (
-    <div className="flex flex-col text-zinc-500 bg-zinc-100 p-12 max-w-[420px] min-w-[380px] min-h-[320px] rounded-md">
+    <div className="flex flex-col text-zinc-500 bg-zinc-100 p-12 max-w-[420px] min-w-[380px] min-h-[320px] rounded-md snap-center">
       <div className="flex items-center mb-4 w-fit mx-auto ">
         <Image src={img} alt="user photo" width={60} className="rounded-full" />
         <div className="pl-6">

@@ -19,7 +19,9 @@ export default async function WebsiteLayout({
       <body className={lato.className}>
         <NotificationContextProvider>
           <LoginStatusContextProvider>
-            <div>{children}</div>
+            <div className="transition-all duration-300 ease-in-out">
+              {children}
+            </div>
           </LoginStatusContextProvider>
         </NotificationContextProvider>
       </body>

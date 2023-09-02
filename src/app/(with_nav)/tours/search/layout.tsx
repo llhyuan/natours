@@ -19,7 +19,7 @@ export default function Serarch({ children }: { children: ReactNode }) {
   return (
     <div>
       <form
-        className="relative group flex w-fit border-solid border-zinc-700 border-[1px] mx-auto my-[2rem] pl-2 text-[1rem] lg:text-[1.3rem] items-center rounded-md shadow-md"
+        className="relative group flex w-fit border-solid border-zinc-700 border-[1px] mx-auto my-[2rem] pl-2 text-[1rem] lg:text-[1.3rem] items-center rounded-md shadow-md overflow-hidden"
         onSubmit={(e) => {
           e.preventDefault();
           setSearchParams({ ...searchParams, submit: true });
@@ -64,7 +64,7 @@ export default function Serarch({ children }: { children: ReactNode }) {
         />
         <button
           type="submit"
-          className="py-2 px-2 sm:px-4 md:px-6 lg:px-8 rounded-r-sm border-l-[1px] border-solid border-zinc-700 bg-zinc-700 text-zinc-100 active:bg-zinc-400 active:text-zinc-700 "
+          className="py-2 px-2 sm:px-4 md:px-6 lg:px-8 rounded-r-sm border-l-[1px] border-solid border-zinc-700 bg-zinc-700 text-zinc-100 active:bg-zinc-600 "
         >
           Search
         </button>

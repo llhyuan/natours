@@ -31,9 +31,12 @@ export default function BookingItem({
 }) {
   const bookingItemref = useRef<HTMLDivElement>(null);
   const [expand, toggleExpand] = useState(false);
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState<string>();
+  const [dateUpdateStatus, setDateUpdateStatus] = useState("not-set");
   const { setNotificationStatus } = useContext(notificationContext);
+  const setDateFormRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+  console.log(dateUpdateStatus);
 
   useEffect(() => {
     if (bookingItemref && bookingItemref.current) {
@@ -45,10 +48,17 @@ export default function BookingItem({
     }
   });
 
+  useEffect(() => {
+    if (setDateFormRef && setDateFormRef.current) {
+      if (startDate) {
+        setDateFormRef.current.requestSubmit();
+      }
+    }
+  }, [startDate]);
+
   return (
     <div
       ref={bookingItemref}
-      id="item-wraper"
       className="relative w-full rounded-sm bg-zinc-300 shadow-xl"
     >
       <div className="absolute top-[-0.5rem] left-[-0.5rem] transition-all duration-300 ease-in-out order-status">
@@ -67,9 +77,12 @@ export default function BookingItem({
             {`ORDER # ${bookingInfo.order}`}
           </p>
           <Link
-            href="#"
+            href={bookingInfo.invoice ?? "#"}
             target={"_blank"}
-            className="text-zinc-600 relative bottom-[4px] hover:underline"
+            className={
+              "text-zinc-600 relative bottom-[4px] hover:underline " +
+              (bookingInfo.invoice ? "" : "hidden")
+            }
           >
             Invoice
           </Link>
@@ -137,32 +150,71 @@ export default function BookingItem({
             </div>
           </div>
           <div className="my-4">
-            <label
-              htmlFor="startDate"
-              className={lato.className + " block mb-1"}
-            >
+            <p className={lato.className + " block mb-1"}>
               Choose Your Start Date:
-            </label>
+            </p>
             <div className="flex mt-2 items-center">
-              <select
-                name="startDate"
-                id="startDate"
-                className="w-fit ml-6 px-4 py-1 rounded-sm outline-[#69C987]"
+              <form
+                method="PATCH"
+                ref={setDateFormRef}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const reqBody = {
+                    startDate: startDate,
+                    order: bookingInfo.order,
+                  };
+                  fetch("/api/bookings/update-startdate", {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify(reqBody),
+                  })
+                    .then((response) => {
+                      return response.json();
+                    })
+                    .then((result) => {
+                      if (result.status === "success") {
+                        setDateUpdateStatus("set");
+                      } else {
+                        setDateUpdateStatus("");
+                      }
+                    })
+                    .catch((err) => {
+                      console.log("This is error");
+                      console.log(err);
+                    });
+                }}
               >
-                <option value="" className="text-zinc-300">
-                  -- see options --
-                </option>
-                {bookingInfo.tour.startDates.map((date, index) => {
-                  const dateString = new Date(date).toDateString().slice(4);
-                  return (
-                    <option value={date} key={index}>
-                      {dateString}
-                    </option>
-                  );
-                })}
-              </select>
+                <select
+                  name="startDate"
+                  className="w-fit ml-6 px-4 py-1 rounded-sm outline-[#69C987]"
+                  value={bookingInfo.startDate}
+                  onChange={(e) => {
+                    setStartDate(e.target.value);
+                    setDateUpdateStatus("setting");
+                  }}
+                >
+                  <option value="" className="text-zinc-300">
+                    -- see options --
+                  </option>
+                  {bookingInfo.tour.startDates.map((date, index) => {
+                    const dateString = new Date(date).toDateString().slice(4);
+                    return (
+                      <option
+                        value={date}
+                        key={index}
+                        //selected={bookingInfo.startDate === date}
+                      >
+                        {dateString}
+                      </option>
+                    );
+                  })}
+                </select>
+              </form>
               <div className="indicator w-[1rem] ml-auto ">
-                {startDate === "changed" ? (
+                {dateUpdateStatus === "set" ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
@@ -171,7 +223,7 @@ export default function BookingItem({
                   >
                     <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                   </svg>
-                ) : startDate === "changing" ? (
+                ) : dateUpdateStatus === "setting" ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
@@ -187,7 +239,9 @@ export default function BookingItem({
             </div>
           </div>
           <div className="my-4">
-            <p className={lato.className}>Your Tour Guide:</p>
+            <p className={lato.className}>
+              Any questions about the tour? Contact Your Tour Guide:
+            </p>
             <div className="flex justify-left items-center mt-2 ml-2">
               {guideInfo}
               <svg
@@ -265,4 +319,22 @@ export default function BookingItem({
       </div>
     </div>
   );
+}
+
+function setStartDate(date: string) {
+  fetch("/me/booking/update", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ startDate: date }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      if (result.stauts === "success") {
+      }
+    });
 }
