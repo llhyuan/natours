@@ -1,6 +1,6 @@
 import { getCookieString } from "@/utilities/cookieString";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   const url = `${process.env.API_HOST}/bookings/my-bookings`;

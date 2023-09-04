@@ -1,5 +1,4 @@
 "use client";
-import { CheckoutInfo } from "@Global/custom-types";
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";

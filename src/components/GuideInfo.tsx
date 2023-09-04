@@ -1,8 +1,8 @@
 import { Guide } from "./customInterfaces";
 import Image from "next/image";
-import { importCover } from "@/utilities/importImage";
 import { cookies } from "next/headers";
 import { getCookieString } from "@/utilities/cookieString";
+import { importCover } from "@/utilities/importImage";
 
 export default async function GuideInfo({
   guide,

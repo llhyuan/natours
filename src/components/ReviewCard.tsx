@@ -20,13 +20,24 @@ export default async function ReviewCard({ review }: { review: Review }) {
   const result = await fetchUsers(review.user);
   const user: User = result[0];
   const name = user.name ?? "User Name";
-  const img = importCover(`users/${user.photo ?? "default.jpg"}`);
+  let img: string;
+  if (user.photo.startsWith("http")) {
+    img = user.photo;
+  } else {
+    img = importCover(`users/${user.photo ?? "default.jpg"}`);
+  }
   const stars = [1, 2, 3, 4, 5];
 
   return (
     <div className="flex flex-col text-zinc-500 bg-zinc-100 p-12 max-w-[420px] min-w-[380px] min-h-[320px] rounded-md snap-center">
       <div className="flex items-center mb-4 w-fit mx-auto ">
-        <Image src={img} alt="user photo" width={60} className="rounded-full" />
+        <Image
+          src={img}
+          alt="user photo"
+          width={60}
+          height={60}
+          className="rounded-full"
+        />
         <div className="pl-6">
           <p className={latoBold.className + " text-[1.3rem]"}>{name}</p>
           <p

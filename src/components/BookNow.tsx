@@ -1,8 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import img from "../../public/img/logo-green-round.png";
-import { BookingInfo } from "@Global/custom-types";
 import CheckoutButton from "@/app/(with_nav)/checkout/Checkoutbutton";
 
 const latoBold = Lato({

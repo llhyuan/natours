@@ -4,6 +4,14 @@
 
 :root {
   --section-rotate: 8vw;
+  --review-content-height: 0px;
+  --booking-content-height: 34rem;
+}
+
+@media only screen and (max-width: 768px) {
+  :root {
+    --booking-content-height: 36rem;
+  }
 }
 
 @layer components {
@@ -73,7 +81,7 @@
       }
     }
     .booking-detail {
-      height: 32.8rem;
+      height: var(--booking-content-height);
       transition-property: all;
       transition-timing-function: ease-in-out;
       transition-duration: 450ms;
@@ -98,6 +106,76 @@
         transform: rotate(180deg);
       }
     }
+  }
+
+  .expand-reviewItem {
+    .banner-wrapper {
+      padding-left: 0.75rem;
+      padding-top: 0.75rem;
+      transition-duration: 300ms;
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+
+      img {
+        border-radius: 0.125rem;
+      }
+    }
+    .review-detail {
+      height: var(--review-content-height);
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+      transition-duration: 450ms;
+    }
+
+    .tour-name {
+      top: 0.5rem;
+    }
+
+    .rating {
+      font-size: 2.2rem;
+      margin-top: 0.5rem;
+      margin-right: 0.6rem;
+    }
+
+    .expand-button {
+      bottom: 1.2rem;
+      right: 0.75rem;
+      background-color: #e4e4e6;
+      svg {
+        fill: #3f3f46;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-95%);
+    }
+  }
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-95%);
+    }
+  }
+
+  .reveal-review-edit {
+    transform: translateX(-95%);
+    transition-property: all;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
+  }
+  .hide-review-edit {
+    transform: translateX(0);
+    transition-property: all;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
   }
 
   @media only screen and (max-width: 768px) {

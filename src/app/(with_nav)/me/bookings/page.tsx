@@ -23,18 +23,20 @@ export default async function Bookings() {
         My Bookings
       </h1>
       <div className="max-sm:px-2 py-4 w-full flex flex-col gap-y-10">
-        {bookings.map((booking: BookingInfo, index: number) => {
-          const guideInfo = (
-            <GuideInfo guide={booking.tour.guides[1]} view="booking" />
-          );
-          return (
-            <BookingItem
-              bookingInfo={booking}
-              key={index}
-              guideInfo={guideInfo}
-            />
-          );
-        })}
+        {bookings
+          ? bookings.map((booking: BookingInfo, index: number) => {
+              const guideInfo = (
+                <GuideInfo guide={booking.tour.guides[1]} view="booking" />
+              );
+              return (
+                <BookingItem
+                  bookingInfo={booking}
+                  key={index}
+                  guideInfo={guideInfo}
+                />
+              );
+            })
+          : "No Bookings."}
       </div>
     </div>
   );

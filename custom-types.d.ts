@@ -59,10 +59,28 @@ export interface BookingInfo {
     id: string;
     imageCover: string;
   };
+  review: {
+    id: string;
+    rating: number;
+  };
   createdAt: Date;
   paymentStatus: "pending" | "paid" | "rejected";
   order: string;
   url: string;
   invoice: string;
   startDate: string;
+}
+
+export interface Review {
+  _id: string;
+  user: string;
+  tour: {
+    name: string;
+    imageCover: string;
+  };
+  order: string;
+  createdAt: string;
+  review: string;
+  title: string;
+  rating: number;
 }
