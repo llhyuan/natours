@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import img from "../../public/img/logo-green-round.png";
+import CheckoutButton from "@/app/(with_nav)/checkout/Checkoutbutton";
 
 const latoBold = Lato({
   weight: "700",
@@ -42,15 +42,7 @@ export default function BookNow() {
         </div>
       </div>
       <div className="self-center max-lg:my-2 lg:px-10 pb-14 lg:pt-14">
-        <Link
-          href="/"
-          className={
-            latoBold.className +
-            " uppercase block w-fit py-4 px-8 mx-auto bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
-          }
-        >
-          Book Now
-        </Link>
+        <CheckoutButton />
       </div>
     </div>
   );

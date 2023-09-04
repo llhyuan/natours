@@ -3,5 +3,5 @@ export default function ToursLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <div className="z-40">{children}</div>;
 }

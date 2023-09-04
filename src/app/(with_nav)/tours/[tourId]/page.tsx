@@ -5,9 +5,9 @@ import ReviewRibon from "@/components/ReviewRibon";
 import BookNow from "@/components/BookNow";
 import { fetchTours } from "@/utilities/fetchTour";
 import { Guide, Tour } from "@/components/customInterfaces";
-import { importCover } from "@/utilities/importImage";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
+import { CheckoutInfo } from "@Global/custom-types";
 
 const latoExtraBold = Lato({
   weight: "900",
@@ -24,7 +24,7 @@ const latoBold = Lato({
 export default async function Tour({ params }: { params: { tourId: string } }) {
   const result = await fetchTours(params.tourId);
   const tour: Tour = result.data.tour;
-  const cover = importCover(`tours/${tour.imageCover}`);
+  const cover = tour.imageCover;
   const name: Array<string> = tour.name.split(" ");
   const midIdx = Math.ceil(name.length / 2);
   const tourName = {
@@ -34,7 +34,6 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
 
   const startTime: string = tour.startDates[0].slice(0, 10);
   const tourGuides: Array<Guide> = tour.guides;
-  console.log(tourGuides);
   const description: Array<string> = tour.description.split("\n");
 
   const locations = tour.locations;
@@ -43,11 +42,13 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
   return (
     <article className="w-full ">
       <section className="relative">
-        <div className="overflow-clip h-[60vw] max-h-[900px] min-h-[240px] md:clip-polygon">
+        <div className="overflow-clip h-[55vw] max-h-[900px] min-h-[240px] md:clip-polygon">
           <Image
             src={cover}
+            width={2000}
+            height={1100}
             alt="cover image"
-            className="relative md:bottom-24 mx-auto"
+            className="relative object-cover md:bottom-5 w-full"
           />
         </div>
         <div className="absolute w-full h-[55vw] max-h-[860px] min-h-[220px] top-0 flex items-center">
@@ -94,7 +95,9 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
               </h2>
               <div className=" w-fit mx-auto">
                 {tourGuides.map((guide: Guide, index: number) => {
-                  return <GuideInfo guide={guide} key={index} />;
+                  return (
+                    <GuideInfo guide={guide} key={index} view="non-booking" />
+                  );
                 })}
               </div>
             </div>

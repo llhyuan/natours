@@ -11,6 +11,7 @@ export default function Footer() {
           alt="footer logo"
           width={200}
           className="mx-auto my-8 lg:ml-4"
+          priority={true}
         />
       </div>
       <div className="lg:flex-1">

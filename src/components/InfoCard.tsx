@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Lato } from "next/font/google";
 import { CSSPropertiesWithVars } from "./customInterfaces";
 import { Tour } from "./customInterfaces";
-import { importCover } from "@/utilities/importImage";
 
 const latoBold = Lato({
   weight: "700",
@@ -37,7 +36,8 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
   const rating = tour.ratingsAverage;
   const ratingQuantity = tour.ratingsQuantity;
 
-  const cover = importCover(`tours/${tour.imageCover}`);
+  let cover = tour.imageCover;
+
   const tourDetail = `/tours/${tour.id}`;
 
   return (
@@ -47,7 +47,7 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
     >
       <div id="img" className="relative text-[1.5rem]">
         <div className="max-h-[240px] overflow-hidden clip-polygon">
-          <Image src={cover} alt="tour image" />
+          <Image src={cover} width={500} height={400} alt="tour image" />
         </div>
         <p className="absolute bottom-16 right-14 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90">
           {tourName.firstHalf}

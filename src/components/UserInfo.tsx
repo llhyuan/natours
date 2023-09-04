@@ -1,41 +1,51 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { isLoggedin } from "@/utilities/isLoggedIn";
-
-export interface LoginStatus {
-  name: string;
-  loginStatus: boolean;
-  loginToken: string;
-  photo: string;
-}
+import { useContext, useEffect } from "react";
+import { LoginStatus } from "@Global/custom-types";
+import { loginStatusContext } from "@/app/LoginStatusContextProvider";
+import { useRouter, usePathname } from "next/navigation";
+import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
 
 const defaultUser: LoginStatus = {
   name: "Login",
   loginStatus: false,
-  loginToken: "",
+  email: "your@email.com",
   photo: "default.jpg",
 };
 
 export default function UserInfo({ mobile }: { mobile: boolean }) {
-  const [user, setCurrUser] = useState<LoginStatus>(defaultUser);
+  const { loginStatus, setLoginStatus } = useContext(loginStatusContext);
+  const { setActiveSection } = useContext(sidebarContext);
+  const router = useRouter();
+  const path = usePathname();
+
+  let importedPhoto: string = loginStatus.photo;
+
+  if (!importedPhoto.startsWith("http")) {
+    importedPhoto = `/public/img/users/${importedPhoto}`;
+  }
 
   useEffect(() => {
-    let localInfo: string | null = localStorage.getItem("natoursLoggedinUser");
-    if (localInfo) {
-      const loggedinUser: LoginStatus | null = JSON.parse(localInfo);
-      if (loggedinUser) {
-        isLoggedin(loggedinUser.loginToken).then((res) => {
-          if (res.status === "success" && res.data.isLogin) {
-            setCurrUser(loggedinUser);
+    fetch("/api/userinfo", {
+      method: "GET",
+      credentials: "include",
+      next: { tags: ["userinfo"] },
+    }).then((response) => {
+      response.json().then((result) => {
+        if (result.status === "success") {
+          setLoginStatus({ ...result.user, loginStatus: true });
+        } else {
+          setLoginStatus({ ...defaultUser, loginStatus: false });
+          if (path.startsWith("/me") && !path.endsWith("forget-password")) {
+            router.replace("/");
           }
-        });
-      }
-    }
-  }, [setCurrUser]);
+        }
+      });
+    });
+  }, [setLoginStatus, path, router]);
 
-  if (!user.loginStatus) {
+  if (!loginStatus.loginStatus) {
     return (
       <>
         <Link
@@ -46,14 +56,14 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               : "hidden lg:block"
           }
         >
-          Sign In
+          Login
         </Link>
         <Link
-          href="/"
+          href="/signup"
           className={
             mobile
               ? "px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden lg:block ml-[4vw]"
+              : "hidden lg:block ml-[3vw]"
           }
         >
           Sign Up
@@ -64,29 +74,35 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
     return (
       <>
         <Link
-          href="/"
+          href="/me/bookings"
           className={
             mobile
               ? "lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
               : "hidden lg:block"
           }
+          onClick={() => {
+            setActiveSection("bookings");
+          }}
         >
-          MY BOOKINGS
+          My Booking
         </Link>
         <div
           id="user"
           className={
             mobile
               ? "group lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden ml-[4vw] lg:block"
+              : "hidden ml-[2vw] lg:flex items-center"
           }
         >
           <Link
-            href="/profile"
+            href="/me"
             className="flex justify-center items-center group"
+            onClick={() => {
+              setActiveSection("");
+            }}
           >
             <Image
-              src={`/img/users/${user.photo}`}
+              src={importedPhoto}
               alt="user photo"
               width={50}
               height={50}
@@ -97,7 +113,29 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
                   : "")
               }
             />
-            <p className="px-4">{user.name}</p>
+            <p className="px-4">{loginStatus.name}</p>
+          </Link>
+          <Link
+            href="/api/logout"
+            className={
+              mobile
+                ? "block lg:hidden pt-5 text-center hover:underline underline-offset-2 hover:cursor-pointer"
+                : "hidden ml-[1vw] lg:block"
+            }
+            onClick={async (e) => {
+              e.preventDefault();
+              const result = await fetch("/api/logout", {
+                method: "GET",
+              });
+              const response = await result.json();
+              if (response.status === "success") {
+                localStorage.removeItem("natoursLoggedinUser");
+                setLoginStatus({ ...loginStatus, loginStatus: false });
+                router.replace("/");
+              }
+            }}
+          >
+            Log Out
           </Link>
         </div>
       </>

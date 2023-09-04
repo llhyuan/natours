@@ -1,12 +1,30 @@
 import { Guide } from "./customInterfaces";
-import { fetchUsers } from "@/utilities/fetchUsers";
 import Image from "next/image";
+import { cookies } from "next/headers";
+import { getCookieString } from "@/utilities/cookieString";
 import { importCover } from "@/utilities/importImage";
 
-export default async function GuideInfo({ guide }: { guide: Guide }) {
+export default async function GuideInfo({
+  guide,
+  view,
+}: {
+  guide: Guide;
+  view: string;
+}) {
   const name = guide.name;
-  const result = await fetchUsers(guide.id);
-  const user = result.data.user[0];
+  const cookieStr: string = getCookieString(cookies().getAll());
+  const result = await fetch(`${process.env.SERVER_HOST}/api/userinfo`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookieStr,
+    },
+    body: JSON.stringify({ id: guide.id }),
+    credentials: "include",
+  });
+
+  const resData = await result.json();
+  const user = resData.user;
   const url: string = `users/${user.photo ?? "default.jpg"}`;
 
   const img = await importCover(url);
@@ -20,7 +38,12 @@ export default async function GuideInfo({ guide }: { guide: Guide }) {
         height={50}
         className="rounded-full"
       />
-      <p className="ml-4 sm:ml-6 w-[7rem] lg:w-[7.7rem] text-left capitalize">
+      <p
+        className={
+          "ml-4 sm:ml-6 w-[7rem] lg:w-[7.7rem] text-left capitalize " +
+          (view === "booking" ? "hidden" : "")
+        }
+      >
         {user.role}
       </p>
       <p className="pl-4 capitalize">{name}</p>

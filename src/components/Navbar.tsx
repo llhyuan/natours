@@ -7,11 +7,14 @@ import UserInfo from "./UserInfo";
 
 export default function Navbar() {
   return (
-    <div id="navbar" className="bg-zinc-700 text-white text-xl px-8 py-6">
+    <div
+      id="navbar"
+      className="bg-zinc-700 text-white text-[1.1rem] px-8 py-4 lg:py-[1.3rem]"
+    >
       <div className="flex items-center md:justify-center">
         <div className="hidden md:flex flex-1 items-center">
           <Link href="/tours" className="mr-[4vw] hidden lg:block">
-            ALL TOURS
+            All Tours
           </Link>
           <div id="search-container" className="w-48 flex items-center">
             <SearchForm mobile={false} />
@@ -22,7 +25,7 @@ export default function Navbar() {
           src={logo}
           alt="Website Logo"
           width={90}
-          className="md:mx-auto"
+          className="w-[3.5rem] md:w-[4.5rem] lg:w-[5rem] md:mx-auto"
         ></Image>
         <div className="hidde md:flex flex-1 justify-end items-center">
           <UserInfo mobile={false} />
