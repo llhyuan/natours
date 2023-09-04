@@ -83,4 +83,5 @@ export interface Review {
   review: string;
   title: string;
   rating: number;
+  visible: boolean;
 }

@@ -24,7 +24,10 @@ export default async function Reviews() {
       <div className="max-sm:px-2 py-4 w-full flex flex-col gap-y-10">
         {reviews
           ? reviews.map((review, index: number) => {
-              return <ReviewItem review={review} key={index} />;
+              console.log(review.visible);
+              if (review.visible) {
+                return <ReviewItem review={review} key={index} />;
+              }
             })
           : "No Reviews."}
       </div>
