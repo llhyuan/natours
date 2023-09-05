@@ -1,7 +1,6 @@
 "use client";
 import { Review } from "@Global/custom-types";
 import {
-  useState,
   forwardRef,
   ForwardedRef,
   FormEvent,
@@ -81,7 +80,7 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
               });
             }
           }}
-          className=" flex items-center w-[12%] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
+          className=" flex items-center w-[12%] min-w-[3.7rem] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
         />
       </div>
       <div className="my-4 flex items-start">

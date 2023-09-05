@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className="flex items-center md:justify-center">
         <div className="hidden md:flex flex-1 items-center">
           <Link href="/tours" className="mr-[4vw] hidden lg:block">
-            All Tours
+            All TOURS
           </Link>
           <div id="search-container" className="w-48 flex items-center">
             <SearchForm mobile={false} />
@@ -27,7 +27,7 @@ export default function Navbar() {
           width={90}
           className="w-[3.5rem] md:w-[4.5rem] lg:w-[5rem] md:mx-auto"
         ></Image>
-        <div className="hidde md:flex flex-1 justify-end items-center">
+        <div className="md:flex flex-1 justify-end">
           <UserInfo mobile={false} />
         </div>
       </div>

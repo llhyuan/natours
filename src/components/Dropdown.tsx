@@ -46,10 +46,13 @@ export default function Dropdown() {
         <Link
           href="/tours"
           className="px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
+          onClick={() => {
+            toggleMenuStatus(false);
+          }}
         >
           All Tours
         </Link>
-        <UserInfo mobile={true} />
+        <UserInfo mobile={true} toggleMenuStatus={toggleMenuStatus} />
         <div className="flex justify-center items-center py-4">
           <SearchForm mobile={true} />
         </div>

@@ -7,7 +7,6 @@ import { fetchTours } from "@/utilities/fetchTour";
 import { Guide, Tour } from "@/components/customInterfaces";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
-import { CheckoutInfo } from "@Global/custom-types";
 
 const latoExtraBold = Lato({
   weight: "900",
