@@ -1,4 +1,4 @@
-import { Review } from "@Global/custom-types";
+import { ReviewPopulated } from "@Global/custom-types";
 import { Lato } from "next/font/google";
 
 const latoSemiBold = Lato({
@@ -6,7 +6,7 @@ const latoSemiBold = Lato({
   style: "normal",
   subsets: ["latin"],
 });
-export default function ReviewDispaly({ review }: { review: Review }) {
+export default function ReviewDispaly({ review }: { review: ReviewPopulated }) {
   return (
     <div className="px-4">
       <div className="my-2 flex">

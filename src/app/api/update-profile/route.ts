@@ -39,7 +39,6 @@ export async function POST(req: NextRequest, _res: NextResponse) {
   reqBody.photo = uploadResult.secure_url;
   reqBody.file = void 0;
 
-  console.log(reqBody);
   const response = await fetch(url, {
     method: "PATCH",
     headers: {
@@ -49,7 +48,7 @@ export async function POST(req: NextRequest, _res: NextResponse) {
     body: JSON.stringify(reqBody),
     credentials: "include",
   });
-  console.log(response);
+
   const result = await response.json();
 
   if (result.status === "success") {

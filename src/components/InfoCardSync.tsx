@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Lato } from "next/font/google";
-import { CSSPropertiesWithVars } from "./customInterfaces";
-import { Tour } from "./customInterfaces";
+import { CSSPropertiesWithVars } from "@Global/custom-types";
+import { Tour } from "@Global/custom-types";
 
 const latoBold = Lato({
   weight: "700",

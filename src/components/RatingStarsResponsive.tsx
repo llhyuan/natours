@@ -1,23 +1,26 @@
 "use client";
+import { notificationContext } from "@/app/NotificationContextProvier";
 import { useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 export default function RatingStarsResponsive({
   review,
 }: {
   review: { id: string; rating: number };
 }) {
+  const { setNotificationStatus } = useContext(notificationContext);
   const [newRating, setNewRating] = useState(review.rating ?? 0);
+  const [changed, setChanged] = useState(false);
   const [ratingUpdateStatus, setRatingUpdateStatus] = useState("not-set");
   const setRatingFormRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
   useEffect(() => {
     if (setRatingFormRef && setRatingFormRef.current) {
-      if (newRating) {
+      if (changed) {
         setRatingFormRef.current.requestSubmit();
       }
     }
-  }, [newRating]);
+  }, [changed]);
 
   return (
     <div className="relative flex">
@@ -45,10 +48,22 @@ export default function RatingStarsResponsive({
             .then((result) => {
               if (result.status === "success") {
                 setRatingUpdateStatus("set");
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.message,
+                  category: "success",
+                });
+
                 router.refresh();
               } else {
                 setRatingUpdateStatus("");
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.message,
+                  category: "error",
+                });
               }
+              setChanged(false);
             })
             .catch((err) => {
               console.log(err);
@@ -68,6 +83,7 @@ export default function RatingStarsResponsive({
             viewBox="0 0 22 20"
             onClick={(e) => {
               setNewRating(parseInt(e.currentTarget.id));
+              setChanged(true);
               setRatingUpdateStatus("setting");
             }}
           >
@@ -85,7 +101,7 @@ export default function RatingStarsResponsive({
             viewBox="0 0 22 20"
             onClick={(e) => {
               setNewRating(parseInt(e.currentTarget.id));
-
+              setChanged(true);
               setRatingUpdateStatus("setting");
             }}
           >
@@ -103,6 +119,7 @@ export default function RatingStarsResponsive({
             viewBox="0 0 22 20"
             onClick={(e) => {
               setNewRating(parseInt(e.currentTarget.id));
+              setChanged(true);
 
               setRatingUpdateStatus("setting");
             }}
@@ -121,6 +138,7 @@ export default function RatingStarsResponsive({
             viewBox="0 0 22 20"
             onClick={(e) => {
               setNewRating(parseInt(e.currentTarget.id));
+              setChanged(true);
 
               setRatingUpdateStatus("setting");
             }}
@@ -139,6 +157,7 @@ export default function RatingStarsResponsive({
             viewBox="0 0 22 20"
             onClick={(e) => {
               setNewRating(parseInt(e.currentTarget.id));
+              setChanged(true);
 
               setRatingUpdateStatus("setting");
             }}

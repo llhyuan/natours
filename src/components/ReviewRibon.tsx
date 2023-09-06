@@ -1,6 +1,6 @@
 import { fetchReviewsByTour } from "@/utilities/fetchReviewsByTour";
 import ReviewCard from "./ReviewCard";
-import { Review } from "./customInterfaces";
+import { Review } from "@Global/custom-types";
 
 export default async function ReviewRibon({ tourId }: { tourId: string }) {
   const result = await fetchReviewsByTour(tourId);

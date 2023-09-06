@@ -1,14 +1,15 @@
 "use client";
-import { Review } from "@Global/custom-types";
+import { ReviewPopulated } from "@Global/custom-types";
 import {
-  useState,
   forwardRef,
   ForwardedRef,
   FormEvent,
   Dispatch,
   SetStateAction,
+  useContext,
 } from "react";
 import { Lato } from "next/font/google";
+import { notificationContext } from "@/app/NotificationContextProvier";
 const latoSemiBold = Lato({
   weight: "700",
   style: "normal",
@@ -17,12 +18,13 @@ const latoSemiBold = Lato({
 
 const ReviewEditForm = forwardRef(function ReviewEditForm(
   props: {
-    review: Review;
+    review: ReviewPopulated;
     setEditingStatus: Dispatch<SetStateAction<string>>;
-    setReview: Dispatch<SetStateAction<Review>>;
+    setReview: Dispatch<SetStateAction<ReviewPopulated>>;
   },
   ref: ForwardedRef<HTMLFormElement>
 ) {
+  const { setNotificationStatus } = useContext(notificationContext);
   return (
     <form
       className="px-4 bg-zinc-300 relative"
@@ -41,6 +43,17 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
         const result = await response.json();
         if (result.status === "success") {
           props.setEditingStatus("no-edit");
+          setNotificationStatus({
+            reveal: true,
+            message: result.message,
+            category: "success",
+          });
+        } else {
+          setNotificationStatus({
+            reveal: true,
+            message: result.message,
+            category: "error",
+          });
         }
       }}
     >
@@ -81,7 +94,7 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
               });
             }
           }}
-          className=" flex items-center w-[12%] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
+          className=" flex items-center w-[12%] min-w-[3.7rem] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
         />
       </div>
       <div className="my-4 flex items-start">

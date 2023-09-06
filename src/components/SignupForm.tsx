@@ -66,10 +66,10 @@ export default function SignupForm() {
               const response = await result.json();
               console.log(response);
               if (response.status === "success") {
-                localStorage.setItem(
-                  "natoursLoggedinUser",
-                  JSON.stringify(response.data)
-                );
+                // localStorage.setItem(
+                //   "natoursLoggedinUser",
+                //   JSON.stringify(response.data)
+                // );
 
                 setNotificationStatus({
                   reveal: true,

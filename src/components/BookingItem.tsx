@@ -10,6 +10,7 @@ import OrderStatusSign from "./OrderStatusSign";
 import { notificationContext } from "@/app/NotificationContextProvier";
 import { useRouter } from "next/navigation";
 import Startdate from "./StartdateUpdate";
+import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
 
 const lato = Lato({
   weight: "400",
@@ -33,6 +34,7 @@ export default function BookingItem({
   const bookingItemref = useRef<HTMLDivElement>(null);
   const [expand, toggleExpand] = useState(false);
   const { setNotificationStatus } = useContext(notificationContext);
+  const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -156,7 +158,7 @@ export default function BookingItem({
                 xmlns="http://www.w3.org/2000/svg"
                 height="1em"
                 viewBox="0 0 512 512"
-                className="text-[1.1rem] ml-4 fill-zinc-500 hover:fill-zinc-700 cursor-pointer "
+                className="text-[1.1rem] ml-4 fill-zinc-400 hover:fill-zinc-700 cursor-pointer "
               >
                 <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
               </svg>
@@ -170,8 +172,11 @@ export default function BookingItem({
               <RatingStarsResponsive review={bookingInfo.review} />
               <div className="absolute bottom-[-3rem] w-full flex">
                 <Link
-                  href="#"
+                  href={`/me/reviews?editing=${bookingInfo.order}`}
                   className="mx-auto px-4 mt-2 underline-offset-2 underline decoration-1 text-zinc-500 hover:text-zinc-900"
+                  onClick={() => {
+                    setActiveSection("reviews");
+                  }}
                 >
                   Write A Review
                 </Link>
@@ -195,10 +200,10 @@ export default function BookingItem({
             </div>
           </div>
         </div>
-        <div className="mt-auto px-3 py-4 bg-zinc-600 ">
+        <div className="mt-auto px-3 py-4 bg-zinc-600 flex">
           <Link
             href={`/tours/${bookingInfo.tour.id}`}
-            className=" px-3 py-[0.36rem] text-zinc-100 hover:opacity-90 rounded-sm bg-gradient-to-br from-[#7dd56f] to-[#28b487]/95"
+            className="block px-3 py-[0.36rem] text-zinc-100 hover:opacity-90 rounded-sm bg-gradient-to-br from-[#7dd56f] to-[#28b487]/95"
           >
             Tour Info
           </Link>
@@ -217,7 +222,7 @@ export default function BookingItem({
               if (result.status === "success") {
                 setNotificationStatus({
                   reveal: true,
-                  message: result.data.message,
+                  message: result.message,
                   category: "notification",
                 });
                 router.refresh();

@@ -10,6 +10,7 @@ import {
   useRef,
 } from "react";
 import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
+import { usePathname } from "next/navigation";
 
 const userSection = [
   [
@@ -68,6 +69,15 @@ export default function SettingSidebar() {
 
   const sidebarRef = useRef<HTMLDivElement>(null);
 
+  const path = usePathname();
+
+  useEffect(() => {
+    const currentSection = path.slice(4);
+    if (currentSection !== activeSection) {
+      setActiveSection(currentSection);
+    }
+  }, [path, setActiveSection, activeSection]);
+
   useEffect(() => {
     if (sidebarRef && sidebarRef.current) {
       if (showSidebar) {
@@ -89,7 +99,7 @@ export default function SettingSidebar() {
             section={section[0] as string}
             activeSection={activeSection}
             key={index}
-            setActiveSection={setActiveSection}
+            toggleSidebar={toggleSidebar}
           >
             {section[1]}
           </SidebarComponent>
@@ -135,12 +145,12 @@ function SidebarComponent(
     section,
     children,
     activeSection,
-    setActiveSection,
+    toggleSidebar,
   }: {
     children: ReactNode;
     activeSection: string;
     section: string;
-    setActiveSection: Dispatch<SetStateAction<string>>;
+    toggleSidebar: Dispatch<SetStateAction<boolean>>;
   },
   key: number
 ) {
@@ -167,7 +177,7 @@ function SidebarComponent(
           href={`/me/${section}`}
           className="uppercase text-zinc-100 text-[1.2rem] block"
           onClick={() => {
-            setActiveSection(section);
+            toggleSidebar(false);
           }}
         >
           {section}

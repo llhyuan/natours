@@ -1,5 +1,5 @@
 import InfoCard from "@/components/InfoCard";
-import { Tour } from "@/components/customInterfaces";
+import { Tour } from "@Global/custom-types";
 import { fetchTours } from "@/utilities/fetchTour";
 
 export default async function Tours() {

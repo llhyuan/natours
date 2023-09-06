@@ -4,10 +4,9 @@ import Mapbox from "@/components/Mapbox";
 import ReviewRibon from "@/components/ReviewRibon";
 import BookNow from "@/components/BookNow";
 import { fetchTours } from "@/utilities/fetchTour";
-import { Guide, Tour } from "@/components/customInterfaces";
+import { Guide, Tour } from "@Global/custom-types";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
-import { CheckoutInfo } from "@Global/custom-types";
 
 const latoExtraBold = Lato({
   weight: "900",

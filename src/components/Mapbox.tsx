@@ -4,7 +4,7 @@ import ReactMapGL, { Marker, ZoomControl } from "react-mapbox-gl";
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import pin from "../../public/img/pin.png";
-import { GeoPoint } from "./customInterfaces";
+import { GeoPoint } from "@Global/custom-types";
 import { useState } from "react";
 
 const lato = Lato({

@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import { Lato } from "next/font/google";
-import { useRef, useEffect, useState } from "react";
-import { Review } from "@Global/custom-types";
+import { useRef, useEffect, useState, useContext } from "react";
+import { ReviewPopulated } from "@Global/custom-types";
 import ReviewDispaly from "./ReviewDisplay";
 import ReviewEditForm from "./ReviewEditForm";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { notificationContext } from "@/app/NotificationContextProvier";
 
 const latoSemiBold = Lato({
   weight: "700",
@@ -13,15 +14,21 @@ const latoSemiBold = Lato({
   subsets: ["latin"],
 });
 
-export default function ReviewItem({ review }: { review: Review }) {
+export default function ReviewItem({ review }: { review: ReviewPopulated }) {
+  const searchParam = useSearchParams();
+  const beingEdited = searchParam.get("editing");
+  const { setNotificationStatus } = useContext(notificationContext);
+
   const reviewItemRef = useRef<HTMLDivElement>(null);
   const reviewContentRef = useRef<HTMLDivElement>(null);
   const reviewEditorRef = useRef<HTMLFormElement>(null);
   const editingTransitionRef = useRef<HTMLDivElement>(null);
 
-  const [reviewBuf, setReviewBuf] = useState<Review>(review);
-  const [editingStatus, setEditingStatus] = useState("");
-  const [expand, toggleExpand] = useState(false);
+  const [reviewBuf, setReviewBuf] = useState<ReviewPopulated>(review);
+  const [editingStatus, setEditingStatus] = useState(
+    beingEdited === review.order ? "editing" : ""
+  );
+  const [expand, toggleExpand] = useState(beingEdited === review.order);
 
   const router = useRouter();
 
@@ -58,14 +65,22 @@ export default function ReviewItem({ review }: { review: Review }) {
         "--review-content-height",
         `${reviewContentRef.current.offsetHeight}px`
       );
+      if (beingEdited === review.order) {
+        reviewItemRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
     }
-  }, [editingStatus]);
+  }, [editingStatus, beingEdited, review.order]);
 
   useEffect(() => {
     if (editingStatus === "no-edit") {
       router.refresh();
     }
   }, [editingStatus, router]);
+
+  useEffect(() => {}, []);
 
   return (
     <div
@@ -172,22 +187,28 @@ export default function ReviewItem({ review }: { review: Review }) {
               className="inline"
               onSubmit={async (e) => {
                 e.preventDefault();
-                // const response = await fetch(
-                //   `/api/bookings/delete/${bookingInfo.order}`,
-                //   {
-                //     method: "DELETE",
-                //     credentials: "include",
-                //   }
-                // );
-                // const result = await response.json();
-                // if (result.status === "success") {
-                //   setNotificationStatus({
-                //     reveal: true,
-                //     message: result.data.message,
-                //     category: "notification",
-                //   });
-                //   router.refresh();
-                // }
+                const response = await fetch(
+                  `/api/reviews/delete/${review._id}`,
+                  {
+                    method: "DELETE",
+                    credentials: "include",
+                  }
+                );
+                const result = await response.json();
+                if (result.status === "success") {
+                  setNotificationStatus({
+                    reveal: true,
+                    message: result.message,
+                    category: "notification",
+                  });
+                  router.refresh();
+                } else {
+                  setNotificationStatus({
+                    reveal: true,
+                    message: result.message,
+                    category: "error",
+                  });
+                }
               }}
             >
               <button

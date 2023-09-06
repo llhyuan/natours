@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect } from "react";
+import { SetStateAction, useContext, useEffect, Dispatch } from "react";
 import { LoginStatus } from "@Global/custom-types";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 import { useRouter, usePathname } from "next/navigation";
@@ -14,7 +14,13 @@ const defaultUser: LoginStatus = {
   photo: "default.jpg",
 };
 
-export default function UserInfo({ mobile }: { mobile: boolean }) {
+export default function UserInfo({
+  mobile,
+  toggleMenuStatus,
+}: {
+  mobile: boolean;
+  toggleMenuStatus?: Dispatch<SetStateAction<boolean>>;
+}) {
   const { loginStatus, setLoginStatus } = useContext(loginStatusContext);
   const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
@@ -47,12 +53,12 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
 
   if (!loginStatus.loginStatus) {
     return (
-      <>
+      <div className="lg:flex">
         <Link
           href="/login"
           className={
             mobile
-              ? "px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
+              ? "block px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
               : "hidden lg:block"
           }
         >
@@ -62,22 +68,29 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
           href="/signup"
           className={
             mobile
-              ? "px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
+              ? "block px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
               : "hidden lg:block ml-[3vw]"
           }
         >
           Sign Up
         </Link>
-      </>
+      </div>
     );
   } else {
     return (
-      <>
+      <div
+        className="lg:flex items-center"
+        onClick={() => {
+          if (mobile && toggleMenuStatus) {
+            toggleMenuStatus(false);
+          }
+        }}
+      >
         <Link
           href="/me/bookings"
           className={
             mobile
-              ? "lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
+              ? "block lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
               : "hidden lg:block"
           }
           onClick={() => {
@@ -129,7 +142,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
               });
               const response = await result.json();
               if (response.status === "success") {
-                localStorage.removeItem("natoursLoggedinUser");
+                //localStorage.removeItem("natoursLoggedinUser");
                 setLoginStatus({ ...loginStatus, loginStatus: false });
                 router.replace("/");
               }
@@ -138,7 +151,7 @@ export default function UserInfo({ mobile }: { mobile: boolean }) {
             Log Out
           </Link>
         </div>
-      </>
+      </div>
     );
   }
 }

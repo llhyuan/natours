@@ -1,11 +1,13 @@
+import { notificationContext } from "@/app/NotificationContextProvier";
 import { BookingInfo } from "@Global/custom-types";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 
 export default function Startdate({
   bookingInfo,
 }: {
   bookingInfo: BookingInfo;
 }) {
+  const { setNotificationStatus } = useContext(notificationContext);
   const [startDate, setStartDate] = useState<string>();
   const [dateUpdateStatus, setDateUpdateStatus] = useState("not-set");
   const setDateFormRef = useRef<HTMLFormElement>(null);
@@ -43,13 +45,22 @@ export default function Startdate({
             .then((result) => {
               if (result.status === "success") {
                 setDateUpdateStatus("set");
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.message,
+                  category: "success",
+                });
               } else {
                 setDateUpdateStatus("");
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.message,
+                  category: "error",
+                });
               }
             })
-            .catch((err) => {
-              console.log("This is error");
-              console.log(err);
+            .catch(() => {
+              console.log("error");
             });
         }}
       >
