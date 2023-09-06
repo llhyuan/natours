@@ -1,11 +1,13 @@
 "use client";
+import { notificationContext } from "@/app/NotificationContextProvier";
 import { useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 export default function RatingStarsResponsive({
   review,
 }: {
   review: { id: string; rating: number };
 }) {
+  const { setNotificationStatus } = useContext(notificationContext);
   const [newRating, setNewRating] = useState(review.rating ?? 0);
   const [changed, setChanged] = useState(false);
   const [ratingUpdateStatus, setRatingUpdateStatus] = useState("not-set");
@@ -46,9 +48,20 @@ export default function RatingStarsResponsive({
             .then((result) => {
               if (result.status === "success") {
                 setRatingUpdateStatus("set");
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.message,
+                  category: "success",
+                });
+
                 router.refresh();
               } else {
                 setRatingUpdateStatus("");
+                setNotificationStatus({
+                  reveal: true,
+                  message: result.message,
+                  category: "error",
+                });
               }
               setChanged(false);
             })

@@ -1,7 +1,7 @@
 "use client";
 import InfoCard from "@/components/InfoCardSync";
 import useSWR from "swr";
-import { Tour } from "@/components/customInterfaces";
+import { Tour } from "@Global/custom-types";
 import { useContext } from "react";
 import { searchContext } from "../../SearchContextProvider";
 

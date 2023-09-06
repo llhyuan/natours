@@ -42,7 +42,9 @@ export async function POST(req: NextRequest) {
     const user = result.data.user[0];
     return NextResponse.json({
       status: "success",
-      user: user,
+      data: {
+        user: user,
+      },
     });
   } else {
     return NextResponse.json({ status: "fail" });

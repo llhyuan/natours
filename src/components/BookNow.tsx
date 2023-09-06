@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import img from "../../public/img/logo-green-round.png";
-import CheckoutButton from "@/app/(with_nav)/checkout/Checkoutbutton";
+import CheckoutButton from "./Checkoutbutton";
 
 const latoBold = Lato({
   weight: "700",

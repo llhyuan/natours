@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import { useRef, useEffect, useState, useContext } from "react";
-import { Review } from "@Global/custom-types";
+import { ReviewPopulated } from "@Global/custom-types";
 import ReviewDispaly from "./ReviewDisplay";
 import ReviewEditForm from "./ReviewEditForm";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,7 +14,7 @@ const latoSemiBold = Lato({
   subsets: ["latin"],
 });
 
-export default function ReviewItem({ review }: { review: Review }) {
+export default function ReviewItem({ review }: { review: ReviewPopulated }) {
   const searchParam = useSearchParams();
   const beingEdited = searchParam.get("editing");
   const { setNotificationStatus } = useContext(notificationContext);
@@ -24,7 +24,7 @@ export default function ReviewItem({ review }: { review: Review }) {
   const reviewEditorRef = useRef<HTMLFormElement>(null);
   const editingTransitionRef = useRef<HTMLDivElement>(null);
 
-  const [reviewBuf, setReviewBuf] = useState<Review>(review);
+  const [reviewBuf, setReviewBuf] = useState<ReviewPopulated>(review);
   const [editingStatus, setEditingStatus] = useState(
     beingEdited === review.order ? "editing" : ""
   );
@@ -202,6 +202,12 @@ export default function ReviewItem({ review }: { review: Review }) {
                     category: "notification",
                   });
                   router.refresh();
+                } else {
+                  setNotificationStatus({
+                    reveal: true,
+                    message: result.message,
+                    category: "error",
+                  });
                 }
               }}
             >

@@ -1,4 +1,4 @@
-import { Guide } from "./customInterfaces";
+import { Guide } from "@Global/custom-types";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import { getCookieString } from "@/utilities/cookieString";
@@ -24,7 +24,7 @@ export default async function GuideInfo({
   });
 
   const resData = await result.json();
-  const user = resData.user;
+  const user = resData.data.user;
   const url: string = `users/${user.photo ?? "default.jpg"}`;
 
   const img = await importCover(url);

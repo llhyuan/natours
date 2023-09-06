@@ -30,7 +30,7 @@ export default function ChangePassword() {
             setNotificationStatus({
               reveal: true,
               message: "Opps! There is a typo.",
-              category: "warning",
+              category: "error",
             });
             return;
           }
@@ -48,11 +48,19 @@ export default function ChangePassword() {
             });
 
             const result = await response.json();
-            setNotificationStatus({
-              reveal: true,
-              message: result.message,
-              category: "error",
-            });
+            if (result.status === "success") {
+              setNotificationStatus({
+                reveal: true,
+                message: result.message,
+                category: "notification",
+              });
+            } else {
+              setNotificationStatus({
+                reveal: true,
+                message: result.message,
+                category: "error",
+              });
+            }
           }
         }}
       >

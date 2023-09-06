@@ -142,7 +142,7 @@ export default function UserInfo({
               });
               const response = await result.json();
               if (response.status === "success") {
-                localStorage.removeItem("natoursLoggedinUser");
+                //localStorage.removeItem("natoursLoggedinUser");
                 setLoginStatus({ ...loginStatus, loginStatus: false });
                 router.replace("/");
               }

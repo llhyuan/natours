@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Lato } from "next/font/google";
-import { Review, User } from "./customInterfaces";
+import { Review, User } from "@Global/custom-types";
 import { fetchUsers } from "@/utilities/fetchUsers";
 import { importCover } from "@/utilities/importImage";
 

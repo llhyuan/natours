@@ -46,31 +46,30 @@ export default function LoginForm() {
               email: email,
               password: password,
             };
-            const result = await fetch("/api/login", {
+            const response = await fetch("/api/login", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(data),
             });
-            const response = await result.json();
-            if (response.status === "success") {
-              console.log("loggedin");
-              localStorage.setItem(
-                "natoursLoggedinUser",
-                JSON.stringify(response.data)
-              );
+            const result = await response.json();
+            if (result.status === "success") {
+              // localStorage.setItem(
+              //   "natoursLoggedinUser",
+              //   JSON.stringify(response.data)
+              // );
 
               setNotificationStatus({
                 reveal: true,
-                message: response.message,
+                message: result.message,
                 category: "notification",
               });
-              router.replace("/tours");
+              router.back();
             } else {
               setNotificationStatus({
                 reveal: true,
-                message: response.message,
+                message: result.message,
                 category: "error",
               });
             }

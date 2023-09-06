@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         }
       );
       const result = await response.json();
-      console.log(result);
+
       if (result.status === "success") {
         revalidatePath("/me/bookings");
       }
@@ -54,7 +54,6 @@ export async function POST(req: NextRequest) {
 
       const result = await response.json();
 
-      console.log(result);
       if (result.status === "success") {
         revalidatePath("/me/bookings");
       }

@@ -28,6 +28,7 @@ export async function DELETE(
 
   return NextResponse.json({
     status: "fail",
-    message: "Something went wrong when updating the rating. Try again later.",
+    message:
+      "Something went wrong when handling this request. Try again later.",
   });
 }

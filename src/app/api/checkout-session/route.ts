@@ -2,7 +2,6 @@ import { CheckoutInfo } from "@Global/custom-types";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 let stripe: Stripe;
-console.log(process.env.STRIPE_SECRET_KEY);
 if (process.env.STRIPE_SECRET_KEY) {
   stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2023-08-16",
@@ -33,7 +32,6 @@ export async function POST(req: NextRequest) {
       success_url: `${process.env.SERVER_HOST}?success=true`,
       cancel_url: `${process.env.SERVER_HOST}/tours?canceled=true`,
     });
-    console.log(session);
     if (session.url) {
       return NextResponse.json({ url: session.url });
     } else {

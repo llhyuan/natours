@@ -222,7 +222,7 @@ export default function BookingItem({
               if (result.status === "success") {
                 setNotificationStatus({
                   reveal: true,
-                  message: result.data.message,
+                  message: result.message,
                   category: "notification",
                 });
                 router.refresh();
