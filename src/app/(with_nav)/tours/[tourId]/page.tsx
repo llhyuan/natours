@@ -53,10 +53,10 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
         <div className="absolute w-full h-[55vw] max-h-[860px] min-h-[220px] top-0 flex items-center">
           <div className="flex flex-col w-full items-center">
             <h1 className=" text-[1.2rem] sm:text-[1.5rem] md:text-[1.8rem] lg:text-[2.5rem] text-zinc-100 uppercase flex flex-col items-center">
-              <span className="block w-fit py-2 px-4 sm:py-4 sm:px-6 bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90">
+              <span className="block w-fit py-2 px-4 sm:py-4 sm:px-6 bg-gradient-to-br from-[#7dd56f]/25 to-[#28b487]/95">
                 {tourName.firstHalf ?? "Loading"}
               </span>
-              <span className="block w-fit py-2 px-4 sm:py-4 sm:px-6 bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487] relative bottom-2 sm:bottom-3">
+              <span className="w-fit py-2 px-4 sm:py-4 sm:px-6 bg-gradient-to-br from-[#7dd56f]/25 to-[#28b487]/95 relative bottom-0">
                 {tourName.secondHalf ?? "Tour Name..."}
               </span>
             </h1>

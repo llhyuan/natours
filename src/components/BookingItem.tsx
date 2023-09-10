@@ -36,7 +36,6 @@ export default function BookingItem({
   const { setNotificationStatus } = useContext(notificationContext);
   const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
-  console.log(bookingInfo);
 
   useEffect(() => {
     if (bookingItemref && bookingItemref.current) {
@@ -56,7 +55,14 @@ export default function BookingItem({
       <div className="absolute top-[-0.5rem] left-[-0.5rem] transition-all duration-450 ease-in-out order-status">
         <OrderStatusSign status={bookingInfo.paymentStatus} />
       </div>
-      <div className=" flex banner-wrapper transition-all ease-in-out duration-450">
+      <div
+        className=" flex banner-wrapper transition-all ease-in-out duration-450"
+        onClick={(e) => {
+          if ((e.target as any).nodeName !== "A") {
+            toggleExpand(!expand);
+          }
+        }}
+      >
         <Image
           src={bookingInfo.tour.imageCover}
           width={300}
@@ -68,16 +74,18 @@ export default function BookingItem({
           <p className="order-number uppercase">
             {`ORDER # ${bookingInfo.order}`}
           </p>
-          <Link
-            href={bookingInfo.invoice ?? "#"}
-            target={"_blank"}
-            className={
-              "text-zinc-600 relative bottom-[4px] hover:underline " +
-              (bookingInfo.invoice ? "" : "hidden")
-            }
-          >
-            Invoice
-          </Link>
+          <div className="h-5">
+            <Link
+              href={bookingInfo.invoice ?? "#"}
+              target={"_blank"}
+              className={
+                "text-zinc-600 relative bottom-[4px] hover:underline w-fit " +
+                (bookingInfo.invoice ? "" : "hidden")
+              }
+            >
+              Invoice
+            </Link>
+          </div>
           <p
             className={
               latoSemiBold.className +
