@@ -49,10 +49,10 @@ export default function InfoCard({ tour }: { tour: Tour }) {
         <div className="max-h-[240px] overflow-hidden clip-polygon">
           <Image src={cover} width={500} height={400} alt="tour image" />
         </div>
-        <p className="absolute bottom-16 right-14 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90">
+        <p className="absolute bottom-16 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/30 to-[#28b487]">
           {tourName.firstHalf}
         </p>
-        <p className="absolute bottom-2 right-8 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90">
+        <p className="absolute bottom-2 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/30 to-[#28b487]">
           {tourName.secondHalf}
         </p>
       </div>
@@ -124,13 +124,23 @@ export default function InfoCard({ tour }: { tour: Tour }) {
       >
         <div className="flex-1 justify-left">
           <p className={latoItalic.className + " m-6 text-zinc-500"}>
-            <span className={latoBold.className + " text-green-500"}>
+            <span
+              className={
+                latoBold.className +
+                " bg-clip-text text-transparent bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/95"
+              }
+            >
               ${price}
             </span>
             <span> per person</span>
           </p>
           <p className={latoItalic.className + " m-6 text-zinc-500"}>
-            <span className={latoBold.className + " text-green-500"}>
+            <span
+              className={
+                latoBold.className +
+                " bg-clip-text text-transparent bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/95"
+              }
+            >
               {rating}
             </span>{" "}
             rating (<span>{ratingQuantity}</span>)
@@ -140,7 +150,7 @@ export default function InfoCard({ tour }: { tour: Tour }) {
           <Link
             href={tourDetail}
             className={
-              "w-fit py-4 px-8 mx-auto bg-green-500 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
+              "w-fit py-4 px-8 mx-auto bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487] text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
             }
           >
             DETAILS
