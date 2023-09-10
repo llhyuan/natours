@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       );
     } catch (err) {
       console.log(`Webhook signature verification failed.`, err);
-      return NextResponse.json({ recieved: true });
+      return NextResponse.json({ recieved: true, error: err });
     }
 
     //const body = await req.json();
@@ -55,7 +55,11 @@ export async function POST(req: NextRequest) {
         if (result.status === "success") {
           revalidatePath("/me/bookings");
         }
-        break;
+
+        return NextResponse.json({
+          recieved: true,
+          message: "Payment satus updated.",
+        });
       }
       case "invoice.paid": {
         const reqBody = {
@@ -82,9 +86,17 @@ export async function POST(req: NextRequest) {
         if (result.status === "success") {
           revalidatePath("/me/bookings");
         }
-        break;
+
+        return NextResponse.json({ recieved: true, message: "Invoice added." });
       }
     }
-    return NextResponse.json({ recieved: true });
+
+    return NextResponse.json({
+      recieved: true,
+      message: {
+        endpointSecret,
+        signature,
+      },
+    });
   }
 }
