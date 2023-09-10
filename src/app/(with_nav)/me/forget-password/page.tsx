@@ -34,11 +34,19 @@ export default function ResetPassword() {
 
           const result = await response.json();
 
-          setNotificationStatus({
-            reveal: true,
-            message: result.message,
-            category: "error",
-          });
+          if (result.stauts === "success") {
+            setNotificationStatus({
+              reveal: true,
+              message: result.message,
+              category: "notification",
+            });
+          } else {
+            setNotificationStatus({
+              reveal: true,
+              message: result.message,
+              category: "error",
+            });
+          }
         }}
       >
         <h1
