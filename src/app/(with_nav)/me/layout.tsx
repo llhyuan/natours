@@ -9,7 +9,7 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
           <SettingSidebar />
         </div>
       </div>
-      <div className="flex-[3] max-w-[600px] lg:ml-[6vw] mr-auto min-h-[50vh] z-10">
+      <div className="md:flex-[3] max-w-[600px] xl:ml-[3vw] mr-auto min-h-[50vh] z-10">
         {children}
       </div>
     </div>

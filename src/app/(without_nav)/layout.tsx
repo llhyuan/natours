@@ -28,7 +28,7 @@ export default function NoNavbarLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className={latoSemiBold.className + " text-zinc-700  overflow-hidden"}>
-      <div className="absolute top-0 overflow-hidden h-screen z-0">
+      <div className="absolute top-0 overflow-hidden min-h-screen z-0">
         <Image
           src={randomBg}
           alt="login background"
@@ -36,7 +36,9 @@ export default function NoNavbarLayout({ children }: { children: ReactNode }) {
         />
       </div>
       <Notification position="no-nav" />
-      <div className="relative z-20 flex h-screen">{children}</div>
+      <div className="relative z-20 flex h-screen overflow-scroll">
+        {children}
+      </div>
     </div>
   );
 }

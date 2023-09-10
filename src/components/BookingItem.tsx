@@ -53,10 +53,10 @@ export default function BookingItem({
       ref={bookingItemref}
       className="relative w-full rounded-sm bg-zinc-300 shadow-xl"
     >
-      <div className="absolute top-[-0.5rem] left-[-0.5rem] transition-all duration-300 ease-in-out order-status">
+      <div className="absolute top-[-0.5rem] left-[-0.5rem] transition-all duration-450 ease-in-out order-status">
         <OrderStatusSign status={bookingInfo.paymentStatus} />
       </div>
-      <div className=" flex banner-wrapper transition-all ease-in-out duration-300">
+      <div className=" flex banner-wrapper transition-all ease-in-out duration-450">
         <Image
           src={bookingInfo.tour.imageCover}
           width={300}
@@ -64,7 +64,7 @@ export default function BookingItem({
           alt="Tour image"
           className="w-[25%] object-cover tour-cover"
         />
-        <div className="flex flex-col pl-2 py-2 justify-between">
+        <div className="flex flex-col pl-2 py-2 justify-between text-[0.8rem] sm:text-[1.2rem]">
           <p className="order-number uppercase">
             {`ORDER # ${bookingInfo.order}`}
           </p>
@@ -81,7 +81,7 @@ export default function BookingItem({
           <p
             className={
               latoSemiBold.className +
-              " relative top-0 text-[1.3rem] transition-all duration-150 ease-in tour-name"
+              " relative top-0 text-[1.1rem] sm:text-[1.4rem] transition-all duration-450 ease-in tour-name"
             }
           >
             {bookingInfo.tour.name}
@@ -91,7 +91,7 @@ export default function BookingItem({
           <p
             className={
               latoSemiBold.className +
-              " text-[1.3rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f] to-[#28b487] tour-price transition-all ease-in-out duration-300"
+              " text-[1.3rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f] to-[#28b487] tour-price transition-all ease-in-out duration-450"
             }
           >{`$${bookingInfo.tour.price}`}</p>
           <div
@@ -201,7 +201,7 @@ export default function BookingItem({
             </div>
           </div>
         </div>
-        <div className="mt-auto px-3 py-4 bg-zinc-600 flex">
+        <div className="mt-auto px-3 py-4 bg-zinc-600 flex opacity-10 bottom-banner">
           <Link
             href={`/tours/${bookingInfo.tour.id}`}
             className="block px-3 py-[0.36rem] text-zinc-100 hover:opacity-90 rounded-sm bg-gradient-to-br from-[#7dd56f] to-[#28b487]/95"

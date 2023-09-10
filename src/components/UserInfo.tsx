@@ -43,7 +43,7 @@ export default function UserInfo({
         } else {
           setLoginStatus({ ...defaultUser, loginStatus: false });
 
-          if (path.startsWith("/me") && !path.endsWith("forget-password")) {
+          if (path.startsWith("/me") && !path.includes("forget-password")) {
             router.replace("/");
           }
         }

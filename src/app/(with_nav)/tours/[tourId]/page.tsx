@@ -44,8 +44,8 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
         <div className="overflow-clip h-[55vw] max-h-[900px] min-h-[240px] md:clip-polygon">
           <Image
             src={cover}
-            width={2000}
-            height={1100}
+            width={800}
+            height={440}
             alt="cover image"
             className="relative object-cover md:bottom-5 w-full"
           />

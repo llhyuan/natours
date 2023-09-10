@@ -25,7 +25,7 @@ export default function SerarchResult() {
   return (
     <div
       className={
-        "relative w-[90%] max-w-[1450px] mx-auto px-6 py-2 flex flex-wrap justify-center gap-x-5 gap-y-9 " +
+        "relative max-w-[1450px] mx-auto px-2 py-2 flex flex-wrap justify-center gap-x-6 lg:gap-x-10 gap-y-10 " +
         (isLoading ? "opacity-30" : "")
       }
     >

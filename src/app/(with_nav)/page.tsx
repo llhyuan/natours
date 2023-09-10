@@ -16,6 +16,7 @@ export default function Home() {
           autoPlay
           muted
           className="block object-cover min-h-full"
+          playsInline={true}
         ></video>
       </div>
       <div

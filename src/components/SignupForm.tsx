@@ -23,7 +23,7 @@ export default function SignupForm() {
   const router = useRouter();
 
   return (
-    <div className="px-4 py-10 w-[90%] min-w-[23rem] max-w-[30rem] rounded-sm bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)] ">
+    <div className="px-4 py-10 h-fit min-w-[23rem] flex flex-col rounded-sm bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)] ">
       <div className="mx-auto max-w-sm">
         <Link href="/">
           <Image src={logo} alt="Natour Logo" width={70} className="mx-auto" />
@@ -33,7 +33,7 @@ export default function SignupForm() {
         </h2>
       </div>
 
-      <div className="mt-10 mx-auto w-full max-w-[24rem]">
+      <div className="mt-10 mx-auto w-[90%] max-w-[30rem]">
         <form
           className="space-y-6"
           onSubmit={async (e) => {
