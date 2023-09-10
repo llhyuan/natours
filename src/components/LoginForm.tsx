@@ -20,7 +20,7 @@ export default function LoginForm() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col justify-center px-4 w-[90%] min-w-[20rem] max-w-[26rem] lg:scale-125 rounded-sm bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)]">
+    <div className="flex flex-col justify-center px-4 w-[90%] min-w-[20rem] max-w-[26rem] rounded-sm bg-zinc-100 shadow-[0.5rem_1.5rem_4rem_rgba(0,0,0,0.4)] my-auto">
       <div className="mx-auto max-w-sm">
         <Link href="/">
           <Image

@@ -10,7 +10,7 @@ const latoBold = Lato({
 export default function Login() {
   return (
     <>
-      <div className="flex items-center w-full justify-center">
+      <div className="flex items-center w-full justify-center h-full">
         <LoginForm />
       </div>
       <div

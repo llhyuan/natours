@@ -86,9 +86,9 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
     <div
       id={`${review.order}`}
       ref={reviewItemRef}
-      className="relative w-full overflow-hidden rounded-sm bg-zinc-300 shadow-xl transition-all duration-300 ease-in-out"
+      className="relative w-full overflow-hidden rounded-sm bg-zinc-300 shadow-xl transition-all duration-450 ease-in-out"
     >
-      <div className=" flex banner-wrapper transition-all ease-in-out duration-300">
+      <div className=" flex banner-wrapper transition-all ease-in-out duration-450">
         <Image
           src={review.tour.imageCover}
           width={300}
@@ -103,17 +103,17 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
           <p
             className={
               latoSemiBold.className +
-              " relative top-0 text-[1.3rem] transition-all duration-150 ease-in tour-name"
+              " relative top-0 text-[1.1rem] sm:text-[1.4rem] transition-all duration-450 ease-in tour-name"
             }
           >
             {review.tour.name}
           </p>
         </div>
-        <div className="flex flex-col items-end ml-auto pr-2 py-2">
+        <div className="flex flex-col items-end ml-auto pr-2 py-2 h-[5.6rem]">
           <div
             className={
               latoSemiBold.className +
-              " rating flex items-center text-[1.6rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f] to-[#28b487] transition-all ease-in-out duration-300"
+              " rating flex items-center text-[1.6rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f] to-[#28b487] transition-all ease-in-out duration-450"
             }
           >
             <svg
@@ -158,7 +158,7 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
       <div className="relative h-[0rem] flex flex-col w-full overflow-hidden transition-all duration-450 ease-in-out review-detail">
         <div
           ref={reviewContentRef}
-          className="transition-all duration-300 ease-in-out"
+          className="transition-all duration-450 ease-in-out"
         >
           <div ref={editingTransitionRef} className="p-3 w-[100%] flex ">
             <div className={"w-[100%] flex-shrink-0"}>
@@ -182,7 +182,7 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
           <div className="px-3 py-4 flex w-full h-[4.8rem] text-transparent">
             placeholder
           </div>
-          <div className="px-3 py-4 bg-zinc-600 flex absolute bottom-0 w-full">
+          <div className="px-3 py-4 bg-zinc-600 flex absolute bottom-0 w-full bottom-banner opacity-20">
             <form
               className="inline"
               onSubmit={async (e) => {

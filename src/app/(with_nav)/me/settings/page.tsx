@@ -16,7 +16,7 @@ export default function Settings() {
   }
 
   return (
-    <div className="">
+    <div className="px-4">
       <ChangeUserInfo
         name={loginStatus.name}
         email={loginStatus.email}

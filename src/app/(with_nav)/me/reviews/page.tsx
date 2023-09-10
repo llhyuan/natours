@@ -18,7 +18,7 @@ export default async function Reviews() {
     };
   } = await fetchReviewsByUser();
   return (
-    <div className="pb-10 max-w-[400px] max-md:mx-auto md:max-w-[600px] md:pl-6">
+    <div className="pb-10 max-md:mx-auto md:pl-6">
       <h1
         className={
           latoBold.className +
