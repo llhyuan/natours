@@ -36,34 +36,41 @@ export default function Mapbox({ locations }: { locations: Array<GeoPoint> }) {
         zoom={[5]}
         movingMethod="flyTo"
       >
-        {locations.map((location, index) => {
-          const x = location.coordinates[0];
-          const y = location.coordinates[1];
-          return (
-            <Marker coordinates={[x, y]} key={index}>
-              <div className="relative group flex flex-col justify-center">
-                <p
-                  className={
-                    lato.className +
-                    " text-center text-[1rem] mb-1 hidden group-hover:block p-2 text-zinc-600"
-                  }
-                >
-                  {location.description}
-                </p>
-                <Image src={pin} alt="map pin" width={30} className="mx-auto" />
-              </div>
-            </Marker>
-          );
-        })}
-        <ZoomControl
-          position="bottom-left"
-          style={{
-            scale: 1.5,
-            bottom: interactive ? "3.5rem" : "-10rem",
-            left: "2rem",
-            transition: "all 100 ease-in",
-          }}
-        />
+        <div>
+          {locations.map((location, index) => {
+            const x = location.coordinates[0];
+            const y = location.coordinates[1];
+            return (
+              <Marker coordinates={[x, y]} key={index}>
+                <div className="relative group flex flex-col justify-center">
+                  <p
+                    className={
+                      lato.className +
+                      " text-center text-[1rem] mb-1 hidden group-hover:block p-2 text-zinc-600"
+                    }
+                  >
+                    {location.description}
+                  </p>
+                  <Image
+                    src={pin}
+                    alt="map pin"
+                    width={30}
+                    className="mx-auto"
+                  />
+                </div>
+              </Marker>
+            );
+          })}
+          <ZoomControl
+            position="bottom-left"
+            style={{
+              scale: 1.5,
+              bottom: interactive ? "3.5rem" : "-10rem",
+              left: "2rem",
+              transition: "all 100 ease-in",
+            }}
+          />
+        </div>
       </Map>
       <div
         className="absolute top-14 right-8"

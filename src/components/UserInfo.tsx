@@ -6,7 +6,6 @@ import { LoginStatus } from "@Global/custom-types";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
-
 const defaultUser: LoginStatus = {
   name: "Login",
   loginStatus: false,
@@ -43,6 +42,7 @@ export default function UserInfo({
           setLoginStatus({ ...result.user, loginStatus: true });
         } else {
           setLoginStatus({ ...defaultUser, loginStatus: false });
+
           if (path.startsWith("/me") && !path.endsWith("forget-password")) {
             router.replace("/");
           }
