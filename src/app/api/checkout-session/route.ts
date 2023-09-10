@@ -8,7 +8,7 @@ if (process.env.STRIPE_SECRET_KEY) {
   });
 }
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
     // Create Checkout Sessions from body params.
     const tour: CheckoutInfo = await req.json();

@@ -37,14 +37,12 @@ export default function CheckoutButton() {
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_HOST}/bookings/checkout-session/${tourId}`,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const response = await fetch(`/api/checkout-session/${tourId}`, {
+          method: "GET",
+          credentials: "include",
+        });
         const result = await response.json();
+        console.log(result);
         if (result.status === "success") {
           router.replace(result.url);
         }
