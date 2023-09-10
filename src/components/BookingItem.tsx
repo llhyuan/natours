@@ -36,6 +36,7 @@ export default function BookingItem({
   const { setNotificationStatus } = useContext(notificationContext);
   const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
+  console.log(bookingInfo);
 
   useEffect(() => {
     if (bookingItemref && bookingItemref.current) {

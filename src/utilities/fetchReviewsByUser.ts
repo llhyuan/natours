@@ -13,6 +13,5 @@ export async function fetchReviewsByUser() {
     next: { tags: ["reviews"] },
   });
   const result = await response.json();
-
-  return result.data.reviews;
+  return result;
 }

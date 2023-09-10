@@ -1,4 +1,4 @@
-import ReviewItem from "@/components/ReviewItem";
+import MyReviews from "@/components/MyReviews";
 import { fetchReviewsByUser } from "@/utilities/fetchReviewsByUser";
 import { ReviewPopulated } from "@Global/custom-types";
 import { Lato } from "next/font/google";
@@ -10,7 +10,13 @@ const latoBold = Lato({
 });
 
 export default async function Reviews() {
-  const reviews: Array<ReviewPopulated> = await fetchReviewsByUser();
+  const reviews: {
+    status: string;
+    message?: string;
+    data?: {
+      reviews: Array<ReviewPopulated>;
+    };
+  } = await fetchReviewsByUser();
   return (
     <div className="pb-10 max-w-[400px] max-md:mx-auto md:max-w-[600px] md:pl-6">
       <h1
@@ -21,15 +27,7 @@ export default async function Reviews() {
       >
         My Reviews
       </h1>
-      <div className="max-sm:px-2 py-4 w-full flex flex-col gap-y-10">
-        {reviews
-          ? reviews.map((review, index: number) => {
-              if (review.visible) {
-                return <ReviewItem review={review} key={index} />;
-              }
-            })
-          : "No Reviews."}
-      </div>
+      <MyReviews result={reviews} />
     </div>
   );
 }
