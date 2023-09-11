@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useContext } from "react";
 import { searchContext } from "../../SearchContextProvider";
 import Link from "next/link";
 import { Lato } from "next/font/google";
@@ -19,7 +19,7 @@ export default function Serarch({ children }: { children: ReactNode }) {
   return (
     <div>
       <form
-        className="relative group flex w-fit border-solid border-zinc-700 border-[1px] mx-auto my-[2rem] pl-2 text-[1rem] lg:text-[1.3rem] items-center rounded-md shadow-md overflow-hidden"
+        className="relative group flex w-fit border-solid border-zinc-700 border-[1px] mx-auto my-[2rem] pl-2 text-[1rem] lg:text-[1.3rem] items-center rounded-md shadow-md "
         onSubmit={(e) => {
           e.preventDefault();
           setSearchParams({ ...searchParams, submit: true });
@@ -68,7 +68,7 @@ export default function Serarch({ children }: { children: ReactNode }) {
         >
           Search
         </button>
-        <div className="absolute top-2 right-[-3.9rem] sm:right-[-4.5rem] md:right-[-5rem] lg:right-[-6rem] z-10">
+        <div className="absolute top-2 right-[-3.8rem] sm:right-[-4.5rem] md:right-[-5rem] lg:right-[-6rem] z-10">
           <Sort />
         </div>
       </form>

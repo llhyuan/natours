@@ -34,7 +34,7 @@ export default function Sort() {
           Sort
           <svg
             className={
-              "ml-2 mt-[0.18rem] lg:mt-[0.425rem] h-5 w-5 flex-shrink-0 text-zinc-400 group-hover:text-gray-500 " +
+              "ml-[0.15rem] sm:ml-2 mt-[0.18rem] lg:mt-[0.425rem] h-5 w-5 flex-shrink-0 text-zinc-400 group-hover:text-gray-500 " +
               (!menuStatus ? "" : "rotate-180")
             }
             viewBox="0 0 20 20"
@@ -65,6 +65,7 @@ export default function Sort() {
               role="menuitem"
               id="menu-item-1"
               onClick={() => {
+                setMenuStatus(false);
                 setSearchParams({
                   ...searchParams,
                   sort: "sort=-ratingsAverage",
@@ -94,6 +95,7 @@ export default function Sort() {
               role="menuitem"
               id="menu-item-2"
               onClick={() => {
+                setMenuStatus(false);
                 setSearchParams({ ...searchParams, sort: "sort=duration" });
               }}
             >
@@ -120,6 +122,7 @@ export default function Sort() {
               role="menuitem"
               id="menu-item-2"
               onClick={() => {
+                setMenuStatus(false);
                 setSearchParams({
                   ...searchParams,
                   sort: "sort=maxGroupSize",
@@ -149,6 +152,7 @@ export default function Sort() {
               role="menuitem"
               id="menu-item-3"
               onClick={() => {
+                setMenuStatus(false);
                 setSearchParams({ ...searchParams, sort: "sort=price" });
               }}
             >
@@ -175,6 +179,7 @@ export default function Sort() {
               role="menuitem"
               id="menu-item-4"
               onClick={() => {
+                setMenuStatus(false);
                 setSearchParams({ ...searchParams, sort: "sort=-price" });
               }}
             >

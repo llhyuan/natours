@@ -92,7 +92,7 @@ export default function Notification({
             </svg>
           )}
         </div>
-        <p>{notification.message}</p>
+        <p className="capitalize">{notification.message}</p>
       </div>
     </div>
   );
