@@ -1,4 +1,4 @@
-import logo from "../../../public/img/logo-green-round.png";
+import logo from "/public/img/logo-green-round.png";
 import Image from "next/image";
 import { Lato } from "next/font/google";
 const latoSemiBold = Lato({
