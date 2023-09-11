@@ -91,7 +91,7 @@ export default function SettingSidebar() {
   return (
     <div
       ref={sidebarRef}
-      className="absolute min-w-[280px] md:relative flex flex-col py-10 bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 rounded-sm shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] left-[-280px] md:left-0 transition-all duration-150 ease-in"
+      className="absolute min-w-[280px] md:relative flex flex-col py-10 bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 rounded-sm shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] left-[-280px] md:left-0 transition-all duration-300 ease-in-out"
     >
       {userSection.map((section, index) => {
         return (
@@ -107,7 +107,7 @@ export default function SettingSidebar() {
       })}
       <div
         className={
-          "pl-8 pr-4 py-4 absolute top-0 md:hidden bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] rounded-sm transition-all duration-150 ease-in " +
+          "pl-8 pr-4 py-4 absolute top-0 md:hidden bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/90 shadow-[0.2rem_0.2rem_1rem_rgba(0,0,0,0.3)] rounded-sm transition-all duration-300 ease-in-out " +
           (showSidebar
             ? "right-[-4rem]"
             : "right-[-2.2rem] hover:right-[-4rem]")
@@ -169,9 +169,9 @@ function SidebarComponent(
     <div key={key} className="flex overflow-hidden my-3">
       <div
         ref={indicatorRef}
-        className="w-3 bg-white rounded-full relative left-[-12px] transition-all duration-130 ease-in"
+        className="w-3 bg-white rounded-full relative left-[-12px] transition-all duration-150 ease-in-out"
       ></div>
-      <div className="flex ml-6 md:ml-14 hover:translate-x-3 py-3 items-center transition-all duration-150 ease-in">
+      <div className="flex ml-6 md:ml-14 hover:translate-x-3 py-3 items-center transition-all duration-150 ease-in-out">
         <div className="mr-6 scale-125">{children}</div>
         <Link
           href={`/me/${section}`}

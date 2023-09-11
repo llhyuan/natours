@@ -41,7 +41,7 @@ export default function Dropdown() {
       <div
         ref={dropdownRef}
         id="dropdown-menu"
-        className="flex flex-col bg-zinc-700 w-full relative lg:hidden max-h-0 overflow-hidden transition-all duration-150 ease-in"
+        className="flex flex-col bg-zinc-700 w-full relative lg:hidden max-h-0 overflow-hidden transition-all duration-450 ease-in-out"
       >
         <Link
           href="/tours"

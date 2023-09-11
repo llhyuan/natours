@@ -160,7 +160,7 @@
       opacity: 1;
       transition-property: all;
       transition-timing-function: ease-in-out;
-      transition-duration: 300ms;
+      transition-duration: 450ms;
     }
   }
 
@@ -204,6 +204,10 @@
     .reveal-dropdown {
       padding-top: 2rem;
       max-height: 360px;
+
+      transition-property: all;
+      transition-duration: 450ms;
+      transition-timing-function: ease-in-out;
     }
   }
 }

@@ -14,8 +14,8 @@ const latoBold = Lato({
 });
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("lhyuan.liu21@icloud.com");
+  const [password, setpassword] = useState("1478523690");
   const { setNotificationStatus } = useContext(notificationContext);
   const router = useRouter();
 
