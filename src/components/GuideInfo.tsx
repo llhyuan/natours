@@ -24,7 +24,6 @@ export default async function GuideInfo({
   });
 
   const resData = await result.json();
-  console.log(resData);
   const user = resData.data.user;
   const url: string = `users/${user.photo ?? "default.jpg"}`;
 

@@ -108,7 +108,7 @@ export default function UserInfo({
           }
         >
           <Link
-            href="/me"
+            href="/me/settings"
             className="flex justify-center items-center group"
             onClick={() => {
               setActiveSection("");
@@ -117,6 +117,7 @@ export default function UserInfo({
             <Image
               src={importedPhoto}
               alt="user photo"
+              quality={30}
               width={50}
               height={50}
               className={

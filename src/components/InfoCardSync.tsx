@@ -11,6 +11,12 @@ const latoBold = Lato({
   subsets: ["latin"],
 });
 
+const latoSemiBold = Lato({
+  weight: "400",
+  style: "normal",
+  subsets: ["latin"],
+});
+
 const latoItalic = Lato({
   weight: "300",
   style: "italic",
@@ -49,17 +55,28 @@ export default function InfoCard({ tour }: { tour: Tour }) {
         <div className="max-h-[240px] overflow-hidden clip-polygon">
           <Image src={cover} width={500} height={400} alt="tour image" />
         </div>
-        <p className="absolute bottom-16 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/30 to-[#28b487]">
+        <p
+          className={
+            latoSemiBold.className +
+            " absolute bottom-16 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/30 to-[#28b487]/40"
+          }
+        >
           {tourName.firstHalf}
         </p>
-        <p className="absolute bottom-2 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/30 to-[#28b487]">
+        <p
+          className={
+            latoSemiBold.className +
+            " absolute bottom-1 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/20 to-[#28b487]/80"
+          }
+        >
           {tourName.secondHalf}
         </p>
       </div>
       <div id="info" className="text-[1.2rem] px-8 py-2 text-zinc-500">
         <p
           className={
-            latoBold.className + " text-[1.3rem] my-2 text-zinc-600 uppercase"
+            latoSemiBold.className +
+            " text-[1.3rem] my-2 text-zinc-600 uppercase"
           }
         >
           {info}

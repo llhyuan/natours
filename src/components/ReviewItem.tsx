@@ -88,7 +88,12 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
       ref={reviewItemRef}
       className="relative w-full overflow-hidden rounded-sm bg-zinc-300 shadow-xl transition-all duration-450 ease-in-out"
     >
-      <div className=" flex banner-wrapper transition-all ease-in-out duration-450">
+      <div
+        className=" flex banner-wrapper transition-all ease-in-out duration-450"
+        onClick={() => {
+          toggleExpand(!expand);
+        }}
+      >
         <Image
           src={review.tour.imageCover}
           width={300}
@@ -182,7 +187,7 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
           <div className="px-3 py-4 flex w-full h-[4.8rem] text-transparent">
             placeholder
           </div>
-          <div className="px-3 py-4 bg-zinc-600 flex absolute bottom-0 w-full bottom-banner opacity-20">
+          <div className="px-3 py-4 bg-zinc-600 flex absolute bottom-0 w-full bottom-banner opacity-0">
             <form
               className="inline"
               onSubmit={async (e) => {

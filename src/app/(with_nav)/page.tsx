@@ -11,7 +11,8 @@ export default function Home() {
     <div className="absolute top-[1rem] overflow-hidden h-[100vh] ">
       <div className="overflow-hidden h-[100vh]">
         <video
-          src="https://res.cloudinary.com/dafo4jbuk/video/upload/v1693042860/homepage_skrkmx.mp4"
+          src="https://res.cloudinary.com/dafo4jbuk/video/upload/q_50/v1693042860/homepage_skrkmx.mp4"
+          poster="https://res.cloudinary.com/dafo4jbuk/image/upload/q_33/v1694406680/Natours/tours/natour_poster_uuhohw.png"
           loop
           autoPlay
           muted
