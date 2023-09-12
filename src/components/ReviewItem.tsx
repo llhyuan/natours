@@ -165,13 +165,13 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
           ref={reviewContentRef}
           className="transition-all duration-450 ease-in-out"
         >
-          <div ref={editingTransitionRef} className="p-3 w-[100%] flex ">
-            <div className={"w-[100%] flex-shrink-0"}>
+          <div ref={editingTransitionRef} className="p-3 w-full flex ">
+            <div className={"w-full flex-shrink-0"}>
               <ReviewDispaly review={reviewBuf} />
             </div>
             <div
               className={
-                "w-[100%] flex-shrink-0 " +
+                "w-full flex-shrink-0 " +
                 (editingStatus !== "editing" ? "hidden" : "")
               }
             >
