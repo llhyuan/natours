@@ -27,7 +27,7 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
   const { setNotificationStatus } = useContext(notificationContext);
   return (
     <form
-      className="px-4 bg-zinc-300 relative"
+      className="bg-zinc-300"
       ref={ref}
       onSubmit={async (e: FormEvent) => {
         e.preventDefault();
@@ -68,7 +68,7 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
           onChange={(e) => {
             props.setReview({ ...props.review, title: e.target.value });
           }}
-          className=" w-[75%] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
+          className=" w-[78%] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
         />
       </div>
       <div className="my-4 flex items-center">
@@ -110,7 +110,7 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
             props.setReview({ ...props.review, review: e.target.value });
           }}
           rows={8}
-          className="resize-none pl-2 w-[75%] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
+          className="resize-none pl-2 w-[78%] rounded-sm border-0 px-2 py-1 shadow-sm outline-none ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#28b487] valid:ring-zinc-700 "
         />
       </div>
     </form>
