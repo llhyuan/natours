@@ -1,13 +1,19 @@
 # Natours - a touring website
 
-This is a full-stack website from an Udemy course.\n The original project is built with JavaScript, Express, MongoDB, and Pug templates.\n I followed the course, but took the liberty to rebuild the website using the tools of my own choice - `TypeScript` and `Next.js`.
+This is a full-stack website from an Udemy course.
+
+The original project is built with JavaScript, Express, MongoDB, and Pug templates.
+
+I followed the course, but took the liberty to rebuild the website using the tools of my own choice - `TypeScript` and `Next.js`.
 
 1. The entire frontend is rebuilt using Next.js, leveraging React server/client component and TypeScript.
 1. The backend is rewritten with TypeScript, which is hosted in another [repository](https://github.com/llhyuan/natour-backend).
 
 ## Why TypeScript?
 
-I learned Rust a few months ago out of the hype around it, and fell in love with its type system and compiler driven development approach.\ It was hard work navigating all the compiler warnings and errors. However, it paid off in the long run. Every step of the way, the flow of data was much more clear and variables were used with an understanding of what they can or cannot be. This had an immediate impact, significantly reducing the amount of time spent tracing back error stacks.
+I learned Rust a few months ago out of the hype around it, and fell in love with its type system and compiler driven development approach.
+
+It was hard work navigating all the compiler warnings and errors. However, it paid off in the long run. Every step of the way, the flow of data was much more clear and variables were used with an understanding of what they can or cannot be. This had an immediate impact, significantly reducing the amount of time spent tracing back error stacks.
 
 ## Table of Content
 
