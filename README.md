@@ -33,6 +33,11 @@ It was hard work navigating all the compiler warnings and errors. However, it pa
 - Better data modeling and validation with mongoose and TypeScript, on top of MongoDB
 - Httponly cookie and JSON Web Token are combined to delivery safer user validation.
 - Seamless payment processing with Stripe and webhooks.
+ - Use the following card detail to place an order live:
+  - Card number: 4242 4242 4242 4242
+  - Exp: any data that later than the day you place the order 
+  - Name: any name
+  
 
 ### Links
 
