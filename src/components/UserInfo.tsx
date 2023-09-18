@@ -6,6 +6,7 @@ import { LoginStatus } from "@Global/custom-types";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
+import { notificationContext } from "@/app/NotificationContextProvier";
 const defaultUser: LoginStatus = {
   name: "Login",
   loginStatus: false,
@@ -24,6 +25,7 @@ export default function UserInfo({
   const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
   const path = usePathname();
+  const {setNotificationStatus} = useContext(notificationContext);
 
   let importedPhoto: string = loginStatus.photo;
 
@@ -44,12 +46,18 @@ export default function UserInfo({
           setLoginStatus({ ...defaultUser, loginStatus: false });
 
           if (path.startsWith("/me") && !path.includes("forget-password")) {
+              
+              setNotificationStatus({reveal: true,
+                message: 'Please Login to gain access.',
+                category: 'notification'
+
+              })
             router.replace("/");
           }
         }
       });
     });
-  }, [setLoginStatus, path, router]);
+  }, [setLoginStatus, path, router, setNotificationStatus]);
 
   if (!loginStatus.loginStatus) {
     return (

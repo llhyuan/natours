@@ -46,7 +46,7 @@ export default function Mapbox({ locations }: { locations: Array<GeoPoint> }) {
                   <p
                     className={
                       lato.className +
-                      " text-center text-[1rem] mb-1 hidden group-hover:block p-2 text-zinc-600"
+                      " text-center text-[1rem] mb-1 hidden group-hover:block p-2 rounded-sm bg-zinc-100 text-zinc-600 shadow-md"
                     }
                   >
                     {location.description}

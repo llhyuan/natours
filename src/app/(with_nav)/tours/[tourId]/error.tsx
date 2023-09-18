@@ -1,6 +1,8 @@
-"use client";
+'use client'
+import "../../../globals.css";
 import Image from "next/image";
 import { Lato } from "next/font/google";
+
 import bgImg from "../../../../../public/img/404.jpg";
 import Link from "next/link";
 
@@ -22,12 +24,14 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-export default function Login() {
+export default function Error() {
   return (
     <div
-      className={latoSemiBold.className + " flex text-zinc-200 min-w-[300px]"}
+      className={
+        latoSemiBold.className + " text-zinc-200 overflow-hidden relative"
+      }
     >
-      <div className="flex-1 overflow-hidden h-screen z-0 min-w-[300px]">
+      <div className="absolute top-0 overflow-hidden h-screen z-0">
         <Image
           src={bgImg}
           alt="login background"

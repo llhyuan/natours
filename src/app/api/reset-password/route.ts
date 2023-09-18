@@ -5,7 +5,6 @@ import { getCookieString } from "@/utilities/cookieString";
 export async function POST(req: NextRequest) {
   const reqBody = await req.json();
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/reset-password/${reqBody.resetToken}`;
-  console.log(url);
   reqBody.resetToen = undefined;
   let cookieStr: string = getCookieString(cookies().getAll());
 

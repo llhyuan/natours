@@ -8,6 +8,7 @@ I followed the course, but took the liberty to rebuild the website using the too
 
 1. The entire frontend is rebuilt using Next.js, leveraging React server/client component and TypeScript.
 1. The backend is rewritten with TypeScript, which is hosted in another [repository](https://github.com/llhyuan/natour-backend).
+1. The database used is MongoDB, paired with Mongoose and TypeScript for better data modeling.  
 
 ## Why TypeScript?
 
