@@ -48,7 +48,7 @@ export default function UserInfo({
           if (path.startsWith("/me") && !path.includes("forget-password")) {
               
               setNotificationStatus({reveal: true,
-                message: 'Please Login to gain access.',
+                message: 'Please login to gain access.',
                 category: 'notification'
 
               })
