@@ -18,7 +18,6 @@ const stripePromise = loadStripe(
 
 export default function CheckoutButton() {
   const { tourId } = useParams();
-  console.log(tourId);
   const router = useRouter();
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -43,7 +42,6 @@ export default function CheckoutButton() {
           credentials: "include",
         });
         const result = await response.json();
-        console.log(result);
         if (result.status === "success") {
           router.replace(result.url);
         }

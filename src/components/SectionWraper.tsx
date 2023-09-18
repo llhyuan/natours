@@ -10,7 +10,6 @@ export default function Slate({
   order: number;
 }) {
   const tailwindCls = `clip-slate relative top-[-${8 * order}vw]`;
-  console.log(tailwindCls);
 
   return (
     <section className={tailwindCls + className ?? " "}>{children}</section>

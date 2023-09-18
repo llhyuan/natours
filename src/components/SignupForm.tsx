@@ -55,7 +55,6 @@ export default function SignupForm() {
                 password,
                 passwordConfirm,
               };
-              console.log(reqBody);
               const result = await fetch("/api/signup", {
                 method: "POST",
                 headers: {
@@ -64,7 +63,6 @@ export default function SignupForm() {
                 body: JSON.stringify(reqBody),
               });
               const response = await result.json();
-              console.log(response);
               if (response.status === "success") {
                 // localStorage.setItem(
                 //   "natoursLoggedinUser",

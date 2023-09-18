@@ -65,7 +65,7 @@ export default function LoginForm() {
                 message: result.message,
                 category: "notification",
               });
-              router.back();
+              router.replace('/tours');
             } else {
               setNotificationStatus({
                 reveal: true,

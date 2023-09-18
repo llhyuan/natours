@@ -161,7 +161,7 @@ export default function ChangePassword() {
         </div>
         <button
           type="submit"
-          className="w-fit py-3 px-6 ml-auto mt-8 uppercase bg-green-500 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
+          className="w-fit py-3 px-6 ml-auto mt-8 uppercase bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487]/95 text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
         >
           Commit Change
         </button>

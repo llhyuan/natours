@@ -15,7 +15,6 @@ export default function NewPassword({
 }: {
   params: { resetToken: string };
 }) {
-  console.log(params.resetToken);
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [matchingPasswords, setMatchingStatus] = useState(true);
