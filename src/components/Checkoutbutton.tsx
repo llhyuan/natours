@@ -1,8 +1,9 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Lato } from "next/font/google";
+import { notificationContext } from "@/app/NotificationContextProvier";
 
 const latoBold = Lato({
   weight: "700",
@@ -19,19 +20,20 @@ const stripePromise = loadStripe(
 export default function CheckoutButton() {
   const { tourId } = useParams();
   const router = useRouter();
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
-    }
-
-    if (query.get("canceled")) {
-      console.log(
-        "Order canceled -- continue to shop around and checkout when you’re ready."
-      );
-    }
-  }, []);
+  const {setNotificationStatus} = useContext(notificationContext);
+  // useEffect(() => {
+  //   // Check to see if this is a redirect back from Checkout
+  //   const query = new URLSearchParams(window.location.search);
+  //   if (query.get("success")) {
+  //     console.log("Order placed! You will receive an email confirmation.");
+  //   }
+  //
+  //   if (query.get("canceled")) {
+  //     console.log(
+  //       "Order canceled -- continue to shop around and checkout when you’re ready."
+  //     );
+  //   }
+  // }, []);
 
   return (
     <form
@@ -44,6 +46,12 @@ export default function CheckoutButton() {
         const result = await response.json();
         if (result.status === "success") {
           router.replace(result.url);
+        }else{
+         setNotificationStatus({
+            reveal: true,
+            message: result.message,
+            category: 'error',
+          }) 
         }
       }}
     >
