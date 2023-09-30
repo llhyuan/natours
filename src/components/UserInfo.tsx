@@ -25,7 +25,7 @@ export default function UserInfo({
   const { setActiveSection } = useContext(sidebarContext);
   const router = useRouter();
   const path = usePathname();
-  const {setNotificationStatus} = useContext(notificationContext);
+  const { setNotificationStatus } = useContext(notificationContext);
 
   let importedPhoto: string = loginStatus.photo;
 
@@ -46,12 +46,11 @@ export default function UserInfo({
           setLoginStatus({ ...defaultUser, loginStatus: false });
 
           if (path.startsWith("/me") && !path.includes("forget-password")) {
-              
-              setNotificationStatus({reveal: true,
-                message: 'Please login to gain access.',
-                category: 'notification'
-
-              })
+            setNotificationStatus({
+              reveal: true,
+              message: "Please login to gain access.",
+              category: "notification",
+            });
             router.replace("/");
           }
         }
@@ -80,7 +79,7 @@ export default function UserInfo({
               : "hidden lg:block ml-[3vw]"
           }
         >
-          Sign Up
+          Signup
         </Link>
       </div>
     );

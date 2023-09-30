@@ -31,7 +31,7 @@ export default function LoginForm() {
           />
         </Link>
         <h2 className="text-center text-[1.5rem] font-bold capitalize leading-9 tracking-tight text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
-          Log into your account
+          Login to your account
         </h2>
       </div>
 
@@ -65,7 +65,7 @@ export default function LoginForm() {
                 message: result.message,
                 category: "notification",
               });
-              router.replace('/tours');
+              router.replace("/tours");
             } else {
               setNotificationStatus({
                 reveal: true,
@@ -147,7 +147,7 @@ export default function LoginForm() {
                   " ml-2 text-zinc-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#7dd56f]/80 hover:to-[#28b487]/90"
                 }
               >
-                Sign Up
+                Create account
               </Link>
             </p>
           </div>

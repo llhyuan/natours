@@ -225,7 +225,7 @@ export default function BookingItem({
                 {
                   method: "DELETE",
                   credentials: "include",
-                }
+                },
               );
               const result = await response.json();
               if (result.status === "success") {
@@ -242,7 +242,7 @@ export default function BookingItem({
               type="submit"
               className="px-3 py-[0.36rem] ml-4 bg-red-600 text-zinc-200 hover:opacity-90 rounded-sm cancel-button"
             >
-              Cancel
+              Cancel Tour
             </button>
           </form>
         </div>

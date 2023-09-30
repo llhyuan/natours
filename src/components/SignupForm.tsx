@@ -207,7 +207,21 @@ export default function SignupForm() {
           <div className="flex justify-start items-center">
             <p className="text-zinc-500 text-[0.9rem]">
               By clicking the &ldquo;Create An Account&rdquo; button, You agree
-              to Natours&apos; Terms of Service and Privacy Policy.
+              to Natours&apos;{" "}
+              <a
+                href="#"
+                className="hover:text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90"
+              >
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a
+                href="#"
+                className="hover:text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90"
+              >
+                Privacy Policy
+              </a>
+              .
             </p>
           </div>
 
@@ -231,7 +245,7 @@ export default function SignupForm() {
                 " ml-2 text-zinc-700 hover:text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90"
               }
             >
-              Log in
+              Login
             </Link>
           </p>
         </form>
