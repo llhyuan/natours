@@ -104,14 +104,14 @@ export default function UserInfo({
             setActiveSection("bookings");
           }}
         >
-          My Booking
+          My Bookings
         </Link>
         <div
           id="user"
           className={
             mobile
               ? "group lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden ml-[2vw] lg:flex items-center"
+              : "group/user hidden ml-[2vw] lg:flex items-center"
           }
         >
           <Link
@@ -134,14 +134,16 @@ export default function UserInfo({
                   : "")
               }
             />
-            <p className="px-4">{loginStatus.name}</p>
+            <p className={"px-4 " + (mobile ? "" : " hidden")}>
+              {loginStatus.name}
+            </p>
           </Link>
           <Link
             href="/api/logout"
             className={
               mobile
                 ? "block lg:hidden pt-5 text-center hover:underline underline-offset-2 hover:cursor-pointer"
-                : "hidden ml-[1vw] lg:block"
+                : "block w-0 overflow-clip group-hover/user:ml-[2vw] group-hover/user:w-[3.8rem] transition-all ease-in-out duration-300"
             }
             onClick={async (e) => {
               e.preventDefault();
@@ -156,7 +158,15 @@ export default function UserInfo({
               }
             }}
           >
-            Log Out
+            <span
+              className={
+                mobile
+                  ? ""
+                  : "block w-[3.8rem] opacity-0 group-hover/user:opacity-100 transition-opacity ease-in-out duration-300"
+              }
+            >
+              Log Out
+            </span>
           </Link>
         </div>
       </div>
