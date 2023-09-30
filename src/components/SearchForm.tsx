@@ -16,7 +16,7 @@ export default function SearchForm({ mobile }: { mobile: boolean }) {
           placeholder="Search Tours"
           value={searchParams.value}
           className={
-            "appearance-none focus:outline-none bg-zinc-700 text-zinc-400 text-center placeholder:text-zinc-500 border-zinc-400 border-[1px] p-1 rounded-md focus:border-zinc-200 focus:bg-zinc-200 focus:text-zinc-800 border-solid " +
+            "appearance-none focus:outline-none bg-zinc-700 text-zinc-400 text-center placeholder:text-zinc-500 border-zinc-400 border-[1px] px-1 py-[0.09rem] rounded-md focus:border-zinc-200 focus:bg-zinc-200 focus:text-zinc-800 border-solid " +
             (mobile ? "w-[19rem] placeholder:text-center" : "w-52")
           }
           onChange={(e) => {
