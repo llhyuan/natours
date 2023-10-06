@@ -8,7 +8,7 @@ I followed the course, but took the liberty to rebuild the website using the too
 
 1. The entire frontend is rebuilt using Next.js, leveraging React server/client component and TypeScript.
 1. The backend is rewritten with TypeScript, which is hosted in another [repository](https://github.com/llhyuan/natour-backend).
-1. The database used is MongoDB, paired with Mongoose and TypeScript for better data modeling.  
+1. The database used is MongoDB, paired with Mongoose and TypeScript for better data modeling.
 
 ## Why TypeScript?
 
@@ -34,11 +34,10 @@ It was hard work navigating all the compiler warnings and errors. However, it pa
 - Better data modeling and validation with mongoose and TypeScript, on top of MongoDB
 - Httponly cookie and JSON Web Token are combined to delivery safer user validation.
 - Seamless payment processing with Stripe and webhooks.
- - Use the following card detail to place an order live:
-  - Card number: 4242 4242 4242 4242
-  - Exp: any data that later than the day you place the order 
-  - Name: any name
-  
+- Use the following card detail to place an order live:
+- Card number: 4242 4242 4242 4242
+- Exp: any data that later than the day you place the order
+- Name: any name
 
 ### Links
 
@@ -68,7 +67,8 @@ It was hard work navigating all the compiler warnings and errors. However, it pa
   <img src="./public/markdown-imgs/checkout.png" width="350">
 
 - Search\
-  <img src="./public/markdown-imgs/search.png" width="250">
+  <img src="./public/markdown-imgs/search_1.png" width="250">
+  <img src="./public/markdown-imgs/search_2.png" width="350">
 
 - Setting\
   <img src="./public/markdown-imgs/setting.png" width="250">

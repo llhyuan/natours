@@ -16,7 +16,9 @@ export default function DatePicker() {
       useRange={false}
       asSingle={true}
       primaryColor={"green"}
-      inputClassName={"rounded-sm p-2 focus:outline-none"}
+      inputClassName={
+        "rounded-sm p-2 border-none focus:outline-none focus:ring-0"
+      }
       value={date}
       placeholder="Start Date"
       onChange={(e) => {

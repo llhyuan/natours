@@ -45,7 +45,7 @@ export default function LandingPageSearch() {
             type="text"
             placeholder="Search for your dream tour ..."
             value={searchParams.value}
-            className="appearance-none border-none focus:outline-none text-left p-1 rounded-md bg-transparent text-zinc-800 max-sm:w-[60vw] w-[30vw] max-w-[750px]"
+            className="appearance-none border-none focus:outline-none focus:ring-0 text-left p-1 rounded-md bg-transparent text-zinc-800 max-sm:w-[60vw] w-[30vw] max-w-[750px]"
             onChange={(e) => {
               setSearchParams({ ...searchParams, value: e.target.value });
             }}
