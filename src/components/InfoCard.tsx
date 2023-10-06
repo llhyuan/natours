@@ -42,7 +42,7 @@ export default async function InfoCard({ tour }: { tour: Tour }) {
 
   return (
     <div
-      className="w-full max-w-[420px] bg-white shadow-[0_1.5rem_4rem_rgba(0,0,0,0.2)] rounded-sm overflow-clip"
+      className="w-full max-w-[420px] bg-white shadow-[0_1.5rem_4rem_rgba(0,0,0,0.2)] rounded-sm overflow-clip scale-95"
       style={{ "--section-rotate": "3rem" } as CSSPropertiesWithVars}
     >
       <div id="img" className="relative text-[1.5rem]">

@@ -34,7 +34,7 @@ export default function Sort() {
           Sort
           <svg
             className={
-              "ml-[0.15rem] sm:ml-2 mt-[0.18rem] lg:mt-[0.425rem] h-5 w-5 flex-shrink-0 text-zinc-400 group-hover:text-gray-500 " +
+              "ml-[0.15rem] sm:ml-2 mt-[0.18rem] h-5 w-5 flex-shrink-0 text-zinc-400 group-hover:text-gray-500 " +
               (!menuStatus ? "" : "rotate-180")
             }
             viewBox="0 0 20 20"
