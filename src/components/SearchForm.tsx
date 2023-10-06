@@ -8,7 +8,6 @@ export default function SearchForm({ mobile }: { mobile: boolean }) {
 
   const path = usePathname();
   const router = useRouter();
-  console.log(path);
   return (
     <div className={path === "/" ? "hidden" : mobile ? "" : "hidden lg:block"}>
       <form>
@@ -23,6 +22,7 @@ export default function SearchForm({ mobile }: { mobile: boolean }) {
           onChange={(e) => {
             setSearchParams({
               ...searchParams,
+              field: "name",
               value: e.target.value,
               submit: true,
             });

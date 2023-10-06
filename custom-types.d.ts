@@ -81,8 +81,9 @@ export interface NotificationContext {
 
 export interface SearchParams {
   field: string;
-  value: string;
+  value: string | number;
   sort: string;
+  date?: string | Date;
   submit: boolean;
 }
 
