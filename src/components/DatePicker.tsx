@@ -17,12 +17,11 @@ export default function DatePicker() {
       asSingle={true}
       primaryColor={"green"}
       inputClassName={
-        "rounded-sm p-2 border-none focus:outline-none focus:ring-0"
+        "rounded-xs p-2 border-none focus:outline-none focus:ring-0"
       }
       value={date}
       placeholder="Start Date"
       onChange={(e) => {
-        console.log(e);
         setSearchParams({
           ...searchParams,
           date: e && e.startDate ? e.startDate : "",

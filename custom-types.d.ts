@@ -85,6 +85,7 @@ export interface SearchParams {
   sort: string;
   date?: string | Date;
   submit: boolean;
+  budget?: string;
 }
 
 export interface SearchContext {

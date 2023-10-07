@@ -9,9 +9,10 @@ export default function SerarchResult() {
   const { searchParams } = useContext(searchContext);
   const { data, error, isLoading } = useSWR(
     () => {
-      if (searchParams.value || searchParams.date) {
-        const startDate = searchParams.date ?? new Date();
-        const url = `${process.env.NEXT_PUBLIC_API_HOST}/tours/?field=${searchParams.field}&value=${searchParams.value}&date=${startDate}&${searchParams.sort}`;
+      if ((searchParams.value || searchParams.date) && searchParams.submit) {
+        const startDate =
+          searchParams.date ?? new Date().toISOString().slice(0, 10);
+        const url = `${process.env.NEXT_PUBLIC_API_HOST}/tours/?field=${searchParams.field}&value=${searchParams.value}&date=${startDate}&${searchParams.sort}&budget=${searchParams.budget}`;
         return url;
       } else {
         return false;
@@ -26,7 +27,7 @@ export default function SerarchResult() {
   return (
     <div
       className={
-        "relative flex flex-wrap justify-center gap-x-2 gap-y-10 " +
+        "relative flex flex-wrap max-lg:justify-center gap-x-2 gap-y-10 " +
         (isLoading ? "opacity-30" : "")
       }
     >

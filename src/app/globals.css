@@ -8,6 +8,39 @@
   --booking-content-height: 34rem;
 }
 
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 90%;
+  height: 12px;
+  background: rgba(255, 255, 255, 1);
+  background-image: linear-gradient(to right, #7dd56f, #28b487);
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background: rgb(63, 63, 70);
+  background-image: url("../../public/img/logo-white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
 @media only screen and (max-width: 768px) {
   :root {
     --booking-content-height: 36rem;

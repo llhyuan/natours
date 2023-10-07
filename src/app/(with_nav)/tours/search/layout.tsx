@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, ReactNode, useContext, useState } from "react";
+import { Fragment, ReactNode, useContext, useEffect, useState } from "react";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FunnelIcon, MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
@@ -7,7 +7,8 @@ import Sort from "@/components/Sort";
 import Link from "next/link";
 import { Lato } from "next/font/google";
 import { searchContext } from "../../SearchContextProvider";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import RangeSlider from "@/components/RangeSlider";
 
 const latoSemiBold = Lato({
   weight: "400",
@@ -16,13 +17,13 @@ const latoSemiBold = Lato({
 });
 
 const subCategories = [
-  { name: "Top Picks", href: "#" },
-  { name: "Most Popular", href: "#" },
+  { name: "Top Picks", value: "top5", href: "/tours/search/top5" },
+  { name: "Most Popular", value: "popular", href: "/tours/search/popular" },
 ];
 const filters = [
   {
     id: "field",
-    name: "Search By:",
+    name: "Search By",
     options: [
       { value: "name", label: "Name" },
       { value: "size", label: "Group Size" },
@@ -35,6 +36,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const { searchParams, setSearchParams } = useContext(searchContext);
   const router = useRouter();
+  const path = usePathname();
 
   return (
     <div className="bg-zinc-200">
@@ -92,7 +94,16 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                     >
                       {subCategories.map((category) => (
                         <li key={category.name}>
-                          <a href={category.href} className="block px-2 py-3">
+                          <a
+                            href={category.href}
+                            className={
+                              "block px-2 py-3 " +
+                              (path?.endsWith(category.value)
+                                ? latoSemiBold.className +
+                                  " bg-gradient-to-br text-transparent bg-clip-text from-[#7dd56f] to-[#28b487] scale-[1.2] translate-x-12"
+                                : "")
+                            }
+                          >
                             {category.name}
                           </a>
                         </li>
@@ -164,6 +175,19 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                         )}
                       </Disclosure>
                     ))}
+                    <RangeSlider min={400} max={3000} />
+                    <button
+                      type="button"
+                      className="block px-4 py-2 rounded-sm mx-auto mt-8 bg-zinc-700 hover:bg-zinc-600 active:bg-zinc-700 text-zinc-100"
+                      onClick={() => {
+                        setSearchParams({
+                          ...searchParams,
+                          submit: true,
+                        });
+                      }}
+                    >
+                      Apply Filter
+                    </button>
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -197,7 +221,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                     }
                   }}
                 >
-                  <div className="flex items-center border-solid border-zinc-700 border-[1px] rounded-md shadow-md pl-2 max-w-[370px] ">
+                  <div className="flex items-center border-solid border-zinc-700 border-[1px] rounded-md shadow-md pl-2 max-w-[370px] overflow-hidden ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="1em"
@@ -287,7 +311,18 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                 >
                   {subCategories.map((category) => (
                     <li key={category.name}>
-                      <a href={category.href}>{category.name}</a>
+                      <a
+                        href={category.href}
+                        className={
+                          "block px-2 py-3 " +
+                          (path?.endsWith(category.value)
+                            ? latoSemiBold.className +
+                              " bg-gradient-to-br text-transparent bg-clip-text from-[#7dd56f] to-[#28b487] scale-[1.2] translate-x-12"
+                            : "")
+                        }
+                      >
+                        {category.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -357,6 +392,19 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                     )}
                   </Disclosure>
                 ))}
+                <RangeSlider min={400} max={3000} />
+                <button
+                  type="button"
+                  className="block px-4 py-2 rounded-sm mx-auto mt-8 bg-zinc-700 hover:bg-zinc-600 active:bg-zinc-700 text-zinc-100"
+                  onClick={() => {
+                    setSearchParams({
+                      ...searchParams,
+                      submit: true,
+                    });
+                  }}
+                >
+                  Apply Filter
+                </button>
               </form>
 
               <div className="lg:col-span-4">
