@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, ReactNode, useContext, useEffect, useState } from "react";
+import { Fragment, ReactNode, useContext, useState } from "react";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FunnelIcon, MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
@@ -94,7 +94,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                     >
                       {subCategories.map((category) => (
                         <li key={category.name}>
-                          <a
+                          <Link
                             href={category.href}
                             className={
                               "block px-2 py-3 " +
@@ -105,7 +105,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                             }
                           >
                             {category.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -195,8 +195,8 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto max-w-[125rem] px-4">
-          <div className="flex max-lg:flex-col items-center justify-between border-b border-zinc-200 pb-6 pt-24">
+        <main className="mx-auto max-w-[125rem] px-6">
+          <div className="flex max-lg:flex-col items-center justify-between border-b border-zinc-200 pb-6 pt-10">
             <h1
               className={
                 latoSemiBold.className +
@@ -301,7 +301,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
               Tours
             </h2>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5 text-lg">
+            <div className="grid grid-cols-1 gap-x-4 gap-y-10 lg:grid-cols-5 text-lg">
               {/* Filters */}
               <form className="hidden lg:block bg-zinc-200">
                 <h3 className="sr-only">Categories</h3>
@@ -311,10 +311,10 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                 >
                   {subCategories.map((category) => (
                     <li key={category.name}>
-                      <a
+                      <Link
                         href={category.href}
                         className={
-                          "block px-2 py-3 " +
+                          "block py-3 " +
                           (path?.endsWith(category.value)
                             ? latoSemiBold.className +
                               " bg-gradient-to-br text-transparent bg-clip-text from-[#7dd56f] to-[#28b487] scale-[1.2] translate-x-12"
@@ -322,7 +322,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                         }
                       >
                         {category.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -413,7 +413,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
                   <p
                     className={
                       latoSemiBold.className +
-                      " text-[1.1rem] sm:text-[1.3rem] md:text-[1.5rem] lg:text-[2rem] mb-4 bg-gradient-to-br text-transparent bg-clip-text from-[#7dd56f] to-[#28b487]"
+                      " text-[1.1rem] sm:text-[1.3rem] md:text-[1.5rem] lg:text-[2rem] h-[2rem] mb-4 bg-gradient-to-br text-transparent bg-clip-text from-[#7dd56f] to-[#28b487]"
                     }
                   >
                     Didn&apos;t find what you are looking for?

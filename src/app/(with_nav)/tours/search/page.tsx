@@ -27,13 +27,17 @@ export default function SerarchResult() {
   return (
     <div
       className={
-        "relative flex flex-wrap max-lg:justify-center gap-x-2 gap-y-10 " +
+        "relative flex flex-wrap max-lg:justify-center gap-x-4 gap-y-6" +
         (isLoading ? "opacity-30" : "")
       }
     >
       {data && data.length > 0 ? (
         data.map((tour: any, index: number) => {
-          return <InfoCard tour={tour} key={index} />;
+          return (
+            <div className="scale-100" key={index}>
+              <InfoCard tour={tour} />
+            </div>
+          );
         })
       ) : (
         <p className="w-fit mx-auto pt-8 pb-12 text-zinc-500 text-[1.1rem] sm:text-[1.2rem] md:text-[1.3rem]">

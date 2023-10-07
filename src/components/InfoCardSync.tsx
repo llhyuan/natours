@@ -48,11 +48,11 @@ export default function InfoCard({ tour }: { tour: Tour }) {
 
   return (
     <div
-      className="w-full max-w-[420px] bg-white shadow-[0_1.5rem_4rem_rgba(0,0,0,0.2)] rounded-sm overflow-clip scale-95"
+      className="w-full max-w-[350px] bg-white shadow-[0_1.5rem_4rem_rgba(0,0,0,0.2)] rounded-sm overflow-clip "
       style={{ "--section-rotate": "3rem" } as CSSPropertiesWithVars}
     >
-      <div id="img" className="relative text-[1.5rem]">
-        <div className="max-h-[240px] overflow-hidden clip-polygon">
+      <div id="img" className="relative text-[1.35rem]">
+        <div className="max-h-[200px] overflow-hidden clip-polygon">
           <Image src={cover} width={500} height={400} alt="tour image" />
         </div>
         <p
@@ -66,27 +66,25 @@ export default function InfoCard({ tour }: { tour: Tour }) {
         <p
           className={
             latoSemiBold.className +
-            " absolute bottom-1 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/20 to-[#28b487]/80"
+            " absolute bottom-3 right-4 p-3 text-zinc-100 uppercase bg-gradient-to-br from-[#7dd56f]/20 to-[#28b487]/80"
           }
         >
           {tourName.secondHalf}
         </p>
       </div>
-      <div id="info" className="text-[1.2rem] px-8 py-2 text-zinc-500">
+      <div id="info" className="text-[1.1rem] px-6 text-zinc-500">
         <p
           className={
             latoSemiBold.className +
-            " text-[1.3rem] my-2 text-zinc-600 uppercase"
+            " text-[1.2rem] my-2 text-zinc-600 uppercase"
           }
         >
           {info}
         </p>
-        <p className={latoItalic.className + " my-2 text-[1.2rem]"}>
-          {summary}
-        </p>
+        <p className={latoItalic.className + " my-2"}>{summary}</p>
         <div
           id="details"
-          className="grid grid-cols-2 justify-center items-center text-center my-6 gap-3"
+          className="grid grid-cols-2 justify-center items-center text-center my-4 gap-3 text-[1rem]"
         >
           <p className="flex items-center justify-center">
             <svg
@@ -137,10 +135,10 @@ export default function InfoCard({ tour }: { tour: Tour }) {
       </div>
       <div
         id="more-info"
-        className="flex flex-row bg-gray-100 text-[1.1rem] sm:text-[1.25rem] border-solid border-zinc-200 border-t-[2px]"
+        className="flex flex-row bg-gray-100 text-[1.1rem] border-solid border-zinc-200 border-t-[2px]"
       >
         <div className="flex-1 justify-left">
-          <p className={latoItalic.className + " m-6 text-zinc-500"}>
+          <p className={latoItalic.className + " m-4 text-zinc-500"}>
             <span
               className={
                 latoBold.className +
@@ -149,9 +147,9 @@ export default function InfoCard({ tour }: { tour: Tour }) {
             >
               ${price}
             </span>
-            <span> per person</span>
+            <span> / person</span>
           </p>
-          <p className={latoItalic.className + " m-6 text-zinc-500"}>
+          <p className={latoItalic.className + " m-4 text-zinc-500"}>
             <span
               className={
                 latoBold.className +
@@ -163,11 +161,11 @@ export default function InfoCard({ tour }: { tour: Tour }) {
             rating (<span>{ratingQuantity}</span>)
           </p>
         </div>
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex-1 flex justify-center items-center text-[1rem]">
           <Link
             href={tourDetail}
             className={
-              "w-fit py-4 px-8 mx-auto bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487] text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
+              "w-fit py-3 px-6 mx-auto bg-gradient-to-br from-[#7dd56f]/90 to-[#28b487] text-zinc-100 rounded-full tracking-wide transition-all duration-100 ease-in hover:shadow-[0_0.4rem_0.8rem_rgba(0,0,0,0.2)] hover:translate-y-[-5px]"
             }
           >
             DETAILS
