@@ -73,7 +73,7 @@ export default function LandingPageSearch() {
       </div>
       <button
         type="submit"
-        className="sm:ml-1 max-sm:mt-4 max-sm:self-end py-2 max-sm:px-8 px-4 md:px-6 lg:px-8 rounded-r-sm text-zinc-100 active:opacity-90 bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 shadow-md"
+        className="sm:ml-1 max-sm:mt-4 max-sm:self-end py-[0.28rem] max-sm:px-8 px-4 md:px-6 lg:px-8 rounded-r-sm text-zinc-100 active:opacity-90 bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 shadow-md"
       >
         Search
       </button>
