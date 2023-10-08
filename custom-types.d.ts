@@ -141,3 +141,12 @@ export interface ReviewPopulated {
   rating: number;
   visible: boolean;
 }
+
+export interface FootbarLink {
+  label: string;
+  href: string;
+}
+
+export interface FootbarNavsection {
+  [key: string]: FootbarLink[];
+}

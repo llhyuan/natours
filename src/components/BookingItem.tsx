@@ -231,7 +231,7 @@ export default function BookingItem({
               if (result.status === "success") {
                 setNotificationStatus({
                   reveal: true,
-                  message: result.message,
+                  message: `Order ${bookingInfo.order} has been canceled.`,
                   category: "notification",
                 });
                 router.refresh();

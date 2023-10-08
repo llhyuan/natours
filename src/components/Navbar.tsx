@@ -13,7 +13,10 @@ export default function Navbar() {
     >
       <div className="flex items-center md:justify-center">
         <div className="hidden md:flex flex-1 items-center">
-          <Link href="/tours" className="mr-[4vw] hidden lg:block">
+          <Link
+            href="/tours"
+            className="mr-[4vw] hidden lg:block px-2 py-1 rounded-sm hover:bg-zinc-100 hover:text-zinc-700 transition-all duration-80 ease-in"
+          >
             All Tours
           </Link>
           <div id="search-container" className="w-48 flex items-center">

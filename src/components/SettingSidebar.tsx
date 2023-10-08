@@ -152,7 +152,7 @@ function SidebarComponent(
     section: string;
     toggleSidebar: Dispatch<SetStateAction<boolean>>;
   },
-  key: number
+  key: number,
 ) {
   const indicatorRef = useRef<HTMLDivElement>(null);
 

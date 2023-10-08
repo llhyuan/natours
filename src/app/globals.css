@@ -5,7 +5,7 @@
 :root {
   --section-rotate: 8vw;
   --review-content-height: 0px;
-  --booking-content-height: 34rem;
+  --booking-content-height: 34.5rem;
 }
 
 input[type="range"] {
