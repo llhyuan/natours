@@ -65,8 +65,8 @@ export default function UserInfo({
           href="/login"
           className={
             mobile
-              ? "block px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden lg:block"
+              ? "block px-8 py-4 text-center rounded-sm hover:bg-zinc-100 hover:text-zinc-700 transition-all duration-100 ease-in"
+              : "hidden lg:block px-2 py-1 rounded-sm hover:bg-zinc-100 hover:text-zinc-700 transition-all duration-100 ease-in"
           }
         >
           Login
@@ -75,8 +75,8 @@ export default function UserInfo({
           href="/signup"
           className={
             mobile
-              ? "block px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden lg:block ml-[3vw]"
+              ? "block px-8 py-4 text-center rounded-sm hover:bg-zinc-100 hover:text-zinc-700 transition-all duration-100 ease-in"
+              : "hidden lg:block ml-[3vw] px-2 py-1 rounded-sm hover:bg-zinc-100 hover:text-zinc-700 transition-all duration-100 ease-in"
           }
         >
           Signup
@@ -97,8 +97,8 @@ export default function UserInfo({
           href="/me/bookings"
           className={
             mobile
-              ? "block lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "hidden lg:block"
+              ? "block lg:hidden px-8 py-4 text-center rounded-sm hover:bg-zinc-100 hover:text-zinc-700"
+              : "hidden lg:block rounded-sm px-2 py-1 hover:bg-zinc-100 hover:text-zinc-700 transition-all duration-100 ease-in"
           }
           onClick={() => {
             setActiveSection("bookings");
@@ -110,13 +110,13 @@ export default function UserInfo({
           id="user"
           className={
             mobile
-              ? "group lg:hidden px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
-              : "group/user hidden ml-[2vw] lg:flex items-center"
+              ? "group lg:hidden px-8 py-4 text-center rounded-sm hover:bg-zinc-100 hover:text-zinc-700"
+              : "group/user hidden ml-[2vw] rounded-sm lg:flex items-center"
           }
         >
           <Link
             href="/me/settings"
-            className="flex justify-center items-center group"
+            className="order-2 flex justify-center items-center group "
             onClick={() => {
               setActiveSection("");
             }}
@@ -128,10 +128,10 @@ export default function UserInfo({
               width={50}
               height={50}
               className={
-                "rounded-[50%] " +
+                "transition-all duration-80 ease-in rounded-[50%] " +
                 (mobile
                   ? "group-hover:border-zinc-500 group-hover:border-[2px]"
-                  : "")
+                  : "hover:border-zincf-100 hover:border-[2px]")
               }
             />
             <p className={"px-4 " + (mobile ? "" : " hidden")}>
@@ -143,7 +143,7 @@ export default function UserInfo({
             className={
               mobile
                 ? "block lg:hidden pt-5 text-center hover:underline underline-offset-2 hover:cursor-pointer"
-                : "block w-0 overflow-clip group-hover/user:ml-[2vw] group-hover/user:w-[3.8rem] transition-all ease-in-out duration-300"
+                : "order-1 block w-0 overflow-clip group-hover/user:mr-[2vw] group-hover/user:w-[4.8rem] transition-all ease-in-out duration-300"
             }
             onClick={async (e) => {
               e.preventDefault();
@@ -162,7 +162,7 @@ export default function UserInfo({
               className={
                 mobile
                   ? ""
-                  : "block w-[3.8rem] opacity-0 group-hover/user:opacity-100 transition-opacity ease-in-out duration-300"
+                  : "block w-[4.8rem] opacity-0 group-hover/user:opacity-100 hover:text-zinc-100 hover:bg-red-600 transition-all ease-in-out duration-80 px-2 py-1 rounded-sm"
               }
             >
               Log Out

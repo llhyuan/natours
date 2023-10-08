@@ -45,7 +45,7 @@ export default function Dropdown() {
       >
         <Link
           href="/tours"
-          className="px-8 py-4 text-center hover:bg-zinc-300 hover:text-zinc-900"
+          className="px-8 py-4 text-center hover:bg-zinc-100 hover:text-zinc-700"
           onClick={() => {
             toggleMenuStatus(false);
           }}

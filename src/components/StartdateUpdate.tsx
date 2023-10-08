@@ -66,7 +66,7 @@ export default function Startdate({
       >
         <select
           name="startDate"
-          className="w-fit ml-6 px-4 py-1 rounded-sm outline-[#69C987]"
+          className="w-[10rem] ml-6 px-4 py-1 rounded-sm active:border-[#69C987] border-none"
           value={bookingInfo.startDate}
           onChange={(e) => {
             setStartDate(e.target.value);
