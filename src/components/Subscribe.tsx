@@ -9,13 +9,13 @@ const latoSemiBold = Lato({
   style: "normal",
 });
 
-export default function Newsletter() {
+export default function Subscribe() {
   const { setNotificationStatus } = useContext(notificationContext);
   const [email, setEmail] = useState<string>();
   const [isValid, setIsValid] = useState<boolean>();
 
   return (
-    <form className="flex flex-col">
+    <form className="flex flex-col max-sm:px-6">
       <div className="w-full">
         <p
           className={
