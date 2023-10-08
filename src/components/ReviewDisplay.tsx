@@ -17,7 +17,9 @@ export default function ReviewDispaly({ review }: { review: ReviewPopulated }) {
         <p className={latoSemiBold.className + " mr-2 text-zinc-600"}>
           Posted on:
         </p>
-        <p className={latoSemiBold.className}>{review.createdAt}</p>
+        <p className={latoSemiBold.className}>
+          {review.createdAt.slice(0, 10)}
+        </p>
       </div>
       <div className="my-2 flex items-center">
         <p className={latoSemiBold.className + " mr-2 text-zinc-600"}>
