@@ -15,8 +15,8 @@ export default async function WebsiteLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={lato.className}>
+    <html lang="en" className="scroll-smooth">
+      <body className={lato.className + " text-zinc-700"}>
         <NotificationContextProvider>
           <LoginStatusContextProvider>
             <div>{children}</div>

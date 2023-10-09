@@ -4,17 +4,14 @@ import Image from "next/image";
 import logo from "../../public/img/logo-white.png";
 import bcorp from "../../public/img/b-corp-logo.svg";
 import FootbarNav from "./FootbarNav";
-import Newsletter from "./Subscribe";
-import { usePathname } from "next/navigation";
+import Subscribe from "./Subscribe";
 
 export default function Footer() {
-  const path = usePathname();
-  console.log(path);
   return (
-    <footer className={path === "/" ? "hidden" : ""}>
+    <footer>
       <section className="flex flex-col lg:flex-row items-center justify-center text-zinc-500 bg-zinc-300">
         <div className="my-16 w-full max-lg:max-w-[400px] lg:w-[30%]">
-          <Newsletter />
+          <Subscribe />
         </div>
         <div className="lg:w-[65%] w-full pl-[2vw] max-lg:max-w-[800px]">
           <FootbarNav />
