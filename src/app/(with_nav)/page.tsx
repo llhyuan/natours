@@ -59,7 +59,7 @@ export default async function Home() {
   return (
     <div>
       <section className="relative">
-        <div className="overflow-hidden h-[calc(100vh-51px)]">
+        <div className="relative overflow-hidden h-[calc(100vh-51px)]">
           <video
             src="https://res.cloudinary.com/dafo4jbuk/video/upload/q_50/v1693042860/homepage_skrkmx.mp4"
             poster="https://res.cloudinary.com/dafo4jbuk/image/upload/q_33/v1694406680/Natours/tours/natour_poster_uuhohw.png"
@@ -77,7 +77,7 @@ export default async function Home() {
           <div
             className={
               latoBold.className +
-              " text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[6rem] md:leading-[7.5rem] capitalize absolute flex flex-wrap max-md:w-[30rem] left-[6vw] bottom-[6rem] sm:bottom-[8rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]"
+              " text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[6rem] md:leading-[7.5rem] capitalize absolute flex flex-wrap left-[6vw] bottom-[6rem] sm:bottom-[8rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]"
             }
           >
             <p className="mr-[100%] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
