@@ -14,7 +14,7 @@ export default function HeroBanner() {
   const searchbarRef = useRef<HTMLDivElement>(null);
   const sloganref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     function handleScroll() {
       let dynamicHeight = window.innerHeight - window.scrollY - 51;
 

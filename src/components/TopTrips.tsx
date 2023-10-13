@@ -4,7 +4,7 @@ import { Tour } from "@Global/custom-types";
 import { Lato } from "next/font/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +17,7 @@ const latoBold = Lato({
 export default function TopTrips({ tours }: { tours: Array<Tour> }) {
   const topTripsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // The component is set to a fixed width.
     let tl = gsap.timeline({
       // yes, we can add it to an entire timeline!
