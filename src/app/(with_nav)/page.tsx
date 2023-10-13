@@ -1,6 +1,5 @@
 import { Lato } from "next/font/google";
 import Link from "next/link";
-import LandingPageSearch from "@/components/LandingPageSearch";
 import TopTrips from "@/components/TopTrips";
 import { fetchTopPicks } from "@/utilities/fetchTour";
 import { Tour } from "@Global/custom-types";

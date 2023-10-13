@@ -23,9 +23,8 @@ export default function HeroBanner() {
     let tl = gsap.timeline({
       scrollTrigger: {
         scrub: true,
-        pin: true,
         start: "top top",
-        end: `+=${700}px`,
+        end: "+=400",
       },
     });
 

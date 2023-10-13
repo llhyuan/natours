@@ -24,7 +24,6 @@ export default function TopTrips({ tours }: { tours: Array<Tour> }) {
         scrub: true,
         pin: true,
         start: "top 100px",
-        end: `+=${1600}px`,
       },
     });
     const viewportWidth = window.innerWidth;
