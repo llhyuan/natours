@@ -26,7 +26,7 @@ export default function TopTrips({ tours }: { tours: Array<Tour> }) {
         scrub: true,
         pin: true,
         start: "top 100px",
-        end: `+=${1550}px`,
+        end: `+=${2200}px`,
       },
     });
     const viewportWidth = window.innerWidth;
@@ -43,7 +43,7 @@ export default function TopTrips({ tours }: { tours: Array<Tour> }) {
       <h2 className={latoBold.className + " text-2xl md:text-3xl text-center"}>
         Top trips for 2024
       </h2>
-      <div className="w-[100vw] overflow-scroll bg-transparent snap-mandatory">
+      <div className="w-[100vw] overflow-scroll s bg-transparent snap-mandatory">
         <div
           ref={topTripsRef}
           className="flex justify-around py-8 w-[2200px] lg:px-[15vw]"
