@@ -14,8 +14,6 @@ const latoBold = Lato({
 });
 
 export default function HeroBanner() {
-  const heroScrionRef = useRef<HTMLDivElement>(null);
-  const searchbarRef = useRef<HTMLDivElement>(null);
   const sloganref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,9 +26,6 @@ export default function HeroBanner() {
       },
     });
 
-    tl.to(searchbarRef.current, {
-      y: 300,
-    });
     tl.to(
       sloganref.current,
       {
@@ -41,26 +36,20 @@ export default function HeroBanner() {
   }, []);
 
   return (
-    <section
-      ref={heroScrionRef}
-      className="relative h-[calc(100vh-51px)] overflow-hidden "
-    >
-      <div className="relative overflow-hidden h-full">
+    <section className="relative h-[calc(100vh-51px)] ">
+      <div className="absolute top-0 overflow-hidden h-full w-full">
         <video
           src="https://res.cloudinary.com/dafo4jbuk/video/upload/q_50/v1693042860/homepage_skrkmx.mp4"
           poster="https://res.cloudinary.com/dafo4jbuk/image/upload/q_33/v1694406680/Natours/tours/natour_poster_uuhohw.png"
           loop
           autoPlay
           muted
-          className="absolute bottom-0 block object-cover h-full w-full"
+          className="block object-cover h-full w-full"
           playsInline={true}
         ></video>
       </div>
-      <div className="absolute bottom-0 w-full h-full bg-[rgba(0,0,0,0.05)] flex flex-col items-center">
-        <div
-          ref={searchbarRef}
-          className="absolute top-[8rem] text-zinc-100 text-[1.25rem]"
-        >
+      <div className="relative w-full h-full bg-[rgba(0,0,0,0.05)] flex flex-col items-center">
+        <div className="sticky top-[12rem] text-zinc-100 text-[1.25rem]">
           <LandingPageSearch />
         </div>
         <div
