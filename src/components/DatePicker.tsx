@@ -17,7 +17,7 @@ export default function DatePicker() {
       asSingle={true}
       primaryColor={"green"}
       inputClassName={
-        "rounded-xs p-2 border-none focus:outline-none focus:ring-0"
+        "rounded-xs p-2 py-3 border-none focus:outline-none focus:ring-0 w-full"
       }
       value={date}
       placeholder="Start Date"

@@ -6,6 +6,7 @@ import { fetchTopPicks } from "@/utilities/fetchTour";
 import { Tour } from "@Global/custom-types";
 import Image from "next/image";
 import { ReactNode } from "react";
+import HeroBanner from "@/components/HeroBanner";
 
 const latoBold = Lato({
   weight: "700",
@@ -58,63 +59,7 @@ export default async function Home() {
   const results: Array<Tour> = await fetchTopPicks();
   return (
     <div>
-      <section className="relative">
-        <div className="relative overflow-hidden h-[calc(100vh-51px)]">
-          <video
-            src="https://res.cloudinary.com/dafo4jbuk/video/upload/q_50/v1693042860/homepage_skrkmx.mp4"
-            poster="https://res.cloudinary.com/dafo4jbuk/image/upload/q_33/v1694406680/Natours/tours/natour_poster_uuhohw.png"
-            loop
-            autoPlay
-            muted
-            className="block object-cover min-h-full"
-            playsInline={true}
-          ></video>
-        </div>
-        <div className="absolute top-0 w-full h-[calc(100vh-51px)] bg-[rgba(0,0,0,0.05)] flex flex-col items-center">
-          <div className="relative top-44 text-zinc-100 text-[1.25rem]">
-            <LandingPageSearch />
-          </div>
-          <div
-            className={
-              latoBold.className +
-              " text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[6rem] md:leading-[7.5rem] capitalize absolute flex flex-wrap left-[6vw] bottom-[6rem] sm:bottom-[8rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]"
-            }
-          >
-            <p className="mr-[100%] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
-              Get
-            </p>{" "}
-            <p className="pl-[4rem] md:pl-[5.5rem] mr-[100%] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/70 to-[#28b487]/80">
-              On
-            </p>
-            <p className="mr-6 text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/75 to-[#28b487]/85">
-              Your
-            </p>{" "}
-            <p className="mr-6 text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
-              Way
-            </p>
-            <p>
-              <Link
-                href="/tours"
-                className="group block relative md:left-6 bottom-8 md:bottom-12 hover:translate-x-6 transition-all duration-150 ease-in"
-              >
-                <span className="block scale-y-[1.8] group-hover:text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]">
-                  &gt;
-                </span>
-              </Link>
-            </p>
-          </div>
-          <div className="absolute bottom-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 320 512"
-              className="fill-zinc-200 rotate-90 mx-auto text-[1.3rem] animate-pulse"
-            >
-              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-            </svg>
-          </div>
-        </div>
-      </section>
+      <HeroBanner />
       <SectionWrapper>
         <div className="max-w-[800px] mx-auto text-center">
           <h2
@@ -166,7 +111,7 @@ export default async function Home() {
               latoBold.className + " text-2xl md:text-3xl text-center mb-8"
             }
           >
-            Our values
+            Our Values
           </h2>
           <p className="w-[85%] max-w-[800px] mx-auto mb-2 text-lg md:text-xl">
             Natours began with a single aim: to break the mold of traditional
@@ -229,7 +174,7 @@ export default async function Home() {
           }
         >
           Your next dream tour starts{" "}
-          <span className="block ml-1 group-hover:text-transparent group-hover:text-[1.8rem] bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]/90 transition-all duration-[500ms] ease-in-out">
+          <span className="block ml-1 group-hover:text-transparent group-hover:scale-125 group-hover:ml-[0.85rem] bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]/90 transition-all duration-[500ms] ease-in-out">
             here!
           </span>
         </Link>
