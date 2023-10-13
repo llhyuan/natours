@@ -6,6 +6,7 @@
   --section-rotate: 8vw;
   --review-content-height: 0px;
   --booking-content-height: 34.5rem;
+  scroll-behavior: smooth;
 }
 
 input[type="range"] {

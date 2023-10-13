@@ -68,7 +68,7 @@ export default function LandingPageSearch() {
           />
         )}
       </div>
-      <div className="mb-4 w-[65%]">
+      <div className="mb-4 w-[75%]">
         <DatePicker />
       </div>
       <button

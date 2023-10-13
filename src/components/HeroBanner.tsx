@@ -1,7 +1,11 @@
 "use client";
 import LandingPageSearch from "./LandingPageSearch";
 import { Lato } from "next/font/google";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const latoBold = Lato({
   weight: "700",
@@ -10,59 +14,42 @@ const latoBold = Lato({
 });
 
 export default function HeroBanner() {
-  const heroScrionRef = useRef<HTMLDivElement>(null);
-  const searchbarRef = useRef<HTMLDivElement>(null);
   const sloganref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleScroll() {
-      let dynamicHeight = window.innerHeight - window.scrollY - 51;
+    const viewportWidth = window.innerWidth;
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        scrub: true,
+        start: "top top",
+        end: "+=400",
+      },
+    });
 
-      if (dynamicHeight >= 400) {
-        if (heroScrionRef.current) {
-          heroScrionRef.current.style.height = `${dynamicHeight}px`;
-          heroScrionRef.current.style.marginTop = `${window.scrollY}px`;
-        }
-      }
-
-      if (sloganref.current) {
-        const sloganWidth = sloganref.current.offsetWidth;
-        let dynamicPositionLeft =
-          window.innerWidth * 0.06 -
-          (sloganWidth + window.innerWidth * 0.06) * (window.scrollY / 350);
-        if (dynamicPositionLeft >= -(sloganWidth + window.innerWidth * 0.06)) {
-          sloganref.current.style.left = `${dynamicPositionLeft}px`;
-        }
-      }
-    }
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    tl.to(
+      sloganref.current,
+      {
+        x: -(viewportWidth * 0.06 + 420),
+      },
+      0,
+    );
   }, []);
 
   return (
-    <section
-      ref={heroScrionRef}
-      className="relative h-[calc(100vh-51px)] overflow-hidden"
-    >
-      <div className="relative overflow-hidden h-full">
+    <section className="relative h-[calc(100vh-51px)] ">
+      <div className="absolute top-0 overflow-hidden h-full w-full">
         <video
           src="https://res.cloudinary.com/dafo4jbuk/video/upload/q_50/v1693042860/homepage_skrkmx.mp4"
           poster="https://res.cloudinary.com/dafo4jbuk/image/upload/q_33/v1694406680/Natours/tours/natour_poster_uuhohw.png"
           loop
           autoPlay
           muted
-          className="absolute bottom-0 block object-cover h-full w-full"
+          className="block object-cover h-full w-full"
           playsInline={true}
         ></video>
       </div>
-      <div className="absolute bottom-0 w-full h-full bg-[rgba(0,0,0,0.05)] flex flex-col items-center">
-        <div
-          ref={searchbarRef}
-          className="absolute top-[8rem] text-zinc-100 text-[1.25rem]"
-        >
+      <div className="relative w-full h-full bg-[rgba(0,0,0,0.05)] flex flex-col items-center">
+        <div className="sticky top-[12rem] text-zinc-100 text-[1.25rem]">
           <LandingPageSearch />
         </div>
         <div
