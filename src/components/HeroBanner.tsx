@@ -1,7 +1,11 @@
 "use client";
 import LandingPageSearch from "./LandingPageSearch";
 import { Lato } from "next/font/google";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useLayoutEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const latoBold = Lato({
   weight: "700",
@@ -15,37 +19,32 @@ export default function HeroBanner() {
   const sloganref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    function handleScroll() {
-      let dynamicHeight = window.innerHeight - window.scrollY - 51;
+    const viewportWidth = window.innerWidth;
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        scrub: true,
+        pin: true,
+        start: "top top",
+        end: `+=${700}px`,
+      },
+    });
 
-      if (dynamicHeight >= 400) {
-        if (heroScrionRef.current) {
-          heroScrionRef.current.style.height = `${dynamicHeight}px`;
-          heroScrionRef.current.style.marginTop = `${window.scrollY}px`;
-        }
-      }
-
-      if (sloganref.current) {
-        const sloganWidth = sloganref.current.offsetWidth;
-        let dynamicPositionLeft =
-          window.innerWidth * 0.06 -
-          (sloganWidth + window.innerWidth * 0.06) * (window.scrollY / 350);
-        if (dynamicPositionLeft >= -(sloganWidth + window.innerWidth * 0.06)) {
-          sloganref.current.style.left = `${dynamicPositionLeft}px`;
-        }
-      }
-    }
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    tl.to(searchbarRef.current, {
+      y: 300,
+    });
+    tl.to(
+      sloganref.current,
+      {
+        x: -(viewportWidth * 0.06 + 420),
+      },
+      0,
+    );
   }, []);
 
   return (
     <section
       ref={heroScrionRef}
-      className="relative h-[calc(100vh-51px)] overflow-hidden"
+      className="relative h-[calc(100vh-51px)] overflow-hidden "
     >
       <div className="relative overflow-hidden h-full">
         <video
