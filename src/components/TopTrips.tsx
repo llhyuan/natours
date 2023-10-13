@@ -4,7 +4,7 @@ import { Tour } from "@Global/custom-types";
 import { Lato } from "next/font/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +17,7 @@ const latoBold = Lato({
 export default function TopTrips({ tours }: { tours: Array<Tour> }) {
   const topTripsRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: topTripsRef.current,

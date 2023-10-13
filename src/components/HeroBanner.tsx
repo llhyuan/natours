@@ -3,7 +3,7 @@ import LandingPageSearch from "./LandingPageSearch";
 import { Lato } from "next/font/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +18,7 @@ export default function HeroBanner() {
   const searchbarRef = useRef<HTMLDivElement>(null);
   const sloganref = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const viewportWidth = window.innerWidth;
     let tl = gsap.timeline({
       scrollTrigger: {
