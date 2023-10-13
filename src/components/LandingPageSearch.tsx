@@ -15,7 +15,7 @@ export default function LandingPageSearch() {
 
   return (
     <form
-      className="relative group flex max-sm:flex-col max-sm:items-start w-fit mx-auto mb-[2rem] text-[1rem] lg:text-[1.3rem] items-center rounded-sm "
+      className="relative group w-fit mx-auto mb-[2rem] text-[1rem] lg:text-[1.3rem] rounded-sm "
       onSubmit={(e) => {
         e.preventDefault();
         if (searchParams.date || searchParams.value) {
@@ -29,7 +29,7 @@ export default function LandingPageSearch() {
         }
       }}
     >
-      <div className="flex flex-2 items-center bg-white py-1 px-2 sm:mr-1 max-sm:mb-2 shadow-md">
+      <div className="flex items-center bg-white py-2 px-2 shadow-md mb-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="1em"
@@ -68,12 +68,12 @@ export default function LandingPageSearch() {
           />
         )}
       </div>
-      <div className="flex-1">
+      <div className="mb-4 w-[65%]">
         <DatePicker />
       </div>
       <button
         type="submit"
-        className="sm:ml-1 max-sm:mt-4 max-sm:self-end py-[0.28rem] max-sm:px-8 px-4 md:px-6 lg:px-8 rounded-r-sm text-zinc-100 active:opacity-90 bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 shadow-md"
+        className="block py-3 mt-10 ml-auto max-sm:px-8 px-4 md:px-6 lg:px-8 rounded-r-sm text-zinc-100 active:opacity-90 bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 shadow-md"
       >
         Search
       </button>
