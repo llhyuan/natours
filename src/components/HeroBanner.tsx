@@ -1,11 +1,8 @@
 "use client";
 import LandingPageSearch from "./LandingPageSearch";
 import { Lato } from "next/font/google";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import { useEffect, useRef } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion, useMotionValue, useScroll } from "framer-motion";
+import { useEffect } from "react";
 
 const latoBold = Lato({
   weight: "700",
@@ -14,26 +11,17 @@ const latoBold = Lato({
 });
 
 export default function HeroBanner() {
-  const sloganref = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const x = useMotionValue(0);
 
   useEffect(() => {
-    const viewportWidth = window.innerWidth;
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        scrub: true,
-        start: "top top",
-        end: "+=400",
-      },
+    const unsubscribeScrollY = scrollY.on("change", () => {
+      x.set(scrollY.get() * -1.3);
     });
-
-    tl.to(
-      sloganref.current,
-      {
-        x: -(viewportWidth * 0.06 + 420),
-      },
-      0,
-    );
-  }, []);
+    return () => {
+      unsubscribeScrollY();
+    };
+  }, [scrollY, x]);
 
   return (
     <section className="relative h-[calc(100vh-51px)] ">
@@ -52,19 +40,24 @@ export default function HeroBanner() {
         <div className="sticky top-[12rem] text-zinc-100 text-[1.25rem]">
           <LandingPageSearch />
         </div>
-        <div
-          ref={sloganref}
-          className={
-            latoBold.className +
-            " text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[5.5rem] md:leading-[5rem] capitalize absolute left-[6vw] bottom-[5rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]"
-          }
-        >
-          <p className="text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
-            Adventure
-          </p>
-          <p className="text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/70 to-[#28b487]/80">
-            Awaits.
-          </p>
+
+        <div className="absolute left-0 bottom-[5rem] w-full overflow-hidden">
+          <motion.div
+            style={{
+              x,
+            }}
+            className={
+              latoBold.className +
+              " text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[5.5rem] md:leading-[5rem] capitalize text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]"
+            }
+          >
+            <p className="pl-[8vw] lg:mb-6 text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
+              Adventure
+            </p>
+            <p className="pl-[8vw] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/70 to-[#28b487]/80">
+              Awaits.
+            </p>
+          </motion.div>
         </div>
         <div className="absolute bottom-6">
           <svg
