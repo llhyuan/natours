@@ -51,10 +51,10 @@ export default function HeroBanner() {
               " text-zinc-300 text-[3rem] sm:text-[4rem] md:text-[5.5rem] md:leading-[5rem] capitalize text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/90 to-[#28b487]"
             }
           >
-            <p className="pl-[6vw] lg:mb-6 text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
+            <p className="pl-[8vw] lg:mb-6 text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90">
               Adventure
             </p>
-            <p className="pl-[6vw] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/70 to-[#28b487]/80">
+            <p className="pl-[8vw] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/70 to-[#28b487]/80">
               Awaits.
             </p>
           </motion.div>

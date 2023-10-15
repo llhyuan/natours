@@ -22,7 +22,7 @@ export default function TopTrips({ tours }: { tours: Array<Tour> }) {
       </h2>
       <div
         ref={containerRef}
-        className="no-scrollbar flex relative w-[100vw] py-6 overflow-scroll bg-transparent snap-x-mandatory"
+        className="no-scrollbar flex relative w-[100vw] p-6 overflow-scroll bg-transparent snap-x-mandatory"
       >
         {tours.map((tour: any, index: number) => {
           return (
