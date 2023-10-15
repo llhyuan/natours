@@ -22,14 +22,14 @@ export default function TopTrips({ tours }: { tours: Array<Tour> }) {
       </h2>
       <div
         ref={containerRef}
-        className="no-scrollbar flex relative w-[100vw] p-6 overflow-scroll bg-transparent snap-x-mandatory"
+        className="no-scrollbar flex relative w-[100vw] p-6 overflow-scroll bg-transparent snap-x snap-mandatory"
       >
         {tours.map((tour: any, index: number) => {
           return (
             <div
               key={index}
               id={`carousel-${index}`}
-              className="min-w-[350px] scale-[0.85] mx-4 hover:scale-[0.9] transition-all duration-80 ease-in-out"
+              className="min-w-[350px] scale-[0.85] mx-4 hover:scale-[0.9] transition-all duration-80 ease-in-out snap-center"
             >
               <InfoCard tour={tour as Tour} />
             </div>
