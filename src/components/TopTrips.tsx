@@ -29,7 +29,7 @@ export default function TopTrips({ tours }: { tours: Array<Tour> }) {
             <div
               key={index}
               id={`carousel-${index}`}
-              className="min-w-[350px] scale-[0.85] mx-4 hover:scale-[0.9] transition-all duration-80 ease-in-out snap-center"
+              className="min-w-[350px] scale-[0.85] mx-4 transition-all duration-80 ease-in-out snap-center"
             >
               <InfoCard tour={tour as Tour} />
             </div>
