@@ -21,11 +21,10 @@ const latoBold = Lato({
 });
 
 const latoSemiBold = Lato({
-  weight: '400',
-  style: 'normal',
-  subsets: ['latin']
-}
-)
+  weight: "400",
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export default async function Tour({ params }: { params: { tourId: string } }) {
   const result = await fetchTours(params.tourId);
@@ -59,7 +58,12 @@ export default async function Tour({ params }: { params: { tourId: string } }) {
         </div>
         <div className="absolute w-full h-[55vw] max-h-[860px] min-h-[220px] top-0 flex items-center">
           <div className="flex flex-col w-full items-center">
-            <h1 className={latoSemiBold.className + " text-[1.2rem] sm:text-[1.5rem] md:text-[1.8rem] lg:text-[2.5rem] text-zinc-100 uppercase flex flex-col items-center"}>
+            <h1
+              className={
+                latoSemiBold.className +
+                " text-[1.2rem] sm:text-[1.5rem] md:text-[1.8rem] lg:text-[2.5rem] text-zinc-100 uppercase flex flex-col items-center"
+              }
+            >
               <span className="block w-fit py-2 px-4 sm:py-4 sm:px-6 bg-gradient-to-br from-[#7dd56f]/30 to-[#28b487]/40">
                 {tourName.firstHalf ?? "Loading"}
               </span>
