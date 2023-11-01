@@ -1,15 +1,9 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import { Lato } from "next/font/google";
+import { latoBold } from "@/app/fonts";
 import { useContext, useState } from "react";
 import { notificationContext } from "@/app/NotificationContextProvier";
 import { loginStatusContext } from "@/app/LoginStatusContextProvider";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function ChangeUserInfo({
   name,

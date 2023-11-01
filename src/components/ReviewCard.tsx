@@ -1,20 +1,8 @@
 import Image from "next/image";
-import { Lato } from "next/font/google";
+import { latoBold, latoSemiBoldItalic } from "@/app/fonts";
 import { Review, User } from "@Global/custom-types";
 import { fetchUsers } from "@/utilities/fetchUsers";
 import { importCover } from "@/utilities/importImage";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoItalic = Lato({
-  weight: "400",
-  style: "italic",
-  subsets: ["latin"],
-});
 
 export default async function ReviewCard({ review }: { review: Review }) {
   const result = await fetchUsers(review.user);
@@ -41,11 +29,11 @@ export default async function ReviewCard({ review }: { review: Review }) {
         <div className="pl-6">
           <p className={latoBold.className + " text-[1.3rem]"}>{name}</p>
           <p
-            className={latoItalic.className + " text-zinc-400 pl-2"}
+            className={latoSemiBoldItalic.className + " text-zinc-400 pl-2"}
           >{`Posted on ${review.createdAt.slice(0, 10)}`}</p>
         </div>
       </div>
-      <p className={latoItalic.className + " text-[1.1rem] my-4"}>
+      <p className={latoSemiBoldItalic.className + " text-[1.1rem] my-4"}>
         {review.review}
       </p>
 

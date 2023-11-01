@@ -1,14 +1,8 @@
 import BookingItem from "@/components/BookingItem";
 import { fetchBookings } from "@/utilities/fetchBookings";
 import { BookingInfo } from "@Global/custom-types";
-import { Lato } from "next/font/google";
+import { latoBold } from "@/app/fonts";
 import GuideInfo from "@/components/GuideInfo";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default async function Bookings() {
   const bookings = await fetchBookings();

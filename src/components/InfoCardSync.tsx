@@ -1,27 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Lato } from "next/font/google";
+import { latoSemiBold, latoBold, latoItalic } from "@/app/fonts";
 import { CSSPropertiesWithVars } from "@Global/custom-types";
 import { Tour } from "@Global/custom-types";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoItalic = Lato({
-  weight: "300",
-  style: "italic",
-  subsets: ["latin"],
-});
 
 export default function InfoCard({ tour }: { tour: Tour }) {
   const name: Array<string> = tour.name.split(" ");

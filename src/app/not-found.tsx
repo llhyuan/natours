@@ -1,27 +1,9 @@
 import "./globals.css";
 import Image from "next/image";
-import { Lato } from "next/font/google";
+import { lato, latoSemiBold, latoExtraBold } from "./fonts";
 
 import bgImg from "../../public/img/404.jpg";
 import Link from "next/link";
-
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoBold = Lato({
-  weight: "900",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const lato = Lato({
-  weight: "300",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function Error() {
   return (
@@ -51,7 +33,9 @@ export default function Error() {
             404
           </p>
           <p
-            className={latoBold.className + " text-[3rem] my-4 lg:text-[4rem]"}
+            className={
+              latoExtraBold.className + " text-[3rem] my-4 lg:text-[4rem]"
+            }
           >
             Page Not Found
           </p>

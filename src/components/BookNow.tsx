@@ -1,19 +1,7 @@
 import Image from "next/image";
-import { Lato } from "next/font/google";
+import { lato, latoBold } from "@/app/fonts";
 import img from "../../public/img/logo-green-round.png";
 import CheckoutButton from "./Checkoutbutton";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const lato = Lato({
-  weight: "300",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function BookNow() {
   return (

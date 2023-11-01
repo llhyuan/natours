@@ -5,13 +5,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { notificationContext } from "@/app/NotificationContextProvier";
-import { Lato } from "next/font/google";
-
-const latoSemiBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoBold } from "@/app/fonts";
 
 export default function SignupForm() {
   const [name, setName] = useState("");
@@ -89,8 +83,7 @@ export default function SignupForm() {
             <label
               htmlFor="name"
               className={
-                latoSemiBold.className +
-                " block text-[1rem] font-medium leading-6"
+                latoBold.className + " block text-[1rem] font-medium leading-6"
               }
             >
               Name
@@ -117,8 +110,7 @@ export default function SignupForm() {
             <label
               htmlFor="email"
               className={
-                latoSemiBold.className +
-                " block text-[1rem] font-medium leading-6"
+                latoBold.className + " block text-[1rem] font-medium leading-6"
               }
             >
               Email
@@ -147,8 +139,7 @@ export default function SignupForm() {
             <label
               htmlFor="password"
               className={
-                latoSemiBold.className +
-                " block text-[1rem] font-medium leading-6"
+                latoBold.className + " block text-[1rem] font-medium leading-6"
               }
             >
               Password
@@ -176,8 +167,7 @@ export default function SignupForm() {
             <label
               htmlFor="passwordConfirm"
               className={
-                latoSemiBold.className +
-                " block text-[1rem] font-medium leading-6"
+                latoBold.className + " block text-[1rem] font-medium leading-6"
               }
             >
               Confirm Your Password
@@ -229,7 +219,7 @@ export default function SignupForm() {
             <button
               type="submit"
               className={
-                latoSemiBold.className +
+                latoBold.className +
                 " flex w-full justify-center rounded-md bg-gradient-to-br from-[#7dd56f]/80 to-[#28b487]/90 px-3 py-4 m0 text-[1.2rem] leading-6 text-zinc-100 shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               }
             >
@@ -241,7 +231,7 @@ export default function SignupForm() {
             <Link
               href="/login"
               className={
-                latoSemiBold.className +
+                latoBold.className +
                 " ml-2 text-zinc-700 hover:text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f]/80 to-[#28b487]/90"
               }
             >

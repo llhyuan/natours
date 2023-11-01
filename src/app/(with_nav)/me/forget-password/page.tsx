@@ -2,13 +2,7 @@
 
 import { notificationContext } from "@/app/NotificationContextProvier";
 import { useState, useContext } from "react";
-import { Lato } from "next/font/google";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoBold } from "@/app/fonts";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");

@@ -2,13 +2,7 @@
 import { useState, useContext } from "react";
 import { notificationContext } from "@/app/NotificationContextProvier";
 import { useRouter } from "next/navigation";
-import { Lato } from "next/font/google";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoBold } from "@/app/fonts";
 
 export default function NewPassword({
   params,

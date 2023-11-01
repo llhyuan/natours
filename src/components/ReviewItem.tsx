@@ -1,18 +1,12 @@
 "use client";
 import Image from "next/image";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "@/app/fonts";
 import { useRef, useEffect, useState, useContext } from "react";
 import { ReviewPopulated } from "@Global/custom-types";
 import ReviewDispaly from "./ReviewDisplay";
 import ReviewEditForm from "./ReviewEditForm";
 import { useRouter, useSearchParams } from "next/navigation";
 import { notificationContext } from "@/app/NotificationContextProvier";
-
-const latoSemiBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function ReviewItem({ review }: { review: ReviewPopulated }) {
   const searchParam = useSearchParams();
@@ -26,7 +20,7 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
 
   const [reviewBuf, setReviewBuf] = useState<ReviewPopulated>(review);
   const [editingStatus, setEditingStatus] = useState(
-    beingEdited === review.order ? "editing" : ""
+    beingEdited === review.order ? "editing" : "",
   );
   const [expand, toggleExpand] = useState(beingEdited === review.order);
 
@@ -63,7 +57,7 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
     ) {
       reviewItemRef.current.style.setProperty(
         "--review-content-height",
-        `${reviewContentRef.current.offsetHeight}px`
+        `${reviewContentRef.current.offsetHeight}px`,
       );
       if (beingEdited === review.order) {
         reviewItemRef.current.scrollIntoView({
@@ -197,7 +191,7 @@ export default function ReviewItem({ review }: { review: ReviewPopulated }) {
                   {
                     method: "DELETE",
                     credentials: "include",
-                  }
+                  },
                 );
                 const result = await response.json();
                 if (result.status === "success") {

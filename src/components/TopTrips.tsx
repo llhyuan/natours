@@ -1,15 +1,9 @@
 "use client";
 import InfoCard from "@/components/InfoCard";
 import { Tour } from "@Global/custom-types";
-import { Lato } from "next/font/google";
+import { latoBold } from "@/app/fonts";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function TopTrips({ tours }: { tours: Array<Tour> }) {
   const containerRef = useRef<HTMLDivElement>(null!);

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Lato } from "next/font/google";
+import { lato, latoBold } from "@/app/fonts";
 import { BookingInfo } from "@Global/custom-types";
 import { useRef, useEffect, useState, ReactNode, useContext } from "react";
 import RatingStarsResponsive from "./RatingStarsResponsive";
@@ -11,18 +11,6 @@ import { notificationContext } from "@/app/NotificationContextProvier";
 import { useRouter } from "next/navigation";
 import Startdate from "./StartdateUpdate";
 import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
-
-const lato = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoSemiBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function BookingItem({
   bookingInfo,
@@ -88,7 +76,7 @@ export default function BookingItem({
           </div>
           <p
             className={
-              latoSemiBold.className +
+              latoBold.className +
               " relative top-0 text-[1.1rem] sm:text-[1.4rem] transition-all duration-450 ease-in tour-name"
             }
           >
@@ -98,7 +86,7 @@ export default function BookingItem({
         <div className="flex flex-col items-end ml-auto px-4 py-2">
           <p
             className={
-              latoSemiBold.className +
+              latoBold.className +
               " text-[1.3rem] text-transparent bg-gradient-to-br bg-clip-text from-[#7dd56f] to-[#28b487] tour-price transition-all ease-in-out duration-450"
             }
           >{`$${bookingInfo.tour.price}`}</p>
@@ -126,7 +114,7 @@ export default function BookingItem({
             <div className="w-full flex items-end justify-between">
               <p
                 className={
-                  latoSemiBold.className +
+                  latoBold.className +
                   " ml-6 uppercase " +
                   (bookingInfo.paymentStatus === "pending"
                     ? "text-orange-500"

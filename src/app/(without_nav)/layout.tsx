@@ -2,16 +2,10 @@
 import "../globals.css";
 import Image from "next/image";
 import img from "../../../public/img/tours/tour-4-cover.jpg";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "../fonts";
 import { importCover } from "@/utilities/importImage";
 import { ReactNode, useEffect, useState } from "react";
 import Notification from "@/components/ErrorMessage";
-
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function NoNavbarLayout({ children }: { children: ReactNode }) {
   const [randomBg, setRandomBg] = useState(img);

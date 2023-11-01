@@ -5,13 +5,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { notificationContext } from "@/app/NotificationContextProvier";
-import { Lato } from "next/font/google";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoBold } from "@/app/fonts";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("lhyuan.liu21@icloud.com");

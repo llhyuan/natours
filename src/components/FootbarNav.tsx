@@ -1,12 +1,6 @@
 import { FootbarLink, FootbarNavsection } from "@Global/custom-types";
 import Link from "next/link";
-import { Lato } from "next/font/google";
-
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoSemiBold } from "@/app/fonts";
 
 const footbarNav: FootbarNavsection = {
   booking: [

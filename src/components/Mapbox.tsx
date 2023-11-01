@@ -2,16 +2,10 @@
 
 import ReactMapGL, { Marker, ZoomControl } from "react-mapbox-gl";
 import Image from "next/image";
-import { Lato } from "next/font/google";
+import { lato } from "@/app/fonts";
 import pin from "../../public/img/pin.png";
 import { GeoPoint } from "@Global/custom-types";
 import { useState } from "react";
-
-const lato = Lato({
-  weight: "300",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function Mapbox({ locations }: { locations: Array<GeoPoint> }) {
   const [interactive, toggleInteractivity] = useState(false);

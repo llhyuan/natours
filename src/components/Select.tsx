@@ -1,13 +1,8 @@
 "use client";
 
 import { searchContext } from "@/app/(with_nav)/SearchContextProvider";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "@/app/fonts";
 import { useRef, useState, useEffect, useContext } from "react";
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function Select() {
   const { searchParams, setSearchParams } = useContext(searchContext);

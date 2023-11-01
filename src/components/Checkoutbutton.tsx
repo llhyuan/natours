@@ -2,25 +2,19 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
-import { Lato } from "next/font/google";
+import { latoBold } from "@/app/fonts";
 import { notificationContext } from "@/app/NotificationContextProvier";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "",
 );
 
 export default function CheckoutButton() {
   const { tourId } = useParams();
   const router = useRouter();
-  const {setNotificationStatus} = useContext(notificationContext);
+  const { setNotificationStatus } = useContext(notificationContext);
   // useEffect(() => {
   //   // Check to see if this is a redirect back from Checkout
   //   const query = new URLSearchParams(window.location.search);
@@ -46,12 +40,12 @@ export default function CheckoutButton() {
         const result = await response.json();
         if (result.status === "success") {
           router.replace(result.url);
-        }else{
-         setNotificationStatus({
+        } else {
+          setNotificationStatus({
             reveal: true,
             message: result.message,
-            category: 'error',
-          }) 
+            category: "error",
+          });
         }
       }}
     >

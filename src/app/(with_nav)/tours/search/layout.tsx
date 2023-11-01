@@ -5,16 +5,10 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FunnelIcon, MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import Sort from "@/components/Sort";
 import Link from "next/link";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "@/app/fonts";
 import { searchContext } from "../../SearchContextProvider";
 import { usePathname, useRouter } from "next/navigation";
 import RangeSlider from "@/components/RangeSlider";
-
-const latoSemiBold = Lato({
-  weight: "400",
-  subsets: ["latin"],
-  style: "normal",
-});
 
 const subCategories = [
   { name: "Top Picks", value: "top5", href: "/tours/search/top5" },

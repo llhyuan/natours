@@ -1,14 +1,8 @@
 "use client";
 import LandingPageSearch from "./LandingPageSearch";
-import { Lato } from "next/font/google";
+import { latoBold } from "@/app/fonts";
 import { motion, useMotionValue, useScroll } from "framer-motion";
 import { useEffect } from "react";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function HeroBanner() {
   const { scrollY } = useScroll();
