@@ -1,4 +1,4 @@
-import { Lato } from "next/font/google";
+import { latoBold } from "../fonts";
 import Link from "next/link";
 import TopTrips from "@/components/TopTrips";
 import { fetchTopPicks } from "@/utilities/fetchTour";
@@ -6,12 +6,6 @@ import { Tour } from "@Global/custom-types";
 import Image from "next/image";
 import { ReactNode } from "react";
 import HeroBanner from "@/components/HeroBanner";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 const values = [
   {

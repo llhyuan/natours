@@ -1,10 +1,4 @@
-import { Lato } from "next/font/google";
-
-const latoSemiBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoSemiBold } from "@/app/fonts";
 
 export default function Billing() {
   return (

@@ -1,13 +1,7 @@
 "use client";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "@/app/fonts";
 import { useContext, useState } from "react";
 import { notificationContext } from "@/app/NotificationContextProvier";
-
-const latoSemiBold = Lato({
-  weight: "400",
-  subsets: ["latin"],
-  style: "normal",
-});
 
 export default function Subscribe() {
   const { setNotificationStatus } = useContext(notificationContext);

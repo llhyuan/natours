@@ -1,13 +1,7 @@
 import MyReviews from "@/components/MyReviews";
 import { fetchReviewsByUser } from "@/utilities/fetchReviewsByUser";
 import { ReviewPopulated } from "@Global/custom-types";
-import { Lato } from "next/font/google";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoBold } from "@/app/fonts";
 
 export default async function Reviews() {
   const reviews: {

@@ -8,13 +8,8 @@ import {
   SetStateAction,
   useContext,
 } from "react";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "@/app/fonts";
 import { notificationContext } from "@/app/NotificationContextProvier";
-const latoSemiBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 const ReviewEditForm = forwardRef(function ReviewEditForm(
   props: {
@@ -22,7 +17,7 @@ const ReviewEditForm = forwardRef(function ReviewEditForm(
     setEditingStatus: Dispatch<SetStateAction<string>>;
     setReview: Dispatch<SetStateAction<ReviewPopulated>>;
   },
-  ref: ForwardedRef<HTMLFormElement>
+  ref: ForwardedRef<HTMLFormElement>,
 ) {
   const { setNotificationStatus } = useContext(notificationContext);
   return (

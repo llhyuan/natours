@@ -1,9 +1,5 @@
-import { Lato } from "next/font/google";
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoSemiBold } from "@/app/fonts";
+
 export default function Loading() {
   return (
     <div className="w-full h-full flex justify-center items-center">

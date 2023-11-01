@@ -1,4 +1,4 @@
-import { Lato } from "next/font/google";
+import { latoBold, latoExtraBold, latoSemiBold } from "@/app/fonts";
 import Image from "next/image";
 import Mapbox from "@/components/Mapbox";
 import ReviewRibon from "@/components/ReviewRibon";
@@ -7,24 +7,6 @@ import { fetchTours } from "@/utilities/fetchTour";
 import { Guide, Tour } from "@Global/custom-types";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
-
-const latoExtraBold = Lato({
-  weight: "900",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
-
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default async function Tour({ params }: { params: { tourId: string } }) {
   const result = await fetchTours(params.tourId);

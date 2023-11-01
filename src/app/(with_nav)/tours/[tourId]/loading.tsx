@@ -1,11 +1,7 @@
 import logo from "/public/img/logo-green-round.png";
 import Image from "next/image";
-import { Lato } from "next/font/google";
-const latoSemiBold = Lato({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
+import { latoSemiBold } from "@/app/fonts";
+
 export default function Loading() {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">

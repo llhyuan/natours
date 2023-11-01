@@ -1,11 +1,6 @@
 import { ReviewPopulated } from "@Global/custom-types";
-import { Lato } from "next/font/google";
+import { latoSemiBold } from "@/app/fonts";
 
-const latoSemiBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 export default function ReviewDispaly({ review }: { review: ReviewPopulated }) {
   return (
     <div className="px-4">

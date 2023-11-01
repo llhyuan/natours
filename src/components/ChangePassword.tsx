@@ -1,15 +1,10 @@
 "use client";
-import { Lato } from "next/font/google";
+
+import { latoBold } from "@/app/fonts";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { notificationContext } from "@/app/NotificationContextProvier";
 import { sidebarContext } from "@/app/(with_nav)/SidebarContextProvider";
-
-const latoBold = Lato({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");

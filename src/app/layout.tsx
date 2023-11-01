@@ -1,13 +1,7 @@
 import { ReactNode } from "react";
 import NotificationContextProvider from "./NotificationContextProvier";
-import { Lato } from "next/font/google";
+import { lato, latoSemiBold, latoBold } from "./fonts";
 import LoginStatusContextProvider from "./LoginStatusContextProvider";
-
-const lato = Lato({
-  weight: "300",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export default async function WebsiteLayout({
   children,
