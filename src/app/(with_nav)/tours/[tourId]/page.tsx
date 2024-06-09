@@ -4,13 +4,13 @@ import Mapbox from "@/components/Mapbox";
 import ReviewRibon from "@/components/ReviewRibon";
 import BookNow from "@/components/BookNow";
 import { fetchTours } from "@/utilities/fetchTour";
-import { Guide, Tour } from "@Global/custom-types";
+import { Guide, Tour as TourType } from "@Global/custom-types";
 import GuideInfo from "@/components/GuideInfo";
 import TourGallary from "@/components/TourGallary";
 
 export default async function Tour({ params }: { params: { tourId: string } }) {
   const result = await fetchTours(params.tourId);
-  const tour: Tour = result.data.tour;
+  const tour: TourType = result.data.tour;
   const cover = tour.imageCover;
   const name: Array<string> = tour.name.split(" ");
   const midIdx = Math.ceil(name.length / 2);
