@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       event = stripe.webhooks.constructEvent(
         await req.text(),
         signature,
-        endpointSecret
+        endpointSecret,
       );
     } catch (err) {
       console.log(`Webhook signature verification failed.`, err);
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
           paymentStatus: body.payment_status,
         };
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_HOST}/bookings/update-paymentStatus`,
+          `${process.env.API_HOST}/bookings/update-paymentStatus`,
           {
             method: "PATCH",
             headers: {
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
             },
             credentials: "include",
             body: JSON.stringify(reqBody),
-          }
+          },
         );
         const result = await response.json();
 
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
             },
             credentials: "include",
             body: JSON.stringify(reqBody),
-          }
+          },
         );
 
         const result = await response.json();

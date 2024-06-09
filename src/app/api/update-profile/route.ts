@@ -12,17 +12,14 @@ cloudinary.config({
 
 export async function POST(req: NextRequest, _res: NextResponse) {
   let cookieStr: string = getCookieString(cookies().getAll());
-  const fetchUserId = await fetch(
-    `${process.env.NEXT_PUBLIC_API_HOST}/users/fetchId`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        cookie: cookieStr,
-      },
-      credentials: "include",
-    }
-  );
+  const fetchUserId = await fetch(`${process.env.API_HOST}/users/fetchId`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      cookie: cookieStr,
+    },
+    credentials: "include",
+  });
   const userId = await fetchUserId.json();
 
   const url = `${process.env.NEXT_PUBLIC_API_HOST}/users/me/update-profile`;
