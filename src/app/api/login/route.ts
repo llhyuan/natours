@@ -15,7 +15,20 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify(reqBody),
   });
 
-  return response;
+  const data = await response.json();
+  cookies().set(
+    "jwt",
+    data.token,
+
+    {
+      path: "/",
+      httpOnly: true,
+      maxAge: 10 * 24 * 60 * 60 * 1000,
+      sameSite: "strict",
+    },
+  );
+
+  return NextResponse.json({ staus: data.status, message: data.message });
 }
 
 export async function GET() {

@@ -32,8 +32,6 @@ export default function LoginForm() {
       <div className="mt-10 mx-auto w-full max-w-[20rem]">
         <form
           className="space-y-6"
-          method="POST"
-          action="/api/login"
           onSubmit={async (e) => {
             e.preventDefault();
             const data = {
@@ -47,13 +45,10 @@ export default function LoginForm() {
               },
               body: JSON.stringify(data),
             });
-            const result = await response.json();
-            if (result.status === "success") {
-              // localStorage.setItem(
-              //   "natoursLoggedinUser",
-              //   JSON.stringify(response.data)
-              // );
 
+            const result = await response.json();
+            if (response.status === 200) {
+              console.log("loggedin");
               setNotificationStatus({
                 reveal: true,
                 message: result.message,

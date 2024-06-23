@@ -1,12 +1,11 @@
-import { NextRequest } from "next/server";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const url = `${process.env.API_HOST}/users/logout`;
+export async function GET() {
+  cookies().set("jwt", "");
 
-  const response = await fetch(url, {
-    method: "GET",
-    credentials: "include",
+  return NextResponse.json({
+    status: "success",
+    message: "Successfuly logged out.",
   });
-
-  return response;
 }

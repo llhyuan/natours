@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { importCover } from "@/utilities/importImage";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
 
@@ -36,13 +35,15 @@ export default function TourGallary({
         />
       </svg>
       {imageUrls.map((imgurl, index) => {
-        const img = importCover(`tours/${imgurl}`);
+        const img = `/img/tours/${imgurl}`;
         return (
           <Image
+            className="w-[100%] h-[100%]"
             src={img}
+            width={1000}
+            height={500}
             alt={`tour image ${index + 1}`}
             key={index}
-            placeholder="blur"
           />
         );
       })}
